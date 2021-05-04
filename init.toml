@@ -1,0 +1,102 @@
+#=============================================================================
+# dark_powered.toml --- dark powered configuration example for SpaceVim
+# Copyright (c) 2016-2020 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# URL: https://spacevim.org
+# License: GPLv3
+#=============================================================================
+
+# All SpaceVim option below [option] section
+[options]
+    # set spacevim theme. by default colorscheme layer is not loaded,
+    # if you want to use more colorscheme, please load the colorscheme
+    # layer
+    colorscheme = "srcery"
+    colorscheme_bg = "dark"
+    # guifont = "JetBrains Mono:h11:l"
+    guifont = "FiraCode Nerd Font Mono:h11:l"
+    # Disable guicolors in basic mode, many terminal do not support 24bit
+    # true colors
+    enable_guicolors = true
+    statusline_separator = "slant"
+    statusline_iseparator = "slant"
+
+    buffer_index_type = 0
+    enable_tabline_filetype_icon = true
+    relativenumber = false
+    windows_smartclose = ''
+    bootstrap_before = 'myspacevim#before'
+    bootstrap_after = 'myspacevim#after'
+
+    statusline_left_sections = [
+       # 'winnr',
+       # 'major mode',
+       # 'filename',
+       # 'fileformat',
+       # 'minor mode lighters',
+       # 'version control info',
+       # 'search status'
+    ]
+    # right sections of statusline
+    statusline_right_sections = [
+       'cursorpos',
+       # 'percentage',
+       'input method',
+       'date',
+       'time'
+    ]
+
+# Enable autocomplete layer
+[[layers]]
+name = 'autocomplete'
+auto_completion_return_key_behavior = "complete"
+auto_completion_tab_key_behavior = "smart"
+
+[[layers]]
+name = 'colorscheme'
+
+[[layers]]
+name = 'shell'
+default_position = 'bottom'
+default_height = 30
+
+[[layers]]
+name = 'lang#c'
+enable_clang_syntax_highlight = true
+
+[[layers]]
+name = 'lang#python'
+python_file_head = []
+
+[[layers]]
+name = 'git'
+
+[[layers]]
+name = 'VersionControl'
+
+[[layers]]
+name = 'denite'
+
+[[custom_plugins]]
+repo = "https://github.com/vim-python/python-syntax.git"
+merged = false
+
+[[custom_plugins]]
+repo = "https://github.com/bkad/CamelCaseMotion.git"
+merged = false
+
+[[custom_plugins]]
+repo = "https://github.com/mgedmin/python-imports.vim.git"
+merged = false
+
+[[custom_plugins]]
+repo = "https://github.com/puremourning/vimspector.git"
+merged = false
+
+[[custom_plugins]]
+repo = "https://github.com/ludovicchabant/vim-gutentags.git"
+merged = false
+
+[[custom_plugins]]
+repo = "https://github.com/vim-scripts/argtextobj.vim"
+merged = false
