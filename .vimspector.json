@@ -6,14 +6,14 @@
       "configuration": {
         "type":    "cppdbg",
         "request": "launch",
-        "program": "/home/jacky/dev/QGIS/build-master/output/bin/qgis",
+        "program": "/home/jacky/dev/QGIS/build-final-3_10_9/output/bin/qgis",
         "args": [
         ],
         "cwd": "${workspaceRoot}",
         "environment": [
         ],
         "externalConsole": true,
-        "stopAtEntry": true,
+        //"stopAtEntry": true,
         "MIMode": "gdb",
         "logging": {
           "engineLogging": false

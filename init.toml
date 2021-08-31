@@ -13,20 +13,21 @@
     # layer
     colorscheme = "srcery"
     colorscheme_bg = "dark"
-    # guifont = "JetBrains Mono:h11:l"
-    guifont = "FiraCode Nerd Font Mono:h11:l"
+    guifont = "JetBrainsMono Nerd Font Mono:h10.5:l"
     # Disable guicolors in basic mode, many terminal do not support 24bit
     # true colors
     enable_guicolors = true
     statusline_separator = "slant"
     statusline_iseparator = "slant"
 
-    buffer_index_type = 0
+    buffer_index_type = 4
     enable_tabline_filetype_icon = true
     relativenumber = false
     windows_smartclose = ''
     bootstrap_before = 'myspacevim#before'
     bootstrap_after = 'myspacevim#after'
+
+    enable_vimfiler_gitstatus = true
 
     statusline_left_sections = [
        # 'winnr',
@@ -99,4 +100,8 @@ merged = false
 
 [[custom_plugins]]
 repo = "https://github.com/vim-scripts/argtextobj.vim"
+merged = false
+
+[[custom_plugins]]
+repo = "https://github.com/KabbAmine/zeavim.vim"
 merged = false

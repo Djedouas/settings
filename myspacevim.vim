@@ -1,6 +1,4 @@
 function! myspacevim#before() abort
-    set lines=50 columns=100
-
     " Explorateur à gauche
     let g:vimfiler_direction = 'topleft'
 endfunction
@@ -15,6 +13,11 @@ function! myspacevim#after() abort
     let g:neomake_python_enabled_makers = ['pylint', 'mypy']
     let g:neoformat_enabled_python = ['black']
     let g:python_highlight_all = 1
+    let g:pydocstring_doq_path = '~/.local/bin/doq'
+    let g:pydocstring_formatter = 'numpy'
+
+    " Raccourci pour ouvrir un buffer dans un tab
+    nnoremap <silent> <space>m :tabedit %<CR>
 
     " Tagbar à droite
     let g:tagbar_left = 0
@@ -24,6 +27,9 @@ function! myspacevim#after() abort
 
     " w et b sont conscients de l'écriture camelCase, underscore, etc.
     call camelcasemotion#CreateMotionMappings('')
+
+    " On active les ligatures
+    call s:GuiRenderLigatures(1)
 
     " F11 pour plein écran
     nnoremap <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
@@ -43,10 +49,19 @@ function! myspacevim#after() abort
     " Ouvrir un explorateur dans le dossier du buffer
     nnoremap <F4> :VimFilerBufferDir<CR>
 
+    " Fermer le python runner
+    nmap ù <space>wjq<space>2
+
+
     " On empeche les commandes auto de pylint au save
     augroup neomake_automake
       autocmd!
     augroup END
+
+    " Zeavim
+    nmap gz <Plug>Zeavim
+    nmap gZ <Plug>ZVOperator
+    let g:zv_file_types = {'py': 'python,qt,qgis'}
 
     " Vimspector
     nmap <space>dl <Plug>VimspectorLaunch
@@ -61,8 +76,11 @@ function! myspacevim#after() abort
     nmap <S-F8> <Plug>VimspectorContinue
     nmap <S-F9> <Plug>VimspectorBalloonEval
     nmap <silent> <S-F10> :VimspectorReset<CR>
+    nnoremap <space>dw :VimspectorWatch 
+    nnoremap <space>de :VimspectorEval 
 
     " Python templates
-    nnoremap <silent> à o<CR><tab>def __init__(self, 
+    nnoremap <silent> à odef __init__(self, 
+
 endfunction
 

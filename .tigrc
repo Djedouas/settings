@@ -1,0 +1,14 @@
+set line-graphics = utf-8
+set show-untracked = no
+set main-options = --all
+
+set main-view-date = custom
+set main-view-date-format = "%d/%m/%y %H:%M"
+
+#color cursor default 67
+color cursor default 31
+color main-head default 28
+color date 240 default
+color author 250 default
+color main-tag 190 default bold
+color main-local-tag 190 default bold
