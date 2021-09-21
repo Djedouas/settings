@@ -5,8 +5,8 @@ set main-options = --all
 set main-view-date = custom
 set main-view-date-format = "%d/%m/%y %H:%M"
 
-#color cursor default 67
-color cursor default 31
+#color cursor default 31
+color cursor 6 23
 color main-head default 28
 color date 240 default
 color author 250 default

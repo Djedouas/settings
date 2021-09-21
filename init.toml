@@ -19,7 +19,7 @@
     enable_guicolors = true
     statusline_separator = "slant"
     statusline_iseparator = "slant"
-
+    filemanager = "vimfiler"
     buffer_index_type = 4
     enable_tabline_filetype_icon = true
     relativenumber = false
@@ -30,21 +30,14 @@
     enable_vimfiler_gitstatus = true
 
     statusline_left_sections = [
-       # 'winnr',
-       # 'major mode',
-       # 'filename',
-       # 'fileformat',
-       # 'minor mode lighters',
-       # 'version control info',
-       # 'search status'
+       'major mode',
+       'filename',
+       'version control info',
+       'search status'
     ]
-    # right sections of statusline
     statusline_right_sections = [
        'cursorpos',
-       # 'percentage',
-       'input method',
-       'date',
-       'time'
+       'percentage',
     ]
 
 # Enable autocomplete layer
