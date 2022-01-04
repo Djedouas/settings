@@ -29,18 +29,17 @@
 
     enable_vimfiler_gitstatus = true
 
-    statusline_left_sections = [
-       'major mode',
-       'filename',
-       'version control info',
-       'search status'
-    ]
-    statusline_right_sections = [
-       'cursorpos',
-       'percentage',
-    ]
+    # statusline_left_sections = [
+    #    'major mode',
+    #    'filename',
+    #    'version control info',
+    #    'search status'
+    # ]
+    # statusline_right_sections = [
+    #    'cursorpos',
+    #    'percentage',
+    # ]
 
-# Enable autocomplete layer
 [[layers]]
 name = 'autocomplete'
 auto_completion_return_key_behavior = "complete"
@@ -48,6 +47,9 @@ auto_completion_tab_key_behavior = "smart"
 
 [[layers]]
 name = 'colorscheme'
+
+[[layers]]
+name = 'cscope'
 
 [[layers]]
 name = 'shell'
@@ -69,6 +71,10 @@ name = 'git'
 name = 'VersionControl'
 
 [[layers]]
+name = 'debug'
+debugger_plugin = 'vimspector'
+
+[[layers]]
 name = 'denite'
 
 [[custom_plugins]]
@@ -79,17 +85,13 @@ merged = false
 repo = "https://github.com/bkad/CamelCaseMotion.git"
 merged = false
 
-[[custom_plugins]]
-repo = "https://github.com/mgedmin/python-imports.vim.git"
-merged = false
+# [[custom_plugins]]
+# repo = "https://github.com/mgedmin/python-imports.vim.git"
+# merged = false
 
-[[custom_plugins]]
-repo = "https://github.com/puremourning/vimspector.git"
-merged = false
-
-[[custom_plugins]]
-repo = "https://github.com/ludovicchabant/vim-gutentags.git"
-merged = false
+# [[custom_plugins]]
+# repo = "https://github.com/ludovicchabant/vim-gutentags.git"
+# merged = false
 
 [[custom_plugins]]
 repo = "https://github.com/vim-scripts/argtextobj.vim"

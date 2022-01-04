@@ -1,6 +1,9 @@
 function! myspacevim#before() abort
     " Explorateur à gauche
     let g:vimfiler_direction = 'topleft'
+
+    " Taille des sidebars (explorateur et outline)
+    let g:spacevim_sidebar_width = 40
 endfunction
 
 " Change rendering logic to use ligature-compatible rendering scheme
@@ -10,14 +13,14 @@ endfunction
 command! -nargs=1 GuiRenderLigatures call s:GuiRenderLigatures(<args>)
 
 function! myspacevim#after() abort
-    let g:neomake_python_enabled_makers = ['pylint', 'mypy']
+    let g:neomake_python_enabled_makers = ['pylint', 'mypy', 'pytest']
     let g:neoformat_enabled_python = ['black']
     let g:python_highlight_all = 1
     let g:pydocstring_doq_path = '~/.local/bin/doq'
     let g:pydocstring_formatter = 'numpy'
 
     " Raccourci pour ouvrir un buffer dans un tab
-    nnoremap <silent> <space>m :tabedit %<CR>
+    nnoremap <silent> <space>M :tabedit %<CR>
 
     " Tagbar à droite
     let g:tagbar_left = 0
@@ -40,11 +43,10 @@ function! myspacevim#after() abort
     nnoremap <silent> <space>ec :NeomakeClean<CR>
 
     " jedi
+    let g:jedi#smart_auto_mappings = 1
     nnoremap <silent> <space>lu :call jedi#usages()<CR>
     nnoremap <silent> <space>ln :call jedi#rename()<CR>
-
-    " Add import statement from name under cursor
-    nnoremap <F5> :ImportName<CR>
+    nnoremap <silent> <space>gd :call jedi#goto_definitions()<CR>
 
     " Ouvrir un explorateur dans le dossier du buffer
     nnoremap <F4> :VimFilerBufferDir<CR>
@@ -61,26 +63,13 @@ function! myspacevim#after() abort
     " Zeavim
     nmap gz <Plug>Zeavim
     nmap gZ <Plug>ZVOperator
-    let g:zv_file_types = {'py': 'python,qt,qgis'}
-
-    " Vimspector
-    nmap <space>dl <Plug>VimspectorLaunch
-    nmap <space>dc <Plug>VimspectorContinue
-    nmap <space>dk <Plug>VimspectorStop
-    nmap <space>dr <Plug>VimspectorRestart
-    nmap <space>dp <Plug>VimspectorPause
-    nmap <space>dd <Plug>VimspectorToggleBreakpoint
-    nmap <S-F5> <Plug>VimspectorStepInto
-    nmap <S-F6> <Plug>VimspectorStepOver
-    nmap <S-F7> <Plug>VimspectorStepOut
-    nmap <S-F8> <Plug>VimspectorContinue
-    nmap <S-F9> <Plug>VimspectorBalloonEval
-    nmap <silent> <S-F10> :VimspectorReset<CR>
-    nnoremap <space>dw :VimspectorWatch 
-    nnoremap <space>de :VimspectorEval 
+    let g:zv_file_types = {'py': 'python,qt,qgis', 'cpp': 'cpp,qt,qgis'}
 
     " Python templates
     nnoremap <silent> à odef __init__(self, 
+
+    " Misc
+    nmap <space>o <C-Down><Up><CR><C-Up>
 
 endfunction
 

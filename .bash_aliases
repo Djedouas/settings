@@ -20,6 +20,11 @@ alias gcp='git cherry-pick'
 alias gr='git remote -v'
 alias gf='git fetch --all -p'
 alias gi='git switch'
+alias gfp='gf && gp'
+
+# Edusign
+alias rem="rename 's/(.*)_GMT0100.*/\$1.pdf/' *.pdf"
+alias tem="unzip ~/Téléchargements/`ls ~/Téléchargements | grep -e ^archive.*\.zip` -d ."
 
 # Other
 alias l='ls -lp'
@@ -34,7 +39,6 @@ alias tttt='t -L 5'
 alias i='sudo apt install'
 alias u='sudo apt update'
 alias up='sudo apt upgrade'
-alias s='cd /home/jacky/sandbox'
 
 # Env
 export PYTHONPATH="$PYTHONPATH:/usr/share/qgis/python/plugins/:/usr/share/qgis/python/"
@@ -60,6 +64,14 @@ function g() {
     cd "$HOME/Documents/proj/$selected_proj"
   fi
 }
+function s() {
+  local selected_dir
+  selected_dir=$(ls ~/sandbox/ | fzf)
+
+  if [ -n "$selected_dir" ]; then
+    cd "$HOME/sandbox/$selected_dir"
+  fi
+}
 function v() {
   local selected_env
   selected_env=$(ls ~/.venvs/ | fzf)
@@ -74,6 +86,22 @@ function q() {
 
   if [ -n "$selected_profile" ]; then
     qgis --profile "$selected_profile" &
+  fi
+}
+function qf() {
+  local selected_profile
+  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini | fzf)
+
+  if [ -n "$selected_profile" ]; then
+    /home/jacky/sandbox/QGIS/build-final-3_22_1/output/bin/qgis --profile "$selected_profile" &
+  fi
+}
+function qm() {
+  local selected_profile
+  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini | fzf)
+
+  if [ -n "$selected_profile" ]; then
+    /home/jacky/sandbox/QGIS/build-master/output/bin/qgis --profile "$selected_profile" &
   fi
 }
 function p() {

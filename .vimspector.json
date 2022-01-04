@@ -1,12 +1,12 @@
 {
   "$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json",
   "configurations": {
-    "QGIS": {
+    "QGIS-master": {
       "adapter": "vscode-cpptools",
       "configuration": {
         "type":    "cppdbg",
         "request": "launch",
-        "program": "/home/jacky/dev/QGIS/build-final-3_10_9/output/bin/qgis",
+        "program": "/home/jacky/sandbox/QGIS/build-master/output/bin/qgis",
         "args": [
         ],
         "cwd": "${workspaceRoot}",

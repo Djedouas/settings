@@ -12,3 +12,9 @@ color date 240 default
 color author 250 default
 color main-tag 190 default bold
 color main-local-tag 190 default bold
+
+# raccourcis
+
+# pour copier le num de commit
+bind main F @git commit --fixup=%(commit)
+bind main B !git rebase -i --autosquash %(commit)

@@ -1,2 +1,9 @@
 source ~/.settings/complete-alias/complete_alias
 
+complete -F _complete_alias i
+complete -F _complete_alias gc
+complete -F _complete_alias ga
+complete -F _complete_alias gb
+complete -F _complete_alias gll
+complete -F _complete_alias gi
+
