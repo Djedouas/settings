@@ -6,7 +6,7 @@
       "configuration": {
         "type":    "cppdbg",
         "request": "launch",
-        "program": "/home/jacky/sandbox/QGIS/build-master/output/bin/qgis",
+        "program": "/home/jacky/dev/QGIS/build-master/output/bin/qgis",
         "args": [
         ],
         "cwd": "${workspaceRoot}",
