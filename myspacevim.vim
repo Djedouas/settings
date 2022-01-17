@@ -75,6 +75,9 @@ function! myspacevim#after() abort
     " Descendre, relancer la derniere commande du terminal et remonter
     nmap <space>o <C-Down><Up><CR><C-Up>
 
+    " Prolonger le soulignement jusqu'a la fin du titre
+    nmap <silent> ss xddkyyp:s/./<C-R>-/g<CR>:noh<CR>
+
     " RST for tagbar
     " I have a custom ctags for handling the hierarchy
     let g:tagbar_type_rst = {
@@ -97,6 +100,21 @@ function! myspacevim#after() abort
         \ },
         \ 'sro' : '.',
         \ 'sort': 0,
+    \ }
+
+    " Markdown for tagbar
+    let g:tagbar_type_markdown = {
+        \ 'ctagstype' : 'Markdown',
+        \ 'kinds'     : [
+            \ 'c:chapters',
+            \ 's:sections',
+            \ 'S:level 2 sections',
+            \ 't:level 3 sections',
+            \ 'T:level 4 sections',
+            \ 'u:level 5 sections',
+        \ ],
+        \ 'sort': 0,
+        \ 'replace': 1,
     \ }
 
 endfunction
