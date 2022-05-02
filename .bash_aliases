@@ -118,7 +118,15 @@ function qf() {
   selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini | fzf)
 
   if [ -n "$selected_profile" ]; then
-    /home/jacky/sandbox/QGIS/build-final-3_22_1/output/bin/qgis --profile "$selected_profile" &
+    /home/jacky/dev/QGIS/.worktree/backport-release-3_24/build/output/bin/qgis --profile "$selected_profile" &
+  fi
+}
+function ql() {
+  local selected_profile
+  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini | fzf)
+
+  if [ -n "$selected_profile" ]; then
+    /home/jacky/dev/QGIS/.worktree/backport-queued_ltr_backports/build/output/bin/qgis --profile "$selected_profile" &
   fi
 }
 function qm() {
@@ -126,7 +134,7 @@ function qm() {
   selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini | fzf)
 
   if [ -n "$selected_profile" ]; then
-    /home/jacky/sandbox/QGIS/build-master/output/bin/qgis --profile "$selected_profile" &
+    /home/jacky/dev/QGIS/build/output/bin/qgis --profile "$selected_profile" &
   fi
 }
 function p() {

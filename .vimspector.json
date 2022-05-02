@@ -6,7 +6,45 @@
       "configuration": {
         "type":    "cppdbg",
         "request": "launch",
-        "program": "/home/jacky/dev/QGIS/build-master/output/bin/qgis",
+        "program": "/home/jacky/dev/QGIS/build/output/bin/qgis",
+        "args": [
+        ],
+        "cwd": "${workspaceRoot}",
+        "environment": [
+        ],
+        "externalConsole": true,
+        //"stopAtEntry": true,
+        "MIMode": "gdb",
+        "logging": {
+          "engineLogging": false
+        }
+      }
+    },
+    "QGIS-ltr-bp": {
+      "adapter": "vscode-cpptools",
+      "configuration": {
+        "type":    "cppdbg",
+        "request": "launch",
+        "program": "/home/jacky/dev/QGIS/.worktree/backport-queued_ltr_backports/build/output/bin/qgis",
+        "args": [
+        ],
+        "cwd": "${workspaceRoot}",
+        "environment": [
+        ],
+        "externalConsole": true,
+        //"stopAtEntry": true,
+        "MIMode": "gdb",
+        "logging": {
+          "engineLogging": false
+        }
+      }
+    },
+    "QGIS-latest-bp": {
+      "adapter": "vscode-cpptools",
+      "configuration": {
+        "type":    "cppdbg",
+        "request": "launch",
+        "program": "/home/jacky/dev/QGIS/.worktree/backport-release-3_24/build/output/bin/qgis",
         "args": [
         ],
         "cwd": "${workspaceRoot}",

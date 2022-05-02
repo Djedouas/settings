@@ -1,9 +1,10 @@
 function! myspacevim#before() abort
-    " Explorateur à gauche
-    let g:vimfiler_direction = 'topleft'
+  " Explorateur à gauche
+  " let g:vimfiler_direction = 'topleft'
 
-    " Taille des sidebars (explorateur et outline)
-    let g:spacevim_sidebar_width = 40
+  " Taille des sidebars (explorateur et outline)
+  let g:spacevim_sidebar_width = 40
+
 endfunction
 
 " Change rendering logic to use ligature-compatible rendering scheme
@@ -30,7 +31,7 @@ function! myspacevim#after() abort
   nnoremap <silent> <space>M :tabedit %<CR>
 
   " Tagbar à droite
-  let g:tagbar_left = 0
+  " let g:tagbar_left = 0
 
   " Recherches insensibles à la casse
   set ignorecase
