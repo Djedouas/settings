@@ -8,14 +8,9 @@
 
 # All SpaceVim option below [option] section
 [options]
-    # set spacevim theme. by default colorscheme layer is not loaded,
-    # if you want to use more colorscheme, please load the colorscheme
-    # layer
     colorscheme = "srcery"
     colorscheme_bg = "dark"
     guifont = "JetBrainsMono Nerd Font Mono:h10.5:l"
-    # Disable guicolors in basic mode, many terminal do not support 24bit
-    # true colors
     enable_guicolors = true
     statusline_separator = "slant"
     statusline_iseparator = "slant"
@@ -26,19 +21,15 @@
     windows_smartclose = ''
     bootstrap_before = 'myspacevim#before'
     bootstrap_after = 'myspacevim#after'
-
+    filetree_direction = 'left'
     enable_vimfiler_gitstatus = true
 
-    # statusline_left_sections = [
-    #    'major mode',
-    #    'filename',
-    #    'version control info',
-    #    'search status'
-    # ]
-    # statusline_right_sections = [
-    #    'cursorpos',
-    #    'percentage',
-    # ]
+[[layers]]
+name = 'ui'
+enable_cursorword = true
+enable_indentline = false
+cursorword_delay = 1500
+enable_sidebar = true
 
 [[layers]]
 name = 'autocomplete'
@@ -84,14 +75,6 @@ merged = false
 [[custom_plugins]]
 repo = "https://github.com/bkad/CamelCaseMotion.git"
 merged = false
-
-# [[custom_plugins]]
-# repo = "https://github.com/mgedmin/python-imports.vim.git"
-# merged = false
-
-# [[custom_plugins]]
-# repo = "https://github.com/ludovicchabant/vim-gutentags.git"
-# merged = false
 
 [[custom_plugins]]
 repo = "https://github.com/vim-scripts/argtextobj.vim"

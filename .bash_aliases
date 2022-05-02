@@ -21,6 +21,7 @@ alias gr='git remote -v'
 alias gf='git fetch --all -p'
 alias gi='git switch'
 alias gfp='gf && gp'
+alias gri='git rebase -i --autosquash'
 
 # Edusign
 alias rem="rename 's/(.*)_GMT0100.*/\$1.pdf/' *.pdf"
@@ -41,6 +42,7 @@ alias u='sudo apt update'
 alias up='sudo apt upgrade'
 
 # Env
+export DEPENDS_DIR=/home/jacky/depends
 export PYTHONPATH="$PYTHONPATH:/usr/share/qgis/python/plugins/:/usr/share/qgis/python/"
 export PATH="$PATH:/usr/lib/ccache"
 export PSQL_EDITOR="vi"
@@ -48,6 +50,13 @@ export FZF_DEFAULT_OPTS='
   --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
   --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54
 '
+
+# Oracle docker and environment
+export ORACLE_DIR=$DEPENDS_DIR/oracle-instantclient_21_1 
+export CMAKE_PREFIX_PATH=$ORACLE_DIR:$ORACLE_DIR/sdk/include
+export LD_LIBRARY_PATH=$ORACLE_DIR:$PATH
+export PATH=$ORACLE_DIR:$PATH 
+alias runOracle='docker run --rm --name oracle -d -v /tmp/oracle_share_folder:/tmp/oracle_share_folder -e ORACLE_SID="XE" -e ORACLE_PWD="adminpass" -e ORACLE_PDB="ORCLPDBTEST" -e ORACLE_CHARACTERSET="AL32UTF8" -p 0.0.0.0:1521:1521 "oslandia/oracle-slim-for-qgis:18.4.0-xe"' 
 
 # Powerline
 powerline-daemon -q
@@ -64,6 +73,14 @@ function window_capture() {
 }
 
 # fzf
+function af() {
+  local selected_affaire
+  selected_affaire=$(ls /home/jacky/Documents/oslandia/affaires/ | fzf)
+
+  if [ -n "$selected_affaire" ]; then
+    cd "/home/jacky/Documents/oslandia/affaires/$selected_affaire"
+  fi
+}
 function g() {
   local selected_proj
   selected_proj=$(ls ~/Documents/proj/ | fzf)
@@ -126,4 +143,16 @@ function p() {
     ln -s "../../oslandia/affaires/$selected_affaire" ./affaire
     ln -s "../../Client-projects/$selected_project" ./git
   fi
+}
+function vq() {
+  while true; do
+    read -p "master (m) - ltr (l) - latest (f) " mlf
+    case $mlf in
+        m ) export QGIS_DIR=/home/jacky/dev/QGIS; break;;
+        l ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/backport-queued_ltr_backports; break;;
+        f ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/backport-release-3_24; break;;
+    esac
+  done
+  export QGIS_PREFIX_PATH=$QGIS_DIR/build/output
+  export PYTHONPATH=$QGIS_PREFIX_PATH/python:$QGIS_PREFIX_PATH/python/plugins:$QGIS_DIR/tests/src/python:$PYTHONPATH
 }

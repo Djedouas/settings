@@ -6,4 +6,5 @@ complete -F _complete_alias ga
 complete -F _complete_alias gb
 complete -F _complete_alias gll
 complete -F _complete_alias gi
+complete -F _complete_alias gri
 
