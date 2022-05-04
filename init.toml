@@ -29,7 +29,6 @@ name = 'ui'
 enable_cursorword = true
 enable_indentline = false
 cursorword_delay = 1500
-enable_sidebar = true
 
 [[layers]]
 name = 'autocomplete'
