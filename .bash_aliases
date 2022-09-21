@@ -7,28 +7,24 @@ alias gs='git status'
 alias gb='git branch'
 alias gbv='git branch -avv'
 alias gd='git diff'
-alias gdc='git diff --cached'
-alias gdn='git diff --name-only'
-alias gdv='git difftool --tool=vimdiff --no-prompt'
-alias gdvc='git difftool --tool=vimdiff --no-prompt --cached'
 alias gl='git log'
-alias gln='git log --name-only'
 alias gll='git log --graph --oneline --decorate --all --remotes=origin'
 alias gp='git pull --recurse-submodules'
-alias gg='git grep -i'
-alias gcp='git cherry-pick'
 alias gr='git remote -v'
 alias gf='git fetch --all -p'
-alias gi='git switch'
 alias gfp='gf && gp'
 alias gri='git rebase -i --autosquash'
+alias gco='git commit -m'
+alias gcos='SKIP=flake8,pylint,mypy git commit -m'
+alias gdc='git diff --cached'
 
 # Edusign
 alias rem="rename 's/(.*)_GMT0100.*/\$1.pdf/' *.pdf"
 alias tem="unzip ~/Téléchargements/`ls ~/Téléchargements | grep -e ^archive.*\.zip` -d ."
 
 # Other
-alias l='ls -lp'
+alias cat='batcat'
+alias l='ls -lph'
 alias c='clear'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -71,6 +67,31 @@ function window_capture() {
   a=($a)
   flameshot gui --region ${a[2]}x${a[3]}+${a[0]}+${a[1]}
 }
+function upload_image() {
+  local lutim_instance="https://wtf.roflcopter.fr/pics/"
+  local url
+
+  # Save image from clipboard to temp file
+  xclip -selection c -t image/png -o > /tmp/capture.png
+
+  # Upload image for 1 day to lutim service and read json response
+  url=$(curl -F "format=json" -F "file=@/tmp/capture.png" -F "delete-day=1" $lutim_instance | \
+    python -c "import sys, json; print(sys.argv[1] + json.load(sys.stdin)['msg']['short'], end='')" $lutim_instance)
+
+  # Notify user
+  [ $? -eq 0 ] && notify-send "Success" || notify-send -u critical "Command unsuccessful"
+
+  # Put url into clipboard
+  echo $url | xclip -selection c
+}
+
+# Run make every time the file is modified
+function watchmake() {
+  while true; do
+    inotifywait -e modify -e moved_to -e move -e move_self -e moved_from "$1" || return -1
+    make
+  done;
+}
 
 # fzf
 function af() {
@@ -79,6 +100,14 @@ function af() {
 
   if [ -n "$selected_affaire" ]; then
     cd "/home/jacky/Documents/oslandia/affaires/$selected_affaire"
+  fi
+}
+function afa() {
+  local selected_affaire
+  selected_affaire=$(ls /home/jacky/Documents/oslandia/affaires/archives/ | fzf)
+
+  if [ -n "$selected_affaire" ]; then
+    cd "/home/jacky/Documents/oslandia/affaires/archives/$selected_affaire"
   fi
 }
 function g() {
@@ -118,7 +147,7 @@ function qf() {
   selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini | fzf)
 
   if [ -n "$selected_profile" ]; then
-    /home/jacky/dev/QGIS/.worktree/backport-release-3_24/build/output/bin/qgis --profile "$selected_profile" &
+    /home/jacky/dev/QGIS/.worktree/backport-release-3_26/build/output/bin/qgis --profile "$selected_profile" &
   fi
 }
 function ql() {
@@ -158,7 +187,7 @@ function vq() {
     case $mlf in
         m ) export QGIS_DIR=/home/jacky/dev/QGIS; break;;
         l ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/backport-queued_ltr_backports; break;;
-        f ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/backport-release-3_24; break;;
+        f ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/backport-release-3_26; break;;
     esac
   done
   export QGIS_PREFIX_PATH=$QGIS_DIR/build/output
