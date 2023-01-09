@@ -21,8 +21,21 @@ function! myspacevim#after() abort
   " Hop in multi windows
   lua require'hop'.setup { multi_windows = true }
 
-  let g:neomake_python_enabled_makers = ['pylint', 'mypy', 'pytest', 'flake8']
+  " This linter for when the pylintrc file is in linters/ dir like it is with
+  " qgis plugin templater
+  let g:neomake_pythonlintersconf_maker = {
+        \ 'exe': 'pylint',
+        \ 'args': ['--rcfile', 'linters/pylintrc',
+        \          '--report', 'n',
+        \          '--score', 'n']
+        \ }
+
+  " Makers for python
+  let g:neomake_python_enabled_makers = ['pylint', 'mypy', 'pytest', 'flake8', 'pythonlintersconf']
+
+  " Formatting for python
   let g:neoformat_enabled_python = ['black']
+
   let g:python_highlight_all = 1
   let g:pydocstring_doq_path = '~/.local/bin/doq'
   let g:pydocstring_formatter = 'sphinx'
@@ -42,11 +55,9 @@ function! myspacevim#after() abort
   " On active les ligatures
   call s:GuiRenderLigatures(1)
 
-  " F11 pour plein écran
-  nnoremap <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
-
   " pylint and mypy checking
   nnoremap <silent> <space>ea :Neomake pylint<CR>
+  nnoremap <silent> <space>ez :Neomake pythonlintersconf<CR>
   nnoremap <silent> <space>ef :Neomake flake8<CR>
   nnoremap <silent> <space>em :Neomake mypy<CR>
   nnoremap <silent> <space>ec :NeomakeClean<CR>
