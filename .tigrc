@@ -15,6 +15,7 @@ color main-local-tag 190 default bold
 
 # raccourcis
 
-# pour copier le num de commit
+# F: pour commit un fixup du commit sélectionné
 bind main F @git commit --fixup=%(commit)
+# B: pour rebase sur le commit sélectionné
 bind main B !git rebase -i --autosquash %(commit)

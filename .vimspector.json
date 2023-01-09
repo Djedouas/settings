@@ -11,7 +11,9 @@
         ],
         "cwd": "${workspaceRoot}",
         "env": {
-          "QGIS_PREFIX_PATH": "/home/jacky/dev/QGIS/build/output"
+          "QGIS_PREFIX_PATH": "/home/jacky/dev/QGIS/build/output",
+          // "ORACLE_DIR": "/home/jacky/depends/oracle-instantclient_21_1"
+          "LD_LIBRARY_PATH": "/home/jacky/depends/oracle-instantclient_21_1:$PATH"
         },
         "externalConsole": true,
         "MIMode": "gdb",

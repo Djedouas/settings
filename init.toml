@@ -17,7 +17,7 @@
     filemanager = "vimfiler"
     buffer_index_type = 4
     enable_tabline_filetype_icon = true
-    relativenumber = false
+    # relativenumber = false
     windows_smartclose = ''
     bootstrap_before = 'myspacevim#before'
     bootstrap_after = 'myspacevim#after'
@@ -38,8 +38,11 @@ auto_completion_tab_key_behavior = "smart"
 [[layers]]
 name = 'colorscheme'
 
-[[layers]]
-name = 'cscope'
+# [[layers]]
+# name = "gtags"
+#
+# [[layers]]
+# name = 'cscope'
 
 [[layers]]
 name = 'shell'
