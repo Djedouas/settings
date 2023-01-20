@@ -54,6 +54,9 @@ export LD_LIBRARY_PATH=$ORACLE_DIR:$PATH
 export PATH=$ORACLE_DIR:$PATH 
 alias runOracle='docker run --rm --name oracle -d -v /tmp/oracle_share_folder:/tmp/oracle_share_folder -e ORACLE_SID="XE" -e ORACLE_PWD="adminpass" -e ORACLE_PDB="ORCLPDBTEST" -e ORACLE_CHARACTERSET="AL32UTF8" -p 0.0.0.0:1521:1521 "oslandia/oracle-slim-for-qgis:18.4.0-xe"' 
 
+# ProjectCentre UK vagrant ssh tunnelling
+alias toms_vagrant_tunnel='ssh -L 15432:localhost:5432 -p 2222 vagrant@localhost -i /home/jacky/Documents/proj/2206_ProjectCentre/deploy/ansible/.vagrant/machines/toms_test_vm/virtualbox/private_key -fNg'
+
 # Powerline
 powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
@@ -136,7 +139,7 @@ function v() {
 }
 function q() {
   local selected_profile
-  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini | fzf)
+  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
 
   if [ -n "$selected_profile" ]; then
     qgis --profile "$selected_profile" &
@@ -144,7 +147,7 @@ function q() {
 }
 function qf() {
   local selected_profile
-  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini | fzf)
+  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
 
   if [ -n "$selected_profile" ]; then
     /home/jacky/dev/QGIS/.worktree/backport-release-3_26/build/output/bin/qgis --profile "$selected_profile" &
@@ -152,7 +155,7 @@ function qf() {
 }
 function ql() {
   local selected_profile
-  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini | fzf)
+  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
 
   if [ -n "$selected_profile" ]; then
     /home/jacky/dev/QGIS/.worktree/backport-queued_ltr_backports/build/output/bin/qgis --profile "$selected_profile" &
@@ -160,7 +163,7 @@ function ql() {
 }
 function qm() {
   local selected_profile
-  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini | fzf)
+  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
 
   if [ -n "$selected_profile" ]; then
     /home/jacky/dev/QGIS/build/output/bin/qgis --profile "$selected_profile" &

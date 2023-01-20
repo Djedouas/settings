@@ -17,6 +17,13 @@
         },
         "externalConsole": true,
         "MIMode": "gdb",
+        "setupCommands": [
+          {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFalures": true
+          }
+        ],
         "logging": {
           "engineLogging": false
         }
@@ -36,6 +43,13 @@
         },
         "externalConsole": true,
         "MIMode": "gdb",
+        "setupCommands": [
+          {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFalures": true
+          }
+        ],
         "logging": {
           "engineLogging": false
         }
@@ -55,6 +69,13 @@
         },
         "externalConsole": true,
         "MIMode": "gdb",
+        "setupCommands": [
+          {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFalures": true
+          }
+        ],
         "logging": {
           "engineLogging": false
         }
