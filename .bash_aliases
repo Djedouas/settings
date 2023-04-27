@@ -36,6 +36,7 @@ alias tttt='t -L 5'
 alias i='sudo apt install'
 alias u='sudo apt update'
 alias up='sudo apt upgrade'
+alias b='browse .'
 
 # Env
 export DEPENDS_DIR=/home/jacky/depends
@@ -150,7 +151,7 @@ function qf() {
   selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
 
   if [ -n "$selected_profile" ]; then
-    /home/jacky/dev/QGIS/.worktree/backport-release-3_26/build/output/bin/qgis --profile "$selected_profile" &
+    /home/jacky/dev/QGIS/.worktree/final-3_30_0/build/output/bin/qgis --profile "$selected_profile" &
   fi
 }
 function ql() {
@@ -190,9 +191,19 @@ function vq() {
     case $mlf in
         m ) export QGIS_DIR=/home/jacky/dev/QGIS; break;;
         l ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/backport-queued_ltr_backports; break;;
-        f ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/backport-release-3_26; break;;
+        f ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/final-3_30_0; break;;
     esac
   done
   export QGIS_PREFIX_PATH=$QGIS_DIR/build/output
   export PYTHONPATH=$QGIS_PREFIX_PATH/python:$QGIS_PREFIX_PATH/python/plugins:$QGIS_DIR/tests/src/python:$PYTHONPATH
+}
+
+function upload_paie() {
+  local auth=`pass show passpersos/jvo/nuage`
+  local annee=`date +%Y`
+  local mois=`date +%m`
+  cd ~/Documents/admin
+  git pull
+  curl -v --basic --user $auth -T paie/$annee/${annee}_${mois}_jvo.pdf \
+    "https://nuage.volpes.fr/remote.php/dav/files/jacky/Documents/Nos%20papiers/Emplois/Oslandia/Bulletins%20de%20salaire/$annee/"
 }
