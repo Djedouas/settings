@@ -7,4 +7,5 @@ hi link pythonImport SrceryRed
 hi link pythonClass SrceryCyanBold
 hi link pythonFString SrceryGreen
 
-syntax keyword pythonBuiltin match case
+syntax keyword pythonMatchCase match case
+hi link pythonMatchCase SrceryRed
