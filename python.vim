@@ -6,3 +6,5 @@ hi link pythonDot SrceryOrangeBold
 hi link pythonImport SrceryRed
 hi link pythonClass SrceryCyanBold
 hi link pythonFString SrceryGreen
+
+syntax keyword pythonBuiltin match case
