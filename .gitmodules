@@ -1,3 +1,6 @@
 [submodule "complete-alias"]
 	path = complete-alias
 	url = git@github.com:cykerway/complete-alias.git
+[submodule "lldb-qt-formatters"]
+	path = lldb-qt-formatters
+	url = git@github.com:pavolmarkovic-serato/lldb-qt-formatters.git
