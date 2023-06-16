@@ -3,4 +3,4 @@
 	url = git@github.com:cykerway/complete-alias.git
 [submodule "lldb-qt-formatters"]
 	path = lldb-qt-formatters
-	url = git@github.com:pavolmarkovic-serato/lldb-qt-formatters.git
+	url = git@github.com:nouwaarom/lldb-qt-formatters.git
