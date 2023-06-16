@@ -1,99 +1,60 @@
 {
   "$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json",
+
   "configurations": {
+
     "QGIS-master": {
-      "adapter": "vscode-cpptools",
+      "adapter": "CodeLLDB",
+      "breakpoints": {
+        "exception": {
+          "cpp_throw": "N",
+          "cpp_catch": "N"
+        }
+      },
       "configuration": {
-        "type":    "cppdbg",
+        "type":    "lldb",
         "request": "launch",
         "program": "/home/jacky/dev/QGIS/build/output/bin/qgis",
-        "args": [
-        ],
+        "args": [],
         "cwd": "${workspaceRoot}",
         "env": {
           "QGIS_PREFIX_PATH": "/home/jacky/dev/QGIS/build/output",
-          // "ORACLE_DIR": "/home/jacky/depends/oracle-instantclient_21_1"
+          "ORACLE_DIR": "/home/jacky/depends/oracle-instantclient_21_1",
           "LD_LIBRARY_PATH": "/home/jacky/depends/oracle-instantclient_21_1:$PATH"
         },
         "externalConsole": true,
-        "MIMode": "gdb",
-        "setupCommands": [
-          {
-            "description": "Enable pretty-printing for gdb",
-            "text": "-enable-pretty-printing",
-            "ignoreFalures": true
-          }
-        ],
-        "logging": {
+        "MIMode": "lldb",
           "engineLogging": false
-        }
       }
     },
+
     "QGIS-ltr-bp": {
-      "adapter": "vscode-cpptools",
+      "extends": "QGIS-master",
       "configuration": {
-        "type":    "cppdbg",
-        "request": "launch",
         "program": "/home/jacky/dev/QGIS/.worktree/backport-queued_ltr_backports/build/output/bin/qgis",
-        "args": [
-        ],
-        "cwd": "${workspaceRoot}",
         "env": {
           "QGIS_PREFIX_PATH": "/home/jacky/dev/QGIS/.worktree/backport-queued_ltr_backports/build/output"
-        },
-        "externalConsole": true,
-        "MIMode": "gdb",
-        "setupCommands": [
-          {
-            "description": "Enable pretty-printing for gdb",
-            "text": "-enable-pretty-printing",
-            "ignoreFalures": true
-          }
-        ],
-        "logging": {
-          "engineLogging": false
         }
       }
     },
+
     "QGIS-latest-bp": {
-      "adapter": "vscode-cpptools",
+      "extends": "QGIS-master",
       "configuration": {
-        "type":    "cppdbg",
-        "request": "launch",
         "program": "/home/jacky/dev/QGIS/.worktree/backport-release-3_24/build/output/bin/qgis",
-        "args": [
-        ],
-        "cwd": "${workspaceRoot}",
         "env": {
           "QGIS_PREFIX_PATH": "/home/jacky/dev/QGIS/.worktree/backport-release-3_24/build/output"
-        },
-        "externalConsole": true,
-        "MIMode": "gdb",
-        "setupCommands": [
-          {
-            "description": "Enable pretty-printing for gdb",
-            "text": "-enable-pretty-printing",
-            "ignoreFalures": true
-          }
-        ],
-        "logging": {
-          "engineLogging": false
         }
       }
     },
+
     "py-attach": {
       "adapter": "multi-session",
       "configuration": {
         "request": "attach"
-      },
-      "breakpoints": {
-        "exception": {
-          "raised": "N",
-          "uncaught": "",
-          "userUnhandled": ""
-        }
       }
     },
+
     "py-run": {
       "adapter": "debugpy",
       "configuration": {
@@ -103,13 +64,6 @@
         "program": "${file}",
         "stopOnEntry": false,
         "console": "integratedTerminal"
-      },
-      "breakpoints": {
-        "exception": {
-          "raised": "N",
-          "uncaught": "",
-          "userUnhandled": ""
-        }
       }
     }
   }
