@@ -4,6 +4,9 @@ set print pretty on
 set confirm off
 set verbose off
 
+# Because of a pain in the ass issue but I don't remember what handle SIG33 pass nostop noprint
+handle SIG33 pass nostop noprint
+
 python
 
 import sys, os.path
