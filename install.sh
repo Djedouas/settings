@@ -8,6 +8,7 @@ ln -s `readlink -f .gdbinit` $HOME
 ln -s `readlink -f .vimspector.json` $HOME
 ln -s `readlink -f .bash_completion` $HOME
 ln -s `readlink -f init.toml` $HOME/.SpaceVim.d/
+mkdir $HOME/.SpaceVim.d/autoload/
 ln -s `readlink -f myspacevim.vim` $HOME/.SpaceVim.d/autoload/
 ln -s `readlink -f python.vim` $HOME/.SpaceVim/after/syntax/
 ln -s `readlink -f qgisprinters` $HOME/.gdb/qgisprinters
