@@ -1,12 +1,3 @@
-function! myspacevim#before() abort
-  " Explorateur à gauche
-  " let g:vimfiler_direction = 'topleft'
-
-  " Taille des sidebars (explorateur et outline)
-  let g:spacevim_sidebar_width = 40
-
-endfunction
-
 " Change rendering logic to use ligature-compatible rendering scheme
 function! s:GuiRenderLigatures(enable) abort
 	call rpcnotify(0, 'Gui', 'Option', 'RenderLigatures', a:enable)
@@ -14,9 +5,6 @@ endfunction
 command! -nargs=1 GuiRenderLigatures call s:GuiRenderLigatures(<args>)
 
 function! myspacevim#after() abort
-
-  " Max denite candidate for dynamic behavior
-  call denite#custom#option('_', 'max_dynamic_update_candidates', 500000)
 
   " Hop in multi windows
   lua require'hop'.setup { multi_windows = true }
@@ -43,9 +31,6 @@ function! myspacevim#after() abort
   " Raccourci pour ouvrir un buffer dans un tab
   nnoremap <silent> <space>M :tabedit %<CR>
 
-  " Tagbar à droite
-  " let g:tagbar_left = 0
-
   " Recherches insensibles à la casse
   set ignorecase
 
@@ -68,12 +53,20 @@ function! myspacevim#after() abort
   nnoremap <silent> <space>ln :call jedi#rename()<CR>
   nnoremap <silent> <space>gd :call jedi#goto_definitions()<CR>
 
-  " Ouvrir un explorateur dans le dossier du buffer
-  nnoremap <F4> :VimFilerBufferDir<CR>
-
   " Fermer le python runner
   nmap ù <space>wjq<space>2
 
+  let g:NERDTreeGitStatusIndicatorMapCustom = {
+                  \ 'Modified'  :'*',
+                  \ 'Staged'    :'+',
+                  \ 'Untracked' :'u',
+                  \ 'Renamed'   :'➜',
+                  \ 'Unmerged'  :'═',
+                  \ 'Deleted'   :'x',
+                  \ 'Dirty'     :'d',
+                  \ 'Clean'     :'c',
+                  \ 'Unknown'   :'?',
+                  \ }
 
   " On empeche les commandes auto de pylint au save
   augroup neomake_automake
