@@ -31,6 +31,9 @@ function! myspacevim#after() abort
   " Raccourci pour ouvrir un buffer dans un tab
   nnoremap <silent> <space>M :tabedit %<CR>
 
+  " Raccourci pour toggle les numéros de ligne relatifs/absolus
+  nnoremap <silent> ² :set rnu!<CR>
+
   " Recherches insensibles à la casse
   set ignorecase
 

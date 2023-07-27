@@ -64,31 +64,6 @@ POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 . /usr/share/powerline/bindings/bash/powerline.sh
 
-# Flameshot
-function window_capture() {
-  local a
-  a=$(xwininfo -id $(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}') | awk '{if (NR==4 || NR==5 || NR==8 || NR==9) print $NF}')
-  a=($a)
-  flameshot gui --region ${a[2]}x${a[3]}+${a[0]}+${a[1]}
-}
-function upload_image() {
-  local lutim_instance="https://wtf.roflcopter.fr/pics/"
-  local url
-
-  # Save image from clipboard to temp file
-  xclip -selection c -t image/png -o > /tmp/capture.png
-
-  # Upload image for 1 day to lutim service and read json response
-  url=$(curl -F "format=json" -F "file=@/tmp/capture.png" -F "delete-day=1" $lutim_instance | \
-    python -c "import sys, json; print(sys.argv[1] + json.load(sys.stdin)['msg']['short'], end='')" $lutim_instance)
-
-  # Notify user
-  [ $? -eq 0 ] && notify-send "Success" || notify-send -u critical "Command unsuccessful"
-
-  # Put url into clipboard
-  echo $url | xclip -selection c
-}
-
 # Run make every time the file is modified
 function watchmake() {
   while true; do
@@ -151,7 +126,7 @@ function qf() {
   selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
 
   if [ -n "$selected_profile" ]; then
-    /home/jacky/dev/QGIS/.worktree/final-3_30_0/build/output/bin/qgis --profile "$selected_profile" &
+    /home/jacky/dev/QGIS/.worktree/final-3_32_1/build/output/bin/qgis --profile "$selected_profile" &
   fi
 }
 function ql() {
@@ -159,7 +134,7 @@ function ql() {
   selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
 
   if [ -n "$selected_profile" ]; then
-    /home/jacky/dev/QGIS/.worktree/backport-queued_ltr_backports/build/output/bin/qgis --profile "$selected_profile" &
+    /home/jacky/dev/QGIS/.worktree/ltr_backport/build/output/bin/qgis --profile "$selected_profile" &
   fi
 }
 function qm() {
@@ -190,8 +165,8 @@ function vq() {
     read -p "master (m) - ltr (l) - latest (f) " mlf
     case $mlf in
         m ) export QGIS_DIR=/home/jacky/dev/QGIS; break;;
-        l ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/backport-queued_ltr_backports; break;;
-        f ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/final-3_30_0; break;;
+        l ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/ltr_backport; break;;
+        f ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/final-3_32_1; break;;
     esac
   done
   export QGIS_PREFIX_PATH=$QGIS_DIR/build/output
@@ -206,4 +181,5 @@ function upload_paie() {
   git pull
   curl -v --basic --user $auth -T paie/$annee/${annee}_${mois}_jvo.pdf \
     "https://nuage.volpes.fr/remote.php/dav/files/jacky/Documents/Nos%20papiers/Emplois/Oslandia/Bulletins%20de%20salaire/$annee/"
+  cd -
 }

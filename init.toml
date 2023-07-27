@@ -14,15 +14,12 @@
     enable_guicolors = true
     statusline_separator = "slant"
     statusline_iseparator = "slant"
-    filemanager = "vimfiler"
     buffer_index_type = 4
     enable_tabline_filetype_icon = true
     # relativenumber = false
     windows_smartclose = ''
-    bootstrap_before = 'myspacevim#before'
     bootstrap_after = 'myspacevim#after'
     filetree_direction = 'left'
-    enable_vimfiler_gitstatus = true
 
 [[layers]]
 name = 'ui'
@@ -84,4 +81,8 @@ merged = false
 
 [[custom_plugins]]
 repo = "https://github.com/KabbAmine/zeavim.vim"
+merged = false
+
+[[custom_plugins]]
+repo = "https://github.com/Xuyuanp/nerdtree-git-plugin"
 merged = false
