@@ -31,9 +31,9 @@
     "QGIS-ltr-bp": {
       "extends": "QGIS-master",
       "configuration": {
-        "program": "/home/jacky/dev/QGIS/.worktree/backport-queued_ltr_backports/build/output/bin/qgis",
+        "program": "/home/jacky/dev/QGIS/.worktree/ltr_backport/build/output/bin/qgis",
         "env": {
-          "QGIS_PREFIX_PATH": "/home/jacky/dev/QGIS/.worktree/backport-queued_ltr_backports/build/output"
+          "QGIS_PREFIX_PATH": "/home/jacky/dev/QGIS/.worktree/ltr_backport/build/output"
         }
       }
     },
@@ -41,9 +41,9 @@
     "QGIS-latest-bp": {
       "extends": "QGIS-master",
       "configuration": {
-        "program": "/home/jacky/dev/QGIS/.worktree/backport-release-3_24/build/output/bin/qgis",
+        "program": "/home/jacky/dev/QGIS/.worktree/final-3_32_1/build/output/bin/qgis",
         "env": {
-          "QGIS_PREFIX_PATH": "/home/jacky/dev/QGIS/.worktree/backport-release-3_24/build/output"
+          "QGIS_PREFIX_PATH": "/home/jacky/dev/QGIS/.worktree/final-3_32_1/build/output"
         }
       }
     },
