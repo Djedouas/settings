@@ -50,6 +50,7 @@ lvim.plugins =
   { "askfiy/visual_studio_code" },     -- colorscheme
   { "jeetsukumaran/vim-pythonsense" }, -- python textobjects
   { "wellle/targets.vim" },            -- plenty of textobjects
+  { "KabbAmine/zeavim.vim" },          -- Zeal
 
   -- tagbar
   {
