@@ -44,7 +44,10 @@ t['zz']    = { 'zz', { '80', 'quintic' } }
 t['zb']    = { 'zb', { '80', 'quintic' } }
 require('neoscroll.config').set_mappings(t)
 
+-- no indentation marker
 lvim.builtin.indentlines.active = false
+
+-- cursor occurrence matching
 lvim.builtin.illuminate.options.delay = 2000
 lvim.builtin.illuminate.options.min_count_to_highlight = 2
 
