@@ -134,6 +134,38 @@ lvim.keys.normal_mode['zM'] = require('ufo').closeAllFolds
 -- Context lines above zt and below zb
 vim.opt.scrolloff = 1
 
+-- Debug CPP
+lvim.builtin.dap.on_config_done = function(dap)
+  dap.adapters.codelldb = {
+    type = "server",
+    port = "${port}",
+    executable = {
+      -- provide the absolute path for `codelldb` command if not using the one installed using `mason.nvim`
+      command = "codelldb",
+      args = { "--port", "${port}" },
+    },
+  }
+  dap.configurations.cpp = {
+    {
+      name = "Launch file",
+      type = "codelldb",
+      request = "launch",
+      program = function()
+        local path
+        vim.ui.input({ prompt = "Path to executable: ", default = vim.loop.cwd() .. "/build/" }, function(input)
+          path = input
+        end)
+        vim.cmd [[redraw]]
+        return path
+      end,
+      stopOnEntry = false,
+      env = {
+        QGIS_PREFIX_PATH = "/home/jacky/dev/QGIS/build/output",
+      },
+    },
+  }
+end
+
 local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
 pcall(function()
   require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
