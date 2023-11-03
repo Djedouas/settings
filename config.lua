@@ -28,17 +28,20 @@ linters.setup {
 }
 
 -- custom smooth scrolling
-local t = {}
-t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '150', 'quintic'}}
-t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '150', 'quintic'}}
-t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '450'}}
-t['<C-f>'] = {'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '450'}}
-t['<C-y>'] = {'scroll', {'-0.10', 'false', '100'}}
-t['<C-e>'] = {'scroll', { '0.10', 'false', '100'}}
-t['zt']    = {'zt', {'80', 'quintic'}}
-t['zz']    = {'zz', {'80', 'quintic'}}
-t['zb']    = {'zb', {'80', 'quintic'}}
+local t    = {}
+t['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '150', 'quintic' } }
+t['<C-d>'] = { 'scroll', { 'vim.wo.scroll', 'true', '150', 'quintic' } }
+t['<C-b>'] = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'true', '450' } }
+t['<C-f>'] = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '450' } }
+t['<C-y>'] = { 'scroll', { '-0.10', 'false', '100' } }
+t['<C-e>'] = { 'scroll', { '0.10', 'false', '100' } }
+t['zt']    = { 'zt', { '80', 'quintic' } }
+t['zz']    = { 'zz', { '80', 'quintic' } }
+t['zb']    = { 'zb', { '80', 'quintic' } }
 require('neoscroll.config').set_mappings(t)
+
+lvim.builtin.illuminate.options.delay = 2000
+lvim.builtin.illuminate.options.min_count_to_highlight = 2
 
 lvim.plugins =
 {
@@ -121,5 +124,5 @@ vim.opt.foldenable = true
 lvim.keys.normal_mode['zR'] = require('ufo').openAllFolds
 lvim.keys.normal_mode['zM'] = require('ufo').closeAllFolds
 
+-- Context lines above zt and below zb
 vim.opt.scrolloff = 1
--- require("illuminate").configure({ delay = 2000, min_count_to_highlight = 2 })
