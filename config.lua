@@ -45,6 +45,7 @@ lvim.plugins =
   { "chrisgrieser/nvim-spider" },      -- w, e, b camelCase aware
   { "askfiy/visual_studio_code" },     -- colorscheme
   { "jeetsukumaran/vim-pythonsense" }, -- python textobjects
+  { "wellle/targets.vim" },            -- plenty of textobjects
 
   -- tagbar
   {
