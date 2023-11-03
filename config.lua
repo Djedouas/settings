@@ -7,8 +7,6 @@ vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h10.5"
 lvim.colorscheme = "visual_studio_code"
 lvim.builtin.lualine.options.theme = 'onedark'
 
-require("illuminate").configure({ delay = 1000, min_count_to_highlight = 2 })
-
 -- add `pyright` to `skipped_servers` list
 -- remove `jedi_language_server` from `skipped_servers` list
 lvim.lsp.automatic_servers_installation = false
@@ -28,6 +26,19 @@ linters.setup {
   { name = "pylint" },
   -- { name = "mypy" },
 }
+
+-- custom smooth scrolling
+local t = {}
+t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '150', 'quintic'}}
+t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '150', 'quintic'}}
+t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '450'}}
+t['<C-f>'] = {'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '450'}}
+t['<C-y>'] = {'scroll', {'-0.10', 'false', '100'}}
+t['<C-e>'] = {'scroll', { '0.10', 'false', '100'}}
+t['zt']    = {'zt', {'80', 'quintic'}}
+t['zz']    = {'zz', {'80', 'quintic'}}
+t['zb']    = {'zb', {'80', 'quintic'}}
+require('neoscroll.config').set_mappings(t)
 
 lvim.plugins =
 {
@@ -57,22 +68,6 @@ lvim.plugins =
     end,
   },
 
-  -- status column
-  {
-    "luukvbaal/statuscol.nvim",
-    config = function()
-      local builtin = require("statuscol.builtin")
-      require("statuscol").setup({
-        relculright = true,
-        segments = {
-          { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
-          { text = { "%s" },                  click = "v:lua.ScFa" },
-          { text = { builtin.lnumfunc, " " }, click = "v:lua.ScFa" },
-        }
-      })
-    end
-  },
-
   -- folding
   {
     "kevinhwang91/nvim-ufo",
@@ -80,7 +75,7 @@ lvim.plugins =
     config = function()
       require("ufo").setup({
         provider_selector = function(bufnr, filetype, buftype)
-          return { 'treesitter', 'indent' }
+          return { 'treesitter' }
         end
       })
     end,
@@ -93,16 +88,12 @@ lvim.plugins =
     config = function()
       require('neoscroll').setup({
         -- All these keys will be mapped to their corresponding default scrolling animation
-        mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
-          '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+        mappings = t,
         hide_cursor = true,          -- Hide cursor while scrolling
-        stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+        stop_eof = false,            -- Stop at <EOF> when scrolling downwards
         use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
         respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
         cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-        easing_function = nil,       -- Default easing function
-        pre_hook = nil,              -- Function to run before the scrolling animation starts
-        post_hook = nil,             -- Function to run after the scrolling animation ends
       })
     end
   },
@@ -122,12 +113,12 @@ lvim.builtin.which_key.mappings["k"] = { "<cmd>HopWord<CR>", "Jump to word" }
 lvim.builtin.which_key.mappings["t"] = { "<cmd>SymbolsOutline<CR>", "Outline" }
 
 -- UFO settings for folds
-vim.opt.foldcolumn = '2' -- '0' is not bad
+vim.opt.foldcolumn = '0' -- '0' is not bad
 vim.opt.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
-vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-
--- Using ufo provider need remap `zR` and `zM`.
 lvim.keys.normal_mode['zR'] = require('ufo').openAllFolds
 lvim.keys.normal_mode['zM'] = require('ufo').closeAllFolds
+
+vim.opt.scrolloff = 1
+-- require("illuminate").configure({ delay = 2000, min_count_to_highlight = 2 })
