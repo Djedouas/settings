@@ -55,6 +55,7 @@ lvim.plugins =
   { "jeetsukumaran/vim-pythonsense" }, -- python textobjects
   { "wellle/targets.vim" },            -- plenty of textobjects
   { "KabbAmine/zeavim.vim" },          -- Zeal
+  { "mfussenegger/nvim-dap-python" },  -- predefined debug adapters and configurations for Python
 
   -- tagbar
   {
@@ -132,3 +133,8 @@ lvim.keys.normal_mode['zM'] = require('ufo').closeAllFolds
 
 -- Context lines above zt and below zb
 vim.opt.scrolloff = 1
+
+local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
+pcall(function()
+  require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
+end)
