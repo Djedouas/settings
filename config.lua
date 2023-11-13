@@ -7,6 +7,8 @@ vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h10.5"
 lvim.colorscheme = "visual_studio_code"
 lvim.builtin.lualine.options.theme = 'onedark'
 
+vim.g.python3_host_prog = "/home/jacky/.venvs/nvim/bin/python"
+
 -- add `pyright` to `skipped_servers` list
 -- remove `jedi_language_server` from `skipped_servers` list
 lvim.lsp.automatic_servers_installation = false
@@ -23,7 +25,7 @@ formatters.setup {
 -- linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { name = "pylint" },
+  { name = "pylint" , args = {"--init-hook", "import sys; sys.path.append('" .. vim.env.VIRTUAL_ENV .. "/lib/python3.10/site-packages/')"} }
   -- { name = "mypy" },
 }
 
