@@ -25,7 +25,7 @@ formatters.setup {
 -- linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { name = "pylint" , args = {"--init-hook", "import sys; sys.path.append('" .. vim.env.VIRTUAL_ENV .. "/lib/python3.10/site-packages/')"} }
+  { name = "pylint" , args = {"--init-hook", "import sys; sys.path.append('" .. (vim.env.VIRTUAL_ENV or "") .. "/lib/python3.10/site-packages/')"} }
   -- { name = "mypy" },
 }
 
