@@ -64,14 +64,14 @@ lvim.plugins =
 
   -- tagbar
   {
-    "hedyhli/symbols-outline.nvim",
+    "hedyhli/outline.nvim",
     config = function()
       local opts = {
         symbol_blacklist = { "Variable", "Module" },
         highlight_hovered_item = false,
         keymaps = { close = {} }
       }
-      require("symbols-outline").setup(opts)
+      require("outline").setup(opts)
     end,
   },
 
@@ -126,7 +126,7 @@ lvim.builtin.which_key.mappings["j"] = { "<cmd>HopLineMW<CR>", "Jump to line" }
 lvim.builtin.which_key.mappings["k"] = { "<cmd>HopWord<CR>", "Jump to word" }
 
 -- Symbols map
-lvim.builtin.which_key.mappings["t"] = { "<cmd>SymbolsOutline<CR>", "Outline" }
+lvim.builtin.which_key.mappings["t"] = { "<cmd>Outline<CR>", "Outline" }
 
 -- UFO settings for folds
 vim.opt.foldcolumn = '0' -- '0' is not bad
