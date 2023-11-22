@@ -18,10 +18,6 @@ alias gco='git commit -m'
 alias gcos='SKIP=flake8,pylint,mypy git commit -m'
 alias gdc='git diff --cached'
 
-# Edusign
-alias rem="rename 's/(.*)_GMT0100.*/\$1.pdf/' *.pdf"
-alias tem="unzip ~/Téléchargements/`ls ~/Téléchargements | grep -e ^archive.*\.zip` -d ."
-
 # Other
 alias cat='batcat'
 alias l='ls -lph'
