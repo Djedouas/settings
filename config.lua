@@ -60,7 +60,7 @@ lvim.plugins =
   { "jeetsukumaran/vim-pythonsense" }, -- python textobjects
   { "wellle/targets.vim" },            -- plenty of textobjects
   { "KabbAmine/zeavim.vim" },          -- Zeal
-  { "mfussenegger/nvim-dap-python" },  -- predefined debug adapters and configurations for Python
+  { "puremourning/vimspector" },       -- Vimspector
 
   -- tagbar
   {
@@ -125,8 +125,12 @@ vim.keymap.set({ "n", "o", "x" }, "ge", "<cmd>lua require('spider').motion('ge')
 lvim.builtin.which_key.mappings["j"] = { "<cmd>HopLineMW<CR>", "Jump to line" }
 lvim.builtin.which_key.mappings["k"] = { "<cmd>HopWord<CR>", "Jump to word" }
 
+-- close tab
+lvim.builtin.which_key.mappings["Q"] = { "<cmd>tabclose<CR>", "Close tab" }
+
 -- toggle wrap
 vim.keymap.set({ "n", "o", "x" }, "²", "<cmd>set wrap!<CR>", { desc = "Toggle word wrap" })
+
 -- Symbols map
 lvim.builtin.which_key.mappings["t"] = { "<cmd>Outline<CR>", "Outline" }
 
@@ -141,40 +145,15 @@ lvim.keys.normal_mode['zM'] = require('ufo').closeAllFolds
 -- Context lines above zt and below zb
 vim.opt.scrolloff = 1
 
--- Debug CPP
-local dap = require("dap")
-dap.adapters.codelldb = {
-  type = "server",
-  port = "${port}",
-  executable = {
-    -- provide the absolute path for `codelldb` command if not using the one installed using `mason.nvim`
-    command = "codelldb",
-    args = { "--port", "${port}" },
-    -- options = {
-    --   env = {
-    --     QGIS_PREFIX_PATH = "/home/jacky/dev/QGIS/build/output",
-    --   },
-    -- }
-  },
+-- Vimspector keymaps
+lvim.builtin.which_key.mappings["d"] = {
+  name = "Vimspector",
+  s = { "<cmd>call vimspector#Launch()<cr>", "Start"},
+  o = { "<cmd>call vimspector#StepOver()<cr>", "Step over"},
+  O = { "<cmd>call vimspector#StepOut()<cr>", "Step out"},
+  c = { "<cmd>call vimspector#Continue()<cr>", "Continue"},
+  C = { "<cmd>call vimspector#RunToCursor()<cr>", "Run to cursor"},
+  t = { "<cmd>call vimspector#ToggleBreakpoint()<cr>", "Toggle breakpoint"},
+  e = { "<cmd>call vimspector#ShowEvalBalloon()<cr>", "Evaluate"},
+  r = { "<cmd>call vimspector#Reset()<cr>", "Reset"},
 }
-dap.configurations.cpp = {
-  {
-    name = "Launch file",
-    type = "codelldb",
-    request = "launch",
-    program = function()
-      local path
-      vim.ui.input({ prompt = "Path to executable: ", default = vim.loop.cwd() .. "/build/" }, function(input)
-        path = input
-      end)
-      vim.cmd [[redraw]]
-      return path
-    end,
-    stopOnEntry = false,
-  },
-}
-
-local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
-pcall(function()
-  require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
-end)
