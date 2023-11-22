@@ -39,6 +39,10 @@ alias runOracle='docker run --rm --name oracle -d -v /tmp/oracle_share_folder:/t
 
 # Env
 export DEPENDS_DIR=/home/jacky/depends
+export ORACLE_DIR=$DEPENDS_DIR/oracle-instantclient_21_1 
+export CMAKE_PREFIX_PATH=$ORACLE_DIR:$ORACLE_DIR/sdk/include
+export LD_LIBRARY_PATH=$ORACLE_DIR:$LD_LIBRARY_PATH
+export PATH=$ORACLE_DIR:$PATH 
 export PYTHONPATH="$PYTHONPATH:/usr/share/qgis/python/plugins/:/usr/share/qgis/python/"
 export PATH="$PATH:/home/jacky/.local/bin:/usr/lib/ccache"
 export PSQL_EDITOR="nvim"
