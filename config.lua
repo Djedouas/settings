@@ -33,6 +33,21 @@ linters.setup {
 vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.py" }, command = "Docset qgis,qt5,python", })
 vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.cpp", "*.h" }, command = "Docset qgis,qt5", })
 
+-- Colors
+lvim.autocommands = {
+  {
+    { "ColorScheme" },
+    {
+      pattern = "*",
+      callback = function()
+        vim.api.nvim_set_hl(0, "@type.cpp", { fg = "#ffffff", underline = false, bold = false })
+        vim.api.nvim_set_hl(0, "@type.builtin.cpp", { fg = "#ffffff", underline = false, bold = false })
+        vim.api.nvim_set_hl(0, "MatchParen", { bg = "#666666", bold = true })
+      end,
+    },
+  },
+}
+
 -- custom smooth scrolling
 local t    = {}
 t['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '150', 'quintic' } }
