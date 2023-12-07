@@ -82,9 +82,17 @@ lvim.plugins =
     "hedyhli/outline.nvim",
     config = function()
       local opts = {
-        symbol_blacklist = { "Variable", "Module" },
-        highlight_hovered_item = false,
-        keymaps = { close = {} }
+        symbols        = {
+          filter = {
+            python = { "Property", "Module", exclude = true },
+            cpp = false
+          }
+        },
+        outline_items  = {
+          show_symbol_details = false,
+        },
+        keymaps        = { close = {} },
+        outline_window = { focus_on_open = false }
       }
       require("outline").setup(opts)
     end,
@@ -136,15 +144,13 @@ vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<C
 vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
 vim.keymap.set({ "n", "o", "x" }, "ge", "<cmd>lua require('spider').motion('ge')<CR>", { desc = "Spider-ge" })
 
--- hop mappings
+-- My mappings
 lvim.builtin.which_key.mappings["j"] = { "<cmd>HopLineMW<CR>", "Jump to line" }
 lvim.builtin.which_key.mappings["k"] = { "<cmd>HopWord<CR>", "Jump to word" }
-
--- close tab
 lvim.builtin.which_key.mappings["Q"] = { "<cmd>tabclose<CR>", "Close tab" }
-
--- toggle wrap
+lvim.builtin.which_key.mappings["P"] = { "Oprint('########')<C-[>joprint('########')<C-[>k0w", "Python emphasize print" }
 vim.keymap.set({ "n", "o", "x" }, "²", "<cmd>set wrap!<CR>", { desc = "Toggle word wrap" })
+vim.keymap.set({ "n" }, "ù", "<C-W>jQ", { desc = "Close bottom preview" })
 
 -- Symbols map
 lvim.builtin.which_key.mappings["t"] = { "<cmd>Outline<CR>", "Outline" }
