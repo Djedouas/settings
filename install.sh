@@ -1,7 +1,10 @@
 #!/bin/bash
 
-rm $HOME/.config/lvim
+rm $HOME/.config/lvim/config.lua
 ln -s `readlink -f config.lua` $HOME/.config/lvim
+
+rm $HOME/.config/lazygit/config.yml
+ln -s `readlink -f config.yml` $HOME/.config/lazygit
 
 ln -s `readlink -f .bash_aliases` $HOME
 ln -s `readlink -f .mypy.ini` $HOME
