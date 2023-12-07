@@ -49,16 +49,16 @@ lvim.autocommands = {
 }
 
 -- custom smooth scrolling
-local t    = {}
-t['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '150', 'quintic' } }
-t['<C-d>'] = { 'scroll', { 'vim.wo.scroll', 'true', '150', 'quintic' } }
-t['<C-b>'] = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'true', '450' } }
-t['<C-f>'] = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '450' } }
-t['<C-y>'] = { 'scroll', { '-0.10', 'false', '100' } }
-t['<C-e>'] = { 'scroll', { '0.10', 'false', '100' } }
-t['zt']    = { 'zt', { '80', 'quintic' } }
-t['zz']    = { 'zz', { '80', 'quintic' } }
-t['zb']    = { 'zb', { '80', 'quintic' } }
+local t           = {}
+t['<C-u>']        = { 'scroll', { '-vim.wo.scroll', 'true', '150', 'quintic' } }
+t['<C-d>']        = { 'scroll', { 'vim.wo.scroll', 'true', '150', 'quintic' } }
+t['<C-b>']        = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'true', '450' } }
+t['<C-f>']        = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '450' } }
+t['<C-y>']        = { 'scroll', { '-0.10', 'false', '100' } }
+t['<C-e>']        = { 'scroll', { '0.10', 'false', '100' } }
+t['zt']           = { 'zt', { '80', 'quintic' } }
+t['zz']           = { 'zz', { '80', 'quintic' } }
+t['zb']           = { 'zb', { '80', 'quintic' } }
 require('neoscroll.config').set_mappings(t)
 
 -- no indentation marker
@@ -169,12 +169,12 @@ vim.opt.scrolloff = 1
 -- Vimspector keymaps
 lvim.builtin.which_key.mappings["d"] = {
   name = "Vimspector",
-  s = { "<cmd>call vimspector#Launch()<cr>", "Start"},
-  o = { "<cmd>call vimspector#StepOver()<cr>", "Step over"},
-  O = { "<cmd>call vimspector#StepOut()<cr>", "Step out"},
-  c = { "<cmd>call vimspector#Continue()<cr>", "Continue"},
-  C = { "<cmd>call vimspector#RunToCursor()<cr>", "Run to cursor"},
-  t = { "<cmd>call vimspector#ToggleBreakpoint()<cr>", "Toggle breakpoint"},
-  e = { "<cmd>call vimspector#ShowEvalBalloon()<cr>", "Evaluate"},
-  r = { "<cmd>call vimspector#Reset()<cr>", "Reset"},
+  s = { "<cmd>call vimspector#Launch()<cr>", "Start" },
+  o = { "<cmd>call vimspector#StepOver()<cr>", "Step over" },
+  O = { "<cmd>call vimspector#StepOut()<cr>", "Step out" },
+  c = { "<cmd>call vimspector#Continue()<cr>", "Continue" },
+  C = { "<cmd>call vimspector#RunToCursor()<cr>", "Run to cursor" },
+  t = { "<cmd>call vimspector#ToggleBreakpoint()<cr>", "Toggle breakpoint" },
+  e = { "<cmd>call vimspector#ShowEvalBalloon()<cr>", "Evaluate" },
+  r = { "<cmd>call vimspector#Reset()<cr>", "Reset" },
 }
