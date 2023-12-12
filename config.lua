@@ -7,7 +7,7 @@ vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h10.5"
 lvim.colorscheme = "visual_studio_code"
 lvim.builtin.lualine.options.theme = 'onedark'
 
-vim.g.python3_host_prog = "/home/jacky/.venvs/nvim/bin/python"
+-- vim.g.python3_host_prog = "/home/jacky/.venvs/nvim/bin/python"
 
 -- add `pyright` to `skipped_servers` list
 -- remove `jedi_language_server` from `skipped_servers` list
@@ -29,10 +29,6 @@ linters.setup {
   -- { name = "mypy" },
 }
 
--- Zeal QGIS and Qt docset
-vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.py" }, command = "Docset qgis,qt5,python", })
-vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.cpp", "*.h" }, command = "Docset qgis,qt5", })
-
 -- Colors
 lvim.autocommands = {
   {
@@ -48,19 +44,6 @@ lvim.autocommands = {
   },
 }
 
--- custom smooth scrolling
-local t           = {}
-t['<C-u>']        = { 'scroll', { '-vim.wo.scroll', 'true', '150', 'quintic' } }
-t['<C-d>']        = { 'scroll', { 'vim.wo.scroll', 'true', '150', 'quintic' } }
-t['<C-b>']        = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'true', '450' } }
-t['<C-f>']        = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '450' } }
-t['<C-y>']        = { 'scroll', { '-0.10', 'false', '100' } }
-t['<C-e>']        = { 'scroll', { '0.10', 'false', '100' } }
-t['zt']           = { 'zt', { '80', 'quintic' } }
-t['zz']           = { 'zz', { '80', 'quintic' } }
-t['zb']           = { 'zb', { '80', 'quintic' } }
-require('neoscroll.config').set_mappings(t)
-
 -- no indentation marker
 lvim.builtin.indentlines.active = false
 
@@ -74,7 +57,6 @@ lvim.plugins =
   { "askfiy/visual_studio_code" },     -- colorscheme
   { "jeetsukumaran/vim-pythonsense" }, -- python textobjects
   { "wellle/targets.vim" },            -- plenty of textobjects
-  { "KabbAmine/zeavim.vim" },          -- Zeal
   { "puremourning/vimspector" },       -- Vimspector
 
   -- tagbar
@@ -120,22 +102,6 @@ lvim.plugins =
     end,
   },
 
-  -- smooth scrolling
-  {
-    "karb94/neoscroll.nvim",
-    event = "WinScrolled",
-    config = function()
-      require('neoscroll').setup({
-        -- All these keys will be mapped to their corresponding default scrolling animation
-        mappings = t,
-        hide_cursor = true,          -- Hide cursor while scrolling
-        stop_eof = false,            -- Stop at <EOF> when scrolling downwards
-        use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-        respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-        cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-      })
-    end
-  },
 }
 
 -- nvim-spider for camel case motion
