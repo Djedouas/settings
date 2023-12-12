@@ -19,7 +19,8 @@ alias gcos='SKIP=flake8,pylint,mypy git commit -m'
 alias gdc='git diff --cached'
 
 # Other
-alias cat='batcat'
+alias python='python3'
+alias cat='bat'
 alias l='ls -lph'
 alias c='clear'
 alias ..='cd ..'
@@ -62,7 +63,7 @@ alias toms_vagrant_tunnel='ssh -L 15432:localhost:5432 -p 2222 vagrant@localhost
 powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
-. /usr/share/powerline/bindings/bash/powerline.sh
+. /usr/share/powerline/bash/powerline.sh
 
 # fzf
 function af() {
