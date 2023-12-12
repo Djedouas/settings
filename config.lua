@@ -6,7 +6,7 @@
 vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h10.5"
 lvim.colorscheme = "carbonfox"
 
-vim.g.python3_host_prog = "/home/jacky/.venvs/nvim/bin/python"
+-- vim.g.python3_host_prog = "/home/jacky/.venvs/nvim/bin/python"
 
 -- add `pyright` to `skipped_servers` list
 -- remove `jedi_language_server` from `skipped_servers` list
@@ -55,7 +55,6 @@ lvim.plugins =
   { "chrisgrieser/nvim-spider" },      -- w, e, b camelCase aware
   { "jeetsukumaran/vim-pythonsense" }, -- python textobjects
   { "wellle/targets.vim" },            -- plenty of textobjects
-  { "KabbAmine/zeavim.vim" },          -- Zeal
   { "puremourning/vimspector" },       -- Vimspector
 
   {

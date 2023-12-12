@@ -14,57 +14,20 @@
       "configuration": {
         "type":    "lldb",
         "request": "launch",
-        "program": "/home/jacky/dev/QGIS/build/output/bin/qgis",
+        "program": "/home/jvolpes/QGIS/build/output/bin/test_core_geometryutils",
         "args": [],
         "cwd": "${workspaceRoot}",
         "env": {
-          "QGIS_PREFIX_PATH": "/home/jacky/dev/QGIS/build/output",
-          "ORACLE_DIR": "/home/jacky/depends/oracle-instantclient_21_1",
-          "LD_LIBRARY_PATH": "/home/jacky/depends/oracle-instantclient_21_1:$PATH"
+          "QGIS_PREFIX_PATH": "/home/jvolpes/QGIS/build/output"
         },
         "externalConsole": true,
         "MIMode": "lldb",
           "engineLogging": false
       }
-    },
-
-    "QGIS-ltr-bp": {
-      "extends": "QGIS-dev",
-      "configuration": {
-        "program": "/home/jacky/dev/QGIS/.worktree/ltr_backport/build/output/bin/qgis",
-        "env": {
-          "QGIS_PREFIX_PATH": "/home/jacky/dev/QGIS/.worktree/ltr_backport/build/output"
-        }
-      }
-    },
-
-    "QGIS-latest-bp": {
-      "extends": "QGIS-dev",
-      "configuration": {
-        "program": "/home/jacky/dev/QGIS/.worktree/final-3_32_1/build/output/bin/qgis",
-        "env": {
-          "QGIS_PREFIX_PATH": "/home/jacky/dev/QGIS/.worktree/final-3_32_1/build/output"
-        }
-      }
-    },
-
-    "py-attach": {
-      "adapter": "multi-session",
-      "configuration": {
-        "request": "attach"
-      }
-    },
-
-    "py-run": {
-      "adapter": "debugpy",
-      "configuration": {
-        "request": "launch",
-        "type": "python",
-        "cwd": "${workspaceRoot}",
-        "program": "${file}",
-        "stopOnEntry": false,
-        "console": "integratedTerminal"
-      }
     }
+
+
+
+
   }
 }
