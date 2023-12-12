@@ -6,7 +6,7 @@
 vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h10.5"
 lvim.colorscheme = "carbonfox"
 
-vim.g.python3_host_prog = "/home/jacky/.venvs/nvim/bin/python"
+-- vim.g.python3_host_prog = "/home/jacky/.venvs/nvim/bin/python"
 
 -- add `pyright` to `skipped_servers` list
 -- remove `jedi_language_server` from `skipped_servers` list
@@ -39,10 +39,6 @@ linters.setup {
   -- { name = "mypy" },
 }
 
--- Zeal QGIS and Qt docset
-vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.py" }, command = "Docset qgis,qt5,python", })
-vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.cpp", "*.h" }, command = "Docset qgis,qt5", })
-
 -- custom smooth scrolling
 local t    = {}
 t['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '150', 'quintic' } }
@@ -71,7 +67,6 @@ lvim.plugins =
   { "chrisgrieser/nvim-spider" },      -- w, e, b camelCase aware
   { "jeetsukumaran/vim-pythonsense" }, -- python textobjects
   { "wellle/targets.vim" },            -- plenty of textobjects
-  { "KabbAmine/zeavim.vim" },          -- Zeal
   { "puremourning/vimspector" },       -- Vimspector
 
   {
