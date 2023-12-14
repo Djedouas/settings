@@ -25,7 +25,7 @@ formatters.setup {
 -- linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { name = "pylint" , args = {"--init-hook", "import sys; sys.path.append('" .. (vim.env.VIRTUAL_ENV or "") .. "/lib/python3.10/site-packages/')"} }
+  { name = "pylint", args = { "--init-hook", "import sys; sys.path.append('" .. (vim.env.VIRTUAL_ENV or "") .. "/lib/python3.10/site-packages/')" } }
   -- { name = "mypy" },
 }
 
@@ -152,7 +152,7 @@ lvim.builtin.which_key.mappings["P"] = { "Oprint('########')<C-[>joprint('######
 vim.keymap.set({ "n", "o", "x" }, "²", "<cmd>set wrap!<CR>", { desc = "Toggle word wrap" })
 vim.keymap.set({ "n" }, "ù", "<C-W>jQ", { desc = "Close bottom preview" })
 
--- Symbols map
+-- Outline map
 lvim.builtin.which_key.mappings["t"] = { "<cmd>Outline<CR>", "Outline" }
 
 -- UFO settings for folds
