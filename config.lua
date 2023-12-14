@@ -65,7 +65,7 @@ require('neoscroll.config').set_mappings(t)
 lvim.builtin.indentlines.active = false
 
 -- cursor occurrence matching
-lvim.builtin.illuminate.options.delay = 2000
+lvim.builtin.illuminate.options.delay = 1000
 lvim.builtin.illuminate.options.min_count_to_highlight = 2
 
 lvim.plugins =
