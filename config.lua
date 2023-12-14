@@ -4,8 +4,7 @@
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
 vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h10.5"
-lvim.colorscheme = "visual_studio_code"
-lvim.builtin.lualine.options.theme = 'onedark'
+lvim.colorscheme = "carbonfox"
 
 vim.g.python3_host_prog = "/home/jacky/.venvs/nvim/bin/python"
 
@@ -40,8 +39,6 @@ lvim.autocommands = {
     {
       pattern = "*",
       callback = function()
-        vim.api.nvim_set_hl(0, "@type.cpp", { fg = "#ffffff", underline = false, bold = false })
-        vim.api.nvim_set_hl(0, "@type.builtin.cpp", { fg = "#ffffff", underline = false, bold = false })
         vim.api.nvim_set_hl(0, "MatchParen", { bg = "#666666", bold = true })
       end,
     },
@@ -71,11 +68,28 @@ lvim.builtin.illuminate.options.min_count_to_highlight = 2
 lvim.plugins =
 {
   { "chrisgrieser/nvim-spider" },      -- w, e, b camelCase aware
-  { "askfiy/visual_studio_code" },     -- colorscheme
+  -- { "askfiy/visual_studio_code" },     -- colorscheme
   { "jeetsukumaran/vim-pythonsense" }, -- python textobjects
   { "wellle/targets.vim" },            -- plenty of textobjects
   { "KabbAmine/zeavim.vim" },          -- Zeal
   { "puremourning/vimspector" },       -- Vimspector
+
+  {
+    "EdenEast/nightfox.nvim",
+    config = function()
+      require("nightfox").setup({
+        options = {
+          colorblind = {
+            enable = true,
+            severity = {
+              protan = 1.0,
+              deutan = 0.3,
+            },
+          },
+        }
+      })
+    end
+  },
 
   -- tagbar
   {
