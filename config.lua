@@ -150,7 +150,7 @@ lvim.builtin.which_key.mappings["k"] = { "<cmd>HopWord<CR>", "Jump to word" }
 lvim.builtin.which_key.mappings["Q"] = { "<cmd>tabclose<CR>", "Close tab" }
 lvim.builtin.which_key.mappings["P"] = { "Oprint('########')<C-[>joprint('########')<C-[>k0w", "Python emphasize print" }
 vim.keymap.set({ "n", "o", "x" }, "²", "<cmd>set wrap!<CR>", { desc = "Toggle word wrap" })
-vim.keymap.set({ "n" }, "ù", "<C-W>jQ", { desc = "Close bottom preview" })
+vim.keymap.set({ "n" }, "ù", "<C-W>j:q<CR>", { desc = "Close bottom preview" })
 
 -- Outline map
 lvim.builtin.which_key.mappings["t"] = { "<cmd>Outline<CR>", "Outline" }
