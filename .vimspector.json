@@ -3,7 +3,7 @@
 
   "configurations": {
 
-    "QGIS-master": {
+    "QGIS-dev": {
       "adapter": "CodeLLDB",
       "breakpoints": {
         "exception": {
@@ -29,7 +29,7 @@
     },
 
     "QGIS-ltr-bp": {
-      "extends": "QGIS-master",
+      "extends": "QGIS-dev",
       "configuration": {
         "program": "/home/jacky/dev/QGIS/.worktree/ltr_backport/build/output/bin/qgis",
         "env": {
@@ -39,7 +39,7 @@
     },
 
     "QGIS-latest-bp": {
-      "extends": "QGIS-master",
+      "extends": "QGIS-dev",
       "configuration": {
         "program": "/home/jacky/dev/QGIS/.worktree/final-3_32_1/build/output/bin/qgis",
         "env": {
