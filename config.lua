@@ -19,7 +19,15 @@ local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { name = "black" },
   { name = "isort" },
+  { name = "astyle", args = { "--options=/home/jacky/dev/QGIS/scripts/astyle.options" } }
 }
+
+-- when 2 servers with different offset_encoding are attached on a buffer we get a warning
+-- so here I force clangd to use utf-16 which is apparently the value used by null-ls
+-- (use case: cpp file buffer with astyle with null-ls and clang with lsp)
+local capabilities = require("lvim.lsp").common_capabilities()
+capabilities.offsetEncoding = { "utf-16" }
+require("lvim.lsp.manager").setup("clangd", { capabilities = capabilities})
 
 -- linters
 local linters = require "lvim.lsp.null-ls.linters"
