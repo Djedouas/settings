@@ -200,3 +200,10 @@ lvim.builtin.which_key.mappings["d"] = {
   e = { "<cmd>call vimspector#ShowEvalBalloon()<cr>", "Evaluate" },
   r = { "<cmd>call vimspector#Reset()<cr>", "Reset" },
 }
+
+-- Windows width keymaps
+lvim.builtin.which_key.mappings["<"] = { "<C-w>30<", "Lower window width" }
+lvim.builtin.which_key.mappings[">"] = { "<C-w>30>", "Raise window width" }
+
+-- Buffer switch
+lvim.builtin.which_key.mappings["<Tab>"] = { "<C-^>", "Go to last buffer" }
