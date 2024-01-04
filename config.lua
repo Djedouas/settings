@@ -117,13 +117,9 @@ lvim.plugins =
     end,
   },
 
-  -- jump
+  -- -- jump
   {
-    "phaazon/hop.nvim",
-    event = "BufRead",
-    config = function()
-      require("hop").setup()
-    end,
+    "ggandor/leap.nvim",
   },
 
   -- folding
@@ -207,3 +203,8 @@ lvim.builtin.which_key.mappings["<Tab>"] = { "<C-^>", "Go to last buffer" }
 
 -- Close tab
 lvim.builtin.which_key.mappings["Q"] = { "<cmd>tabclose<CR>", "Close tab" }
+
+-- Leap
+vim.keymap.set({ "n", "o", "x" }, "s", "<Plug>(leap-forward)", { desc = "Jump forward" })
+vim.keymap.set({ "n", "o", "x" }, "S", "<Plug>(leap-backward)", { desc = "Jump backward" })
+vim.keymap.set({ "n", "o", "x" }, "ù", "<Plug>(leap-from-window)", { desc = "Jump other windows" })
