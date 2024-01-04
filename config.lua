@@ -160,23 +160,6 @@ lvim.plugins =
   },
 }
 
--- nvim-spider for camel case motion
-vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
-vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
-vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
-vim.keymap.set({ "n", "o", "x" }, "ge", "<cmd>lua require('spider').motion('ge')<CR>", { desc = "Spider-ge" })
-
--- My mappings
-lvim.builtin.which_key.mappings["j"] = { "<cmd>HopLineMW<CR>", "Jump to line" }
-lvim.builtin.which_key.mappings["k"] = { "<cmd>HopWord<CR>", "Jump to word" }
-lvim.builtin.which_key.mappings["Q"] = { "<cmd>tabclose<CR>", "Close tab" }
-lvim.builtin.which_key.mappings["P"] = { "Oprint('########')<C-[>joprint('########')<C-[>k0w", "Python emphasize print" }
-vim.keymap.set({ "n", "o", "x" }, "²", "<cmd>set wrap!<CR>", { desc = "Toggle word wrap" })
-vim.keymap.set({ "n" }, "ù", "<C-W>j:q<CR>", { desc = "Close bottom preview" })
-
--- Outline map
-lvim.builtin.which_key.mappings["t"] = { "<cmd>Outline<CR>", "Outline" }
-
 -- UFO settings for folds
 vim.opt.foldcolumn = '0' -- '0' is not bad
 vim.opt.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
@@ -188,22 +171,42 @@ lvim.keys.normal_mode['zM'] = require('ufo').closeAllFolds
 -- Context lines above zt and below zb
 vim.opt.scrolloff = 1
 
+-- nvim-spider for camel case motion
+vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
+vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
+vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
+vim.keymap.set({ "n", "o", "x" }, "ge", "<cmd>lua require('spider').motion('ge')<CR>", { desc = "Spider-ge" })
+
+-- Custom snippet
+lvim.builtin.which_key.mappings["P"] = { "Oprint('########')<C-[>joprint('########')<C-[>k0w", "Python emphasize print" }
+
+-- Toggle wrap
+vim.keymap.set({ "n", "o", "x" }, "²", "<cmd>set wrap!<CR>", { desc = "Toggle word wrap" })
+
+-- Toggle outline
+lvim.builtin.which_key.mappings["t"] = { "<cmd>Outline<CR>", "Outline" }
+
 -- Vimspector keymaps
 lvim.builtin.which_key.mappings["d"] = {
   name = "Vimspector",
-  s = { "<cmd>call vimspector#Launch()<cr>", "Start" },
-  o = { "<cmd>call vimspector#StepOver()<cr>", "Step over" },
-  O = { "<cmd>call vimspector#StepOut()<cr>", "Step out" },
-  c = { "<cmd>call vimspector#Continue()<cr>", "Continue" },
-  C = { "<cmd>call vimspector#RunToCursor()<cr>", "Run to cursor" },
-  t = { "<cmd>call vimspector#ToggleBreakpoint()<cr>", "Toggle breakpoint" },
-  e = { "<cmd>call vimspector#ShowEvalBalloon()<cr>", "Evaluate" },
-  r = { "<cmd>call vimspector#Reset()<cr>", "Reset" },
+  s = { "<Plug>VimspectorLaunch", "Start" },
+  S = { "<Plug>VimspectorStop", "Stop" },
+  o = { "<Plug>VimspectorStepOver", "Step over" },
+  O = { "<Plug>VimspectorStepOut", "Step out" },
+  i = { "<Plug>VimspectorStepInto", "Step into" },
+  c = { "<Plug>VimspectorContinue", "Continue" },
+  C = { "<Plug>VimspectorRunToCursor", "Run to cursor" },
+  t = { "<Plug>VimspectorToggleBreakpoint", "Toggle breakpoint" },
+  e = { "<Plug>VimspectorBalloonEval", "Evaluate" },
+  r = { "<Plug>VimspectorReset", "Reset" },
 }
 
 -- Windows width keymaps
 lvim.builtin.which_key.mappings["<"] = { "<C-w>30<", "Lower window width" }
 lvim.builtin.which_key.mappings[">"] = { "<C-w>30>", "Raise window width" }
 
--- Buffer switch
+-- Switch buffer
 lvim.builtin.which_key.mappings["<Tab>"] = { "<C-^>", "Go to last buffer" }
+
+-- Close tab
+lvim.builtin.which_key.mappings["Q"] = { "<cmd>tabclose<CR>", "Close tab" }
