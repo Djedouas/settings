@@ -40,19 +40,6 @@ linters.setup {
 vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.py" }, command = "Docset qgis,qt5,python", })
 vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.cpp", "*.h" }, command = "Docset qgis,qt5", })
 
--- Colors
-lvim.autocommands = {
-  {
-    { "ColorScheme" },
-    {
-      pattern = "*",
-      callback = function()
-        vim.api.nvim_set_hl(0, "MatchParen", { bg = "#666666", bold = true })
-      end,
-    },
-  },
-}
-
 -- custom smooth scrolling
 local t    = {}
 t['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '150', 'quintic' } }
@@ -86,12 +73,22 @@ lvim.plugins =
     "EdenEast/nightfox.nvim",
     config = function()
       require("nightfox").setup({
+        groups = {
+          all = {
+            MatchParen = { bg = "#666666" },
+            LspReferenceText = { style = "underline" } -- for illuminate plugin
+          }
+        },
         options = {
+          styles = {
+            comments = 'italic'
+          },
           colorblind = {
             enable = true,
             severity = {
-              protan = 1.0,
-              deutan = 0.3,
+              protan = 0.8,
+              deutan = 0.2,
+              tritan = 0.0,
             },
           },
         }
