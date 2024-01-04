@@ -27,7 +27,7 @@ formatters.setup {
 -- (use case: cpp file buffer with astyle with null-ls and clang with lsp)
 local capabilities = require("lvim.lsp").common_capabilities()
 capabilities.offsetEncoding = { "utf-16" }
-require("lvim.lsp.manager").setup("clangd", { capabilities = capabilities})
+require("lvim.lsp.manager").setup("clangd", { capabilities = capabilities })
 
 -- linters
 local linters = require "lvim.lsp.null-ls.linters"
@@ -54,16 +54,16 @@ lvim.autocommands = {
 }
 
 -- custom smooth scrolling
-local t           = {}
-t['<C-u>']        = { 'scroll', { '-vim.wo.scroll', 'true', '150', 'quintic' } }
-t['<C-d>']        = { 'scroll', { 'vim.wo.scroll', 'true', '150', 'quintic' } }
-t['<C-b>']        = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'true', '450' } }
-t['<C-f>']        = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '450' } }
-t['<C-y>']        = { 'scroll', { '-0.10', 'false', '100' } }
-t['<C-e>']        = { 'scroll', { '0.10', 'false', '100' } }
-t['zt']           = { 'zt', { '80', 'quintic' } }
-t['zz']           = { 'zz', { '80', 'quintic' } }
-t['zb']           = { 'zb', { '80', 'quintic' } }
+local t    = {}
+t['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '150', 'quintic' } }
+t['<C-d>'] = { 'scroll', { 'vim.wo.scroll', 'true', '150', 'quintic' } }
+t['<C-b>'] = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'true', '450' } }
+t['<C-f>'] = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '450' } }
+t['<C-y>'] = { 'scroll', { '-0.40', 'false', '100' } }
+t['<C-e>'] = { 'scroll', { '0.40', 'false', '100' } }
+t['zt']    = { 'zt', { '80', 'quintic' } }
+t['zz']    = { 'zz', { '80', 'quintic' } }
+t['zb']    = { 'zb', { '80', 'quintic' } }
 require('neoscroll.config').set_mappings(t)
 
 -- no indentation marker
