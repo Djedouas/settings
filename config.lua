@@ -117,7 +117,7 @@ lvim.plugins =
     end,
   },
 
-  -- -- jump
+  -- jump
   {
     "ggandor/leap.nvim",
   },
@@ -172,6 +172,7 @@ vim.keymap.set({ "n", "o", "x" }, "ge", "<cmd>lua require('spider').motion('ge')
 
 -- Custom snippet
 lvim.builtin.which_key.mappings["P"] = { "Oprint('########')<C-[>joprint('########')<C-[>k0w", "Python emphasize print" }
+lvim.builtin.which_key.mappings["S"] = { 'F"vF"cQStringLitteral( " )', "QStringLiteral" }
 
 -- Toggle wrap
 vim.keymap.set({ "n", "o", "x" }, "²", "<cmd>set wrap!<CR>", { desc = "Toggle word wrap" })

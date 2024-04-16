@@ -82,7 +82,8 @@ git:
     log:
         order: topo-order
         showGraph: always
-        showWholeGraph: true
+        # showWholeGraph: true
+        showWholeGraph: false
     diffContextSize: 3
 update:
     method: prompt
