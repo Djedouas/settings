@@ -33,7 +33,7 @@ require("lvim.lsp.manager").setup("clangd", { capabilities = capabilities })
 -- linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { name = "pylint", args = { "--init-hook", "import sys; sys.path.append('" .. (vim.env.VIRTUAL_ENV or "") .. "/lib/python3.10/site-packages/')" } }
+  { name = "pylint", args = { "--init-hook", "import sys; sys.path += ['" .. (vim.env.VIRTUAL_ENV or "") .. "/lib/python3.10/site-packages/', '/usr/lib/python3/dist-packages/']" } },
   { name = "ruff" }
   -- { name = "mypy" },
 }
