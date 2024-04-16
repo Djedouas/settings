@@ -105,7 +105,7 @@ lvim.plugins =
       local opts = {
         symbols        = {
           filter = {
-            python = { "Property", "Module", exclude = true },
+            python = { "Property", "Module", "Variable", exclude = true },
             cpp = false
           }
         },
