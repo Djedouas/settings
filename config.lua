@@ -18,6 +18,7 @@ end, lvim.lsp.automatic_configuration.skipped_servers)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { name = "black" },
+  { name = "ruff" },
   { name = "isort" },
   { name = "astyle", args = { "--options=/home/jacky/dev/QGIS/scripts/astyle.options" } }
 }
@@ -33,6 +34,7 @@ require("lvim.lsp.manager").setup("clangd", { capabilities = capabilities })
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   { name = "pylint", args = { "--init-hook", "import sys; sys.path.append('" .. (vim.env.VIRTUAL_ENV or "") .. "/lib/python3.10/site-packages/')" } }
+  { name = "ruff" }
   -- { name = "mypy" },
 }
 
