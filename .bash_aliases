@@ -32,6 +32,7 @@ alias i='sudo apt install'
 alias u='sudo apt update'
 alias up='sudo apt upgrade'
 alias b='browse .'
+alias co="xclip -selection clipboard"
 alias vi='lvim'
 alias lg='lazygit'
 alias gg='lazygit log'
