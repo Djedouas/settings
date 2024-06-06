@@ -55,6 +55,9 @@ export FZF_DEFAULT_OPTS='
   --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54
 '
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/grass78/lib
+if [ "$HOSTNAME" = "fedoraqgis" ]; then
+  export QT_QPA_PLATFORM=offscreen
+fi
 
 # ProjectCentre UK vagrant ssh tunnelling
 alias toms_vagrant_tunnel='ssh -L 15432:localhost:5432 -p 2222 vagrant@localhost -i /home/jacky/Documents/proj/2206_ProjectCentre/deploy/ansible/.vagrant/machines/toms_test_vm/virtualbox/private_key -fNg'
