@@ -53,7 +53,10 @@ t['<C-e>'] = { 'scroll', { '0.40', 'false', '100' } }
 t['zt']    = { 'zt', { '80', 'quintic' } }
 t['zz']    = { 'zz', { '80', 'quintic' } }
 t['zb']    = { 'zb', { '80', 'quintic' } }
-require('neoscroll.config').set_mappings(t)
+local has_neoscroll, _ = pcall(require, 'neoscroll')
+if has_neoscroll then
+  require('neoscroll.config').set_mappings(t)
+end
 
 -- no indentation marker
 lvim.builtin.indentlines.active = false
