@@ -68,7 +68,6 @@ lvim.builtin.illuminate.options.min_count_to_highlight = 2
 lvim.plugins =
 {
   { "chrisgrieser/nvim-spider" },      -- w, e, b camelCase aware
-  -- { "askfiy/visual_studio_code" },     -- colorscheme
   { "jeetsukumaran/vim-pythonsense" }, -- python textobjects
   { "wellle/targets.vim" },            -- plenty of textobjects
   { "KabbAmine/zeavim.vim" },          -- Zeal
