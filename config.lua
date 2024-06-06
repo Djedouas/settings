@@ -110,19 +110,6 @@ lvim.plugins =
     "ggandor/leap.nvim",
   },
 
-  -- folding
-  {
-    "kevinhwang91/nvim-ufo",
-    dependencies = { "kevinhwang91/promise-async" },
-    config = function()
-      require("ufo").setup({
-        provider_selector = function(bufnr, filetype, buftype)
-          return { 'treesitter' }
-        end
-      })
-    end,
-  },
-
   -- smooth scrolling
   {
     "karb94/neoscroll.nvim",
@@ -149,14 +136,6 @@ lvim.plugins =
     end
   },
 }
-
--- UFO settings for folds
-vim.opt.foldcolumn = '0' -- '0' is not bad
-vim.opt.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
-lvim.keys.normal_mode['zR'] = require('ufo').openAllFolds
-lvim.keys.normal_mode['zM'] = require('ufo').closeAllFolds
 
 -- Context lines above zt and below zb
 vim.opt.scrolloff = 1
