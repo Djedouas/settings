@@ -21,7 +21,7 @@ formatters.setup {
   { name = "black" },
   { name = "ruff" },
   { name = "isort" },
-  { name = "astyle", args = { "--options=/home/jacky/dev/QGIS/scripts/astyle.options" } }
+  { name = "astyle", args = { "--options=/home/jvolpes/QGIS/scripts/astyle.options" } }
 }
 
 -- when 2 servers with different offset_encoding are attached on a buffer we get a warning
