@@ -15,6 +15,7 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
 lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
   return server ~= "jedi_language_server"
 end, lvim.lsp.automatic_configuration.skipped_servers)
+require("lvim.lsp.manager").setup("ruff_lsp")
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { name = "black" },
