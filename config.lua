@@ -213,3 +213,15 @@ lvim.builtin.which_key.mappings["Q"] = { "<cmd>tabclose<CR>", "Close tab" }
 vim.keymap.set({ "n", "o", "x" }, "s", "<Plug>(leap-forward)", { desc = "Jump forward" })
 vim.keymap.set({ "n", "o", "x" }, "S", "<Plug>(leap-backward)", { desc = "Jump backward" })
 vim.keymap.set({ "n", "o", "x" }, "ù", "<Plug>(leap-from-window)", { desc = "Jump other windows" })
+
+-- Togle diagnostics
+local function toggle_diagnostics()
+  if vim.g.diagnostics_visible then
+    vim.g.diagnostics_visible = false
+    vim.diagnostic.disable()
+  else
+    vim.g.diagnostics_visible = true
+    vim.diagnostic.enable()
+  end
+end
+lvim.builtin.which_key.mappings["lT"] = { toggle_diagnostics, "Toggle diagnostics" }
