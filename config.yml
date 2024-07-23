@@ -294,11 +294,15 @@ customCommands:
         title: "message"
         key: "Message"
         initialValue: ""
+      - type: "textbox"
+        title: "Commit description (optional)"
+        key: "Description"
+        initialValue: ""
       - type: "confirm"
         key: "Confirm"
         title: "Commit"
         body: "Are you sure you want to commit?"
-    command: "git commit --message '{{.Form.Type}}({{.Form.Scope}}){{.Form.Breaking}}: {{.Form.Message}}'"
+    command: "git commit --message '{{.Form.Type}}({{.Form.Scope}}){{.Form.Breaking}}: {{.Form.Message}}\n\n{{.Form.Description}}'"
     loadingText: "Creating conventional commit..."
 services: {}
 notARepository: prompt
