@@ -227,3 +227,5 @@ local function toggle_diagnostics()
   end
 end
 lvim.builtin.which_key.mappings["lT"] = { toggle_diagnostics, "Toggle diagnostics" }
+
+vim.keymap.set("n", "gG", ":echo filereadable(expand('<cfile>')) ? 'file exists' : 'file does not exist'<CR>", {desc = "Check file existance"})
