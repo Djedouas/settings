@@ -178,6 +178,7 @@ vim.keymap.set({ "n", "o", "x" }, "ge", "<cmd>lua require('spider').motion('ge')
 -- Custom snippet
 lvim.builtin.which_key.mappings["P"] = { "Oprint('########')<C-[>joprint('########')<C-[>k0w", "Python emphasize print" }
 lvim.builtin.which_key.mappings["S"] = { 'F"vF"cQStringLiteral( " )', "QStringLiteral" }
+lvim.builtin.which_key.mappings["C"] = { '0f"v$F;hcstd::cout << " << std::endl$', "std::cout" }
 
 -- Toggle wrap
 vim.keymap.set({ "n", "o", "x" }, "²", "<cmd>set wrap!<CR>", { desc = "Toggle word wrap" })
