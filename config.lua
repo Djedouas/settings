@@ -3,57 +3,35 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
-vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h10.5"
+-- vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h10.5"
 lvim.colorscheme = "carbonfox"
 
-vim.g.python3_host_prog = "/home/jacky/.venvs/nvim/bin/python"
+-- vim.g.python3_host_prog = "/home/jacky/.venvs/nvim/bin/python"
 
--- add `pyright` to `skipped_servers` list
--- remove `jedi_language_server` from `skipped_servers` list
-lvim.lsp.automatic_servers_installation = false
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
-lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
-  return server ~= "jedi_language_server"
-end, lvim.lsp.automatic_configuration.skipped_servers)
-require("lvim.lsp.manager").setup("ruff_lsp")
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { name = "black" },
-  { name = "ruff" },
   { name = "isort" },
-  { name = "astyle", args = { "--options=/home/jacky/dev/QGIS/scripts/astyle.options" } }
 }
-
--- when 2 servers with different offset_encoding are attached on a buffer we get a warning
--- so here I force clangd to use utf-16 which is apparently the value used by null-ls
--- (use case: cpp file buffer with astyle with null-ls and clang with lsp)
-local capabilities = require("lvim.lsp").common_capabilities()
-capabilities.offsetEncoding = { "utf-16" }
-require("lvim.lsp.manager").setup("clangd", { capabilities = capabilities })
 
 -- linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   { name = "pylint", args = { "--init-hook", "import sys; sys.path += ['" .. (vim.env.VIRTUAL_ENV or "") .. "/lib/python3.10/site-packages/', '/usr/lib/python3/dist-packages/']" } },
-  { name = "ruff" }
-  -- { name = "mypy" },
+  { name = "mypy" },
 }
 
--- Zeal QGIS and Qt docset
-vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.py" }, command = "Docset qgis,qt5,python", })
-vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.cpp", "*.h" }, command = "Docset qgis,qt5", })
-
 -- custom smooth scrolling
-local t    = {}
-t['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '150', 'quintic' } }
-t['<C-d>'] = { 'scroll', { 'vim.wo.scroll', 'true', '150', 'quintic' } }
-t['<C-b>'] = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'true', '450' } }
-t['<C-f>'] = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '450' } }
-t['<C-y>'] = { 'scroll', { '-0.40', 'false', '100' } }
-t['<C-e>'] = { 'scroll', { '0.40', 'false', '100' } }
-t['zt']    = { 'zt', { '80', 'quintic' } }
-t['zz']    = { 'zz', { '80', 'quintic' } }
-t['zb']    = { 'zb', { '80', 'quintic' } }
+local t                = {}
+t['<C-u>']             = { 'scroll', { '-vim.wo.scroll', 'true', '150', 'quintic' } }
+t['<C-d>']             = { 'scroll', { 'vim.wo.scroll', 'true', '150', 'quintic' } }
+t['<C-b>']             = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'true', '450' } }
+t['<C-f>']             = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '450' } }
+t['<C-y>']             = { 'scroll', { '-0.40', 'false', '100' } }
+t['<C-e>']             = { 'scroll', { '0.40', 'false', '100' } }
+t['zt']                = { 'zt', { '80', 'quintic' } }
+t['zz']                = { 'zz', { '80', 'quintic' } }
+t['zb']                = { 'zb', { '80', 'quintic' } }
 local has_neoscroll, _ = pcall(require, 'neoscroll')
 if has_neoscroll then
   require('neoscroll.config').set_mappings(t)
@@ -69,37 +47,6 @@ lvim.builtin.illuminate.options.min_count_to_highlight = 2
 lvim.plugins =
 {
   { "chrisgrieser/nvim-spider" },      -- w, e, b camelCase aware
-  { "jeetsukumaran/vim-pythonsense" }, -- python textobjects
-  { "wellle/targets.vim" },            -- plenty of textobjects
-  { "KabbAmine/zeavim.vim" },          -- Zeal
-  { "puremourning/vimspector" },       -- Vimspector
-
-  {
-    "EdenEast/nightfox.nvim",
-    config = function()
-      require("nightfox").setup({
-        groups = {
-          all = {
-            MatchParen = { bg = "#666666" },
-            LspReferenceText = { style = "underline" } -- for illuminate plugin
-          }
-        },
-        options = {
-          styles = {
-            comments = 'italic'
-          },
-          colorblind = {
-            enable = true,
-            severity = {
-              protan = 0.8,
-              deutan = 0.2,
-              tritan = 0.0,
-            },
-          },
-        }
-      })
-    end
-  },
 
   -- tagbar
   {
@@ -127,19 +74,6 @@ lvim.plugins =
     "ggandor/leap.nvim",
   },
 
-  -- folding
-  {
-    "kevinhwang91/nvim-ufo",
-    dependencies = { "kevinhwang91/promise-async" },
-    config = function()
-      require("ufo").setup({
-        provider_selector = function(bufnr, filetype, buftype)
-          return { 'treesitter' }
-        end
-      })
-    end,
-  },
-
   -- smooth scrolling
   {
     "karb94/neoscroll.nvim",
@@ -158,14 +92,6 @@ lvim.plugins =
   },
 }
 
--- UFO settings for folds
-vim.opt.foldcolumn = '0' -- '0' is not bad
-vim.opt.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
-lvim.keys.normal_mode['zR'] = require('ufo').openAllFolds
-lvim.keys.normal_mode['zM'] = require('ufo').closeAllFolds
-
 -- Context lines above zt and below zb
 vim.opt.scrolloff = 1
 
@@ -177,33 +103,12 @@ vim.keymap.set({ "n", "o", "x" }, "ge", "<cmd>lua require('spider').motion('ge')
 
 -- Custom snippet
 lvim.builtin.which_key.mappings["P"] = { "Oprint('########')<C-[>joprint('########')<C-[>k0w", "Python emphasize print" }
-lvim.builtin.which_key.mappings["S"] = { 'F"vF"cQStringLiteral( " )', "QStringLiteral" }
-lvim.builtin.which_key.mappings["C"] = { '0f"v$F;hcstd::cout << " << std::endl$', "std::cout" }
 
 -- Toggle wrap
 vim.keymap.set({ "n", "o", "x" }, "²", "<cmd>set wrap!<CR>", { desc = "Toggle word wrap" })
 
 -- Toggle outline
 lvim.builtin.which_key.mappings["t"] = { "<cmd>Outline<CR>", "Outline" }
-
--- Vimspector keymaps
-lvim.builtin.which_key.mappings["d"] = {
-  name = "Vimspector",
-  s = { "<Plug>VimspectorLaunch", "Start" },
-  S = { "<Plug>VimspectorStop", "Stop" },
-  o = { "<Plug>VimspectorStepOver", "Step over" },
-  O = { "<Plug>VimspectorStepOut", "Step out" },
-  i = { "<Plug>VimspectorStepInto", "Step into" },
-  c = { "<Plug>VimspectorContinue", "Continue" },
-  C = { "<Plug>VimspectorRunToCursor", "Run to cursor" },
-  t = { "<Plug>VimspectorToggleBreakpoint", "Toggle breakpoint" },
-  e = { "<Plug>VimspectorBalloonEval", "Evaluate" },
-  r = { "<Plug>VimspectorReset", "Reset" },
-}
-
--- Windows width keymaps
-lvim.builtin.which_key.mappings["<"] = { "<C-w>30<", "Lower window width" }
-lvim.builtin.which_key.mappings[">"] = { "<C-w>30>", "Raise window width" }
 
 -- Switch buffer
 lvim.builtin.which_key.mappings["<Tab>"] = { "<C-^>", "Go to last buffer" }
@@ -228,6 +133,3 @@ local function toggle_diagnostics()
   end
 end
 lvim.builtin.which_key.mappings["lT"] = { toggle_diagnostics, "Toggle diagnostics" }
-
-vim.keymap.set("n", "gG", ":echo filereadable(expand('<cfile>')) ? 'file exists' : 'file does not exist'<CR>", {desc = "Check file existance"})
-lvim.builtin.which_key.mappings["a"] = { "<cmd>ClangdSwitchSourceHeader<CR>", "Switch source/header" }
