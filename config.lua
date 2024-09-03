@@ -191,7 +191,7 @@ lvim.builtin.which_key.mappings["d"] = {
   C = { "<Plug>VimspectorRunToCursor", "Run to cursor" },
   t = { "<Plug>VimspectorToggleBreakpoint", "Toggle breakpoint" },
   e = { "<Plug>VimspectorBalloonEval", "Evaluate" },
-  r = { "<Plug>VimspectorReset", "Reset" },
+  r = { "<cmd>VimspectorReset<CR>", "Reset" },
 }
 
 -- Windows width keymaps
