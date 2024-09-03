@@ -43,22 +43,6 @@ linters.setup {
 vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.py" }, command = "Docset qgis,qt5,python", })
 vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.cpp", "*.h" }, command = "Docset qgis,qt5", })
 
--- custom smooth scrolling
-local t    = {}
-t['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '150', 'quintic' } }
-t['<C-d>'] = { 'scroll', { 'vim.wo.scroll', 'true', '150', 'quintic' } }
-t['<C-b>'] = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'true', '450' } }
-t['<C-f>'] = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '450' } }
-t['<C-y>'] = { 'scroll', { '-0.40', 'false', '100' } }
-t['<C-e>'] = { 'scroll', { '0.40', 'false', '100' } }
-t['zt']    = { 'zt', { '80', 'quintic' } }
-t['zz']    = { 'zz', { '80', 'quintic' } }
-t['zb']    = { 'zb', { '80', 'quintic' } }
-local has_neoscroll, _ = pcall(require, 'neoscroll')
-if has_neoscroll then
-  require('neoscroll.config').set_mappings(t)
-end
-
 -- no indentation marker
 lvim.builtin.indentlines.active = false
 
@@ -143,17 +127,26 @@ lvim.plugins =
   -- smooth scrolling
   {
     "karb94/neoscroll.nvim",
-    event = "WinScrolled",
     config = function()
-      require('neoscroll').setup({
+      local neoscroll = require("neoscroll")
+      neoscroll.setup({
         -- All these keys will be mapped to their corresponding default scrolling animation
-        mappings = t,
+        mappings = {},               -- mappings below for custom durations
         hide_cursor = true,          -- Hide cursor while scrolling
         stop_eof = false,            -- Stop at <EOF> when scrolling downwards
         use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
         respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
         cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
       })
+      vim.keymap.set({ 'n' }, '<C-u>', function() neoscroll.ctrl_u({ duration = 150 }) end)
+      vim.keymap.set({ 'n' }, '<C-d>', function() neoscroll.ctrl_d({ duration = 150 }) end)
+      vim.keymap.set({ 'n' }, '<C-b>', function() neoscroll.ctrl_b({ duration = 450 }) end)
+      vim.keymap.set({ 'n' }, '<C-f>', function() neoscroll.ctrl_f({ duration = 450 }) end)
+      vim.keymap.set({ 'n' }, '<C-y>', function() neoscroll.ctrl_y({ duration = 100 }) end)
+      vim.keymap.set({ 'n' }, '<C-e>', function() neoscroll.ctrl_e({ duration = 100 }) end)
+      vim.keymap.set({ 'n' }, 'zt', function() neoscroll.zt({ half_win_duration = 80 }) end)
+      vim.keymap.set({ 'n' }, 'zz', function() neoscroll.zz({ half_win_duration = 80 }) end)
+      vim.keymap.set({ 'n' }, 'zb', function() neoscroll.zb({ half_win_duration = 80 }) end)
     end
   },
 }
