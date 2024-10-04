@@ -166,9 +166,20 @@ function vq() {
 }
 
 function upload_paie() {
+  if [ -z "$1" ]
+    then
+      local mois=`date +%m`
+    else
+      local mois=$1
+  fi
+
   local auth=`pass show passpersos/jvo/nuage`
+  if [ -z "$auth" ]
+  then
+    return -1
+  fi
+
   local annee=`date +%Y`
-  local mois=`date +%m`
   cd ~/Documents/admin
   git pull
   curl -v --basic --user $auth -T paie/$annee/${annee}_${mois}_jvo.pdf \
