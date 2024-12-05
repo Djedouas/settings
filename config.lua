@@ -40,10 +40,6 @@ linters.setup {
   -- { name = "mypy" },
 }
 
--- Zeal QGIS and Qt docset
-vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.py" }, command = "Docset qgis,qt5,python", })
-vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.cpp", "*.h" }, command = "Docset qgis,qt5", })
-
 -- no indentation marker
 lvim.builtin.indentlines.active = false
 
