@@ -14,7 +14,7 @@
       "configuration": {
         "type":    "lldb",
         "request": "launch",
-        "program": "/home/jvolpes/QGIS/build/output/bin/test_core_geometryutils",
+        "program": "/home/jvolpes/QGIS/.worktree/capture-profile-points/build/output/bin/qgis",
         "args": [],
         "cwd": "${workspaceRoot}",
         "env": {
@@ -25,9 +25,6 @@
           "engineLogging": false
       }
     }
-
-
-
 
   }
 }
