@@ -16,7 +16,7 @@ formatters.setup {
   { name = "black" },
   { name = "ruff" },
   { name = "isort" },
-  { name = "astyle", args = { "--options=/home/jacky/dev/QGIS/scripts/astyle.options" } },
+  { name = "astyle",      args = { "--options=/home/jacky/dev/QGIS/scripts/astyle.options" } },
   { name = "clang_format" }
 }
 
@@ -51,7 +51,9 @@ lvim.plugins =
   { "wellle/targets.vim" },            -- plenty of textobjects
   { "KabbAmine/zeavim.vim" },          -- Zeal
   { "puremourning/vimspector" },       -- Vimspector
+  { "ggandor/leap.nvim" },             -- jump
 
+  -- color-blind color corrections
   {
     "EdenEast/nightfox.nvim",
     config = function()
@@ -98,11 +100,6 @@ lvim.plugins =
       }
       require("outline").setup(opts)
     end,
-  },
-
-  -- jump
-  {
-    "ggandor/leap.nvim",
   },
 
   -- folding
@@ -208,7 +205,7 @@ vim.g.diagnostics_visible = true
 local function toggle_diagnostics()
   if vim.g.diagnostics_visible then
     vim.g.diagnostics_visible = false
-    vim.diagnostic.disable()
+    vim.diagnostic.enable(false)
   else
     vim.g.diagnostics_visible = true
     vim.diagnostic.enable()
@@ -216,6 +213,9 @@ local function toggle_diagnostics()
 end
 lvim.builtin.which_key.mappings["lT"] = { toggle_diagnostics, "Toggle diagnostics" }
 
+-- Does the cursor file exists?
 vim.keymap.set("n", "gG", ":echo filereadable(expand('<cfile>')) ? 'file exists' : 'file does not exist'<CR>",
   { desc = "Check file existance" })
+
+-- Switch source/header .cpp/.h file
 lvim.builtin.which_key.mappings["a"] = { "<cmd>ClangdSwitchSourceHeader<CR>", "Switch source/header" }
