@@ -3,7 +3,6 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
-vim.opt.guifont = "JetBrainsMono Nerd Font Mono:h10.5"
 lvim.colorscheme = "carbonfox"
 
 vim.g.python3_host_prog = "/home/jacky/.venvs/nvim/bin/python"
