@@ -92,6 +92,10 @@ lvim.plugins =
             cpp = false
           }
         },
+        symbol_folding = {
+          auto_unfold = { only = true },
+          autofold_depth = 2,
+        },
         outline_items  = {
           show_symbol_details = false,
         },
