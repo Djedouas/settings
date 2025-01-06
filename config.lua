@@ -129,15 +129,16 @@ lvim.plugins =
         respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
         cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
       })
-      vim.keymap.set({ 'n' }, '<C-u>', function() neoscroll.ctrl_u({ duration = 150 }) end)
-      vim.keymap.set({ 'n' }, '<C-d>', function() neoscroll.ctrl_d({ duration = 150 }) end)
-      vim.keymap.set({ 'n' }, '<C-b>', function() neoscroll.ctrl_b({ duration = 450 }) end)
-      vim.keymap.set({ 'n' }, '<C-f>', function() neoscroll.ctrl_f({ duration = 450 }) end)
-      vim.keymap.set({ 'n' }, '<C-y>', function() neoscroll.ctrl_y({ duration = 100 }) end)
-      vim.keymap.set({ 'n' }, '<C-e>', function() neoscroll.ctrl_e({ duration = 100 }) end)
-      vim.keymap.set({ 'n' }, 'zt', function() neoscroll.zt({ half_win_duration = 80 }) end)
-      vim.keymap.set({ 'n' }, 'zz', function() neoscroll.zz({ half_win_duration = 80 }) end)
-      vim.keymap.set({ 'n' }, 'zb', function() neoscroll.zb({ half_win_duration = 80 }) end)
+      vim.keymap.set({ 'n', 'v' }, '<C-u>', function() neoscroll.ctrl_u({ duration = 150 }) end)
+      vim.keymap.set({ 'n', 'v' }, '<C-d>', function() neoscroll.ctrl_d({ duration = 150 }) end)
+      vim.keymap.set({ 'n', 'v' }, '<C-b>', function() neoscroll.ctrl_b({ duration = 450 }) end)
+      vim.keymap.set({ 'n', 'v' }, '<C-f>', function() neoscroll.ctrl_f({ duration = 450 }) end)
+      vim.keymap.set({ 'n', 'v' }, '<C-y>',
+        function() neoscroll.scroll(-0.1, { move_cursor = false, duration = 100 }) end)
+      vim.keymap.set({ 'n', 'v' }, '<C-e>', function() neoscroll.scroll(0.1, { move_cursor = false, duration = 100 }) end)
+      vim.keymap.set({ 'n', 'v' }, 'zt', function() neoscroll.zt({ half_win_duration = 80 }) end)
+      vim.keymap.set({ 'n', 'v' }, 'zz', function() neoscroll.zz({ half_win_duration = 80 }) end)
+      vim.keymap.set({ 'n', 'v' }, 'zb', function() neoscroll.zb({ half_win_duration = 80 }) end)
     end
   },
 }
