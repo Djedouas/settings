@@ -12,7 +12,7 @@
         }
       },
       "configuration": {
-        "type":    "lldb",
+        "type": "lldb",
         "request": "launch",
         "program": "/home/jacky/dev/QGIS/build/output/bin/qgis",
         "args": [],
@@ -24,7 +24,7 @@
         },
         "externalConsole": true,
         "MIMode": "lldb",
-          "engineLogging": false
+        "engineLogging": false
       }
     },
 
