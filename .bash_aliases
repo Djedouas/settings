@@ -160,16 +160,14 @@ function qm() {
   fi
 }
 function vq() {
-  while true; do
-    read -p "master (m) - ltr (l) - latest (f) " mlf
-    case $mlf in
-        m ) export QGIS_DIR=/home/jacky/dev/QGIS; break;;
-        l ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/ltr_backport; break;;
-        f ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/final-3_32_1; break;;
-    esac
-  done
-  export QGIS_PREFIX_PATH=$QGIS_DIR/build/output
-  export PYTHONPATH=$QGIS_PREFIX_PATH/python:$QGIS_PREFIX_PATH/python/plugins:$QGIS_DIR/tests/src/python:$PYTHONPATH
+  local selected_qgis
+  selected_qgis=$(ls ~/apps/ | grep -i qgis | fzf)
+  if [ -n "$selected_qgis" ]; then
+    selected_qgis=~/apps/$selected_qgis
+    export PYTHONPATH=$selected_qgis/share/qgis/python:$selected_qgis/share/qgis/python/plugins/:$PYTHONPATH
+    export LD_LIBRARY_PATH=$selected_qgis/lib:$LD_LIBRARY_PATH
+    alias qgis=$selected_qgis/bin/qgis
+  fi
 }
 
 # ---------------------------------------
