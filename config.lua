@@ -200,6 +200,11 @@ vim.keymap.set({ "n", "o", "x" }, "s", "<Plug>(leap-forward)", { desc = "Jump fo
 vim.keymap.set({ "n", "o", "x" }, "S", "<Plug>(leap-backward)", { desc = "Jump backward" })
 vim.keymap.set({ "n", "o", "x" }, "ù", "<Plug>(leap-from-window)", { desc = "Jump other windows" })
 
+-- Qt lldb formatting
+vim.keymap.set({ "n", "o", "x" }, "°",
+  "icommand script import /home/jacky/.settings/lldb-qt-formatters/lldbbridge.py<CR>",
+  { desc = "insert command for lldb Qt formatter" })
+
 -- Togle diagnostics
 vim.g.diagnostics_visible = true
 local function toggle_diagnostics()
