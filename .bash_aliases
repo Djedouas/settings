@@ -1,3 +1,4 @@
+# ---------------------------------------
 # Aliases
 
 # git
@@ -38,33 +39,50 @@ alias lg='lazygit'
 alias gg='lazygit log'
 alias runOracle='docker run --rm --name oracle -d -v /tmp/oracle_share_folder:/tmp/oracle_share_folder -e ORACLE_SID="XE" -e ORACLE_PWD="adminpass" -e ORACLE_PDB="ORCLPDBTEST" -e ORACLE_CHARACTERSET="AL32UTF8" -p 0.0.0.0:1521:1521 "oslandia/oracle-slim-for-qgis:18.4.0-xe"' 
 
-# Env
+# ---------------------------------------
+# PATHS
+
+# Compilation
 export DEPENDS_DIR=/home/jacky/depends
 export ORACLE_DIR=$DEPENDS_DIR/oracle-instantclient_21_1 
 export CMAKE_PREFIX_PATH=$ORACLE_DIR:$ORACLE_DIR/sdk/include
 export LD_LIBRARY_PATH=$ORACLE_DIR:$LD_LIBRARY_PATH
 export PATH=$ORACLE_DIR:$PATH 
-export PYTHONPATH="$PYTHONPATH:/usr/share/qgis/python/plugins/:/usr/share/qgis/python/"
+
+# PATH
 export PATH="$PATH:/home/jacky/.local/bin:/usr/lib/ccache"
-export PSQL_EDITOR="nvim"
+
+# FZF
 export FZF_DEFAULT_COMMAND='fd --type file'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='
   --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
   --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54
 '
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/grass78/lib
+
+# Neovim
+export PATH=/opt/nvim-linux64/bin:$PATH
+
+# Other
+export PSQL_EDITOR="nvim"
+
+# ---------------------------------------
+# SSH
 
 # ProjectCentre UK vagrant ssh tunnelling
 alias toms_vagrant_tunnel='ssh -L 15432:localhost:5432 -p 2222 vagrant@localhost -i /home/jacky/Documents/proj/2206_ProjectCentre/deploy/ansible/.vagrant/machines/toms_test_vm/virtualbox/private_key -fNg'
 
+# ---------------------------------------
 # Powerline
+
 powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 . /usr/share/powerline/bindings/bash/powerline.sh
 
-# fzf
+# ---------------------------------------
+# Goto functions
+
 function af() {
   local selected_affaire
   selected_affaire=$(ls /home/jacky/Documents/oslandia/affaires/ | fzf)
@@ -97,6 +115,10 @@ function s() {
     cd "$HOME/sandbox/$selected_dir"
   fi
 }
+
+# ---------------------------------------
+# source environment functions
+
 function v() {
   local selected_env
   selected_env=$(ls ~/.venvs/ | fzf)
@@ -137,6 +159,22 @@ function qm() {
     /home/jacky/dev/QGIS/build/output/bin/qgis --profile "$selected_profile" &
   fi
 }
+function vq() {
+  while true; do
+    read -p "master (m) - ltr (l) - latest (f) " mlf
+    case $mlf in
+        m ) export QGIS_DIR=/home/jacky/dev/QGIS; break;;
+        l ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/ltr_backport; break;;
+        f ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/final-3_32_1; break;;
+    esac
+  done
+  export QGIS_PREFIX_PATH=$QGIS_DIR/build/output
+  export PYTHONPATH=$QGIS_PREFIX_PATH/python:$QGIS_PREFIX_PATH/python/plugins:$QGIS_DIR/tests/src/python:$PYTHONPATH
+}
+
+# ---------------------------------------
+# Create project folders function
+
 function p() {
   local selected_project
   local selected_affaire
@@ -152,18 +190,9 @@ function p() {
     ln -s "../../Client-projects/$selected_project" ./git
   fi
 }
-function vq() {
-  while true; do
-    read -p "master (m) - ltr (l) - latest (f) " mlf
-    case $mlf in
-        m ) export QGIS_DIR=/home/jacky/dev/QGIS; break;;
-        l ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/ltr_backport; break;;
-        f ) export QGIS_DIR=/home/jacky/dev/QGIS/.worktree/final-3_32_1; break;;
-    esac
-  done
-  export QGIS_PREFIX_PATH=$QGIS_DIR/build/output
-  export PYTHONPATH=$QGIS_PREFIX_PATH/python:$QGIS_PREFIX_PATH/python/plugins:$QGIS_DIR/tests/src/python:$PYTHONPATH
-}
+
+# ---------------------------------------
+# Upload paie function
 
 function upload_paie() {
   if [ -z "$1" ]
