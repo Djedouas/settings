@@ -7,14 +7,10 @@ lvim.colorscheme = "carbonfox"
 
 vim.g.python3_host_prog = "/home/jacky/.venvs/nvim/bin/python"
 
--- add `pyright` to `skipped_servers` list
--- remove `jedi_language_server` from `skipped_servers` list
+-- remove harper spelling check from default lsp servers
 lvim.lsp.automatic_servers_installation = false
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
-lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
-  return server ~= "jedi_language_server"
-end, lvim.lsp.automatic_configuration.skipped_servers)
-require("lvim.lsp.manager").setup("ruff_lsp")
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "harper_ls" })
+
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { name = "black" },
@@ -34,9 +30,7 @@ require("lvim.lsp.manager").setup("clangd", { capabilities = capabilities })
 -- linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { name = "pylint", args = { "--init-hook", "import sys; sys.path += ['" .. (vim.env.VIRTUAL_ENV or "") .. "/lib/python3.10/site-packages/', '/usr/lib/python3/dist-packages/']" } },
   { name = "ruff" }
-  -- { name = "mypy" },
 }
 
 -- Zeal QGIS and Qt docset
