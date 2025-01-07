@@ -127,30 +127,7 @@ function v() {
     source "$HOME/.venvs/$selected_env/bin/activate"
   fi
 }
-function q() {
-  local selected_profile
-  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
 
-  if [ -n "$selected_profile" ]; then
-    qgis --profile "$selected_profile" &
-  fi
-}
-function qf() {
-  local selected_profile
-  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
-
-  if [ -n "$selected_profile" ]; then
-    /home/jacky/dev/QGIS/.worktree/final-3_32_1/build/output/bin/qgis --profile "$selected_profile" &
-  fi
-}
-function ql() {
-  local selected_profile
-  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
-
-  if [ -n "$selected_profile" ]; then
-    /home/jacky/dev/QGIS/.worktree/ltr_backport/build/output/bin/qgis --profile "$selected_profile" &
-  fi
-}
 function qm() {
   local selected_profile
   selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
