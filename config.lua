@@ -221,7 +221,7 @@ local function toggle_diagnostics()
     vim.diagnostic.enable()
   end
 end
-lvim.builtin.which_key.mappings["lT"] = { toggle_diagnostics, "Toggle diagnostics" }
+lvim.builtin.which_key.mappings["lt"] = { toggle_diagnostics, "Toggle diagnostics" }
 
 -- Does the cursor file exists?
 vim.keymap.set("n", "gG", ":echo filereadable(expand('<cfile>')) ? 'file exists' : 'file does not exist'<CR>",
@@ -229,3 +229,9 @@ vim.keymap.set("n", "gG", ":echo filereadable(expand('<cfile>')) ? 'file exists'
 
 -- Switch source/header .cpp/.h file
 lvim.builtin.which_key.mappings["a"] = { "<cmd>ClangdSwitchSourceHeader<CR>", "Switch source/header" }
+
+-- Toggle inlay hints
+local function toggle_inlay_hints()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end
+lvim.builtin.which_key.mappings["lh"] = { toggle_inlay_hints, "Toggle inlay hints" }
