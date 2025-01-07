@@ -188,28 +188,3 @@ function p() {
     ln -s "../../Client-projects/$selected_project" ./git
   fi
 }
-
-# ---------------------------------------
-# Upload paie function
-
-function upload_paie() {
-  if [ -z "$1" ]
-    then
-      local mois=`date +%m`
-    else
-      local mois=$1
-  fi
-
-  local auth=`pass show passpersos/jvo/nuage`
-  if [ -z "$auth" ]
-  then
-    return -1
-  fi
-
-  local annee=`date +%Y`
-  cd ~/Documents/admin
-  git pull
-  curl -v --basic --user $auth -T paie/$annee/${annee}_${mois}_jvo.pdf \
-    "https://nuage.volpes.fr/remote.php/dav/files/jacky/Documents/Nos%20papiers/Emplois/Oslandia/Bulletins%20de%20salaire/$annee/"
-  cd -
-}
