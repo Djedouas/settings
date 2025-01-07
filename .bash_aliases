@@ -40,7 +40,7 @@ alias runOracle='docker run --rm --name oracle -d -v /tmp/oracle_share_folder:/t
 # ---------------------------------------
 # PATHS
 
-# Compilation
+# QGIS Compilation
 export DEPENDS_DIR=/home/jacky/depends
 export ORACLE_DIR=$DEPENDS_DIR/oracle-instantclient_21_1 
 export CMAKE_PREFIX_PATH=$ORACLE_DIR:$ORACLE_DIR/sdk/include
@@ -126,6 +126,7 @@ function v() {
   fi
 }
 
+# lancer QGIS du dossier build/
 function qm() {
   local selected_profile
   selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
