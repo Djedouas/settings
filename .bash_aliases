@@ -16,7 +16,6 @@ alias gf='git fetch --all -p'
 alias gfp='gf && gp'
 alias gri='git rebase -i --autosquash'
 alias gco='git commit -m'
-alias gcos='SKIP=flake8,pylint,mypy git commit -m'
 alias gdc='git diff --cached'
 
 # Other
@@ -36,7 +35,6 @@ alias b='browse .'
 alias co="xclip -selection clipboard"
 alias vi='lvim'
 alias lg='lazygit'
-alias gg='lazygit log'
 alias runOracle='docker run --rm --name oracle -d -v /tmp/oracle_share_folder:/tmp/oracle_share_folder -e ORACLE_SID="XE" -e ORACLE_PWD="adminpass" -e ORACLE_PDB="ORCLPDBTEST" -e ORACLE_CHARACTERSET="AL32UTF8" -p 0.0.0.0:1521:1521 "oslandia/oracle-slim-for-qgis:18.4.0-xe"' 
 
 # ---------------------------------------
