@@ -159,14 +159,21 @@ function qm() {
     /home/jacky/dev/QGIS/build/output/bin/qgis --profile "$selected_profile" &
   fi
 }
+
+# paramétrer l'environnement du terminal avec un QGIS installé dans ~/apps/
 function vq() {
-  local selected_qgis
-  selected_qgis=$(ls ~/apps/ | grep -i qgis | fzf)
-  if [ -n "$selected_qgis" ]; then
-    selected_qgis=~/apps/$selected_qgis
-    export PYTHONPATH=$selected_qgis/share/qgis/python:$selected_qgis/share/qgis/python/plugins/:$PYTHONPATH
-    export LD_LIBRARY_PATH=$selected_qgis/lib:$LD_LIBRARY_PATH
-    alias qgis=$selected_qgis/bin/qgis
+  if [ -n "${MY_QGIS_VERSION}" ] ; then
+    echo "Ce terminal est déjà paramétré avec la version de QGIS $MY_QGIS_VERSION"
+  else
+    local selected_qgis
+    selected_qgis=$(ls ~/apps/ | grep -i qgis | fzf)
+    if [ -n "$selected_qgis" ]; then
+      export MY_QGIS_VERSION=$selected_qgis  # for powerline
+      selected_qgis=~/apps/$selected_qgis
+      export PYTHONPATH=$selected_qgis/share/qgis/python:$selected_qgis/share/qgis/python/plugins/:$PYTHONPATH
+      export LD_LIBRARY_PATH=$selected_qgis/lib:$LD_LIBRARY_PATH
+      alias qgis=$selected_qgis/bin/qgis
+    fi
   fi
 }
 
