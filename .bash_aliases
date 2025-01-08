@@ -126,6 +126,16 @@ function v() {
   fi
 }
 
+# lancer QGIS paramétré par vq du dossier ~/apps/
+function q() {
+  local selected_profile
+  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
+
+  if [ -n "$selected_profile" ]; then
+    qgis --profile "$selected_profile" &
+  fi
+}
+
 # lancer QGIS du dossier build/
 function qm() {
   local selected_profile
