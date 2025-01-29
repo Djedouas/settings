@@ -128,11 +128,15 @@ function v() {
 
 # lancer QGIS paramétré par vq du dossier ~/apps/
 function q() {
-  local selected_profile
-  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
+  if [ -n "${MY_QGIS_VERSION}" ] ; then
+    local selected_profile
+    selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
 
-  if [ -n "$selected_profile" ]; then
-    qgis --profile "$selected_profile" &
+    if [ -n "$selected_profile" ]; then
+      qgis --profile "$selected_profile" &
+    fi
+  else
+    echo "Pas de QGIS paramétré via la fonction vq"
   fi
 }
 
@@ -158,7 +162,7 @@ function vq() {
       selected_qgis=~/apps/$selected_qgis
       export PYTHONPATH=$selected_qgis/share/qgis/python:$selected_qgis/share/qgis/python/plugins/:$PYTHONPATH
       export LD_LIBRARY_PATH=$selected_qgis/lib:$LD_LIBRARY_PATH
-      alias qgis=$selected_qgis/bin/qgis
+      export PATH=$PATH:$selected_qgis/bin
     fi
   fi
 }
