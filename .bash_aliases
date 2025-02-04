@@ -163,6 +163,7 @@ function vq() {
       export PYTHONPATH=$selected_qgis/share/qgis/python:$selected_qgis/share/qgis/python/plugins/:$PYTHONPATH
       export LD_LIBRARY_PATH=$selected_qgis/lib:$LD_LIBRARY_PATH
       export PATH=$PATH:$selected_qgis/bin
+      export QGIS_PREFIX_PATH=$selected_qgis
     fi
   fi
 }
