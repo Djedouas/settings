@@ -186,3 +186,23 @@ function p() {
     ln -s "../../Client-projects/$selected_project" ./git
   fi
 }
+
+# ---------------------------------------
+# Open meeting link from khal
+
+function km() {
+  local selected_meeting
+  local url
+
+  selected_meeting=$(khal list now 10m | fzf)  # get list of events in the upcoming 10 minutes
+  url=$(echo $selected_meeting | sed -E 's/.*:: (https?:\/\/[[:alnum:][:punct:]]+).*/\1/')
+
+  if ! [[ "$url" =~ https?:\/\/[[:alnum:][:punct:]]+.* ]]; then
+    echo "Aucune url valide trouvée (match=$url)"
+    return 1
+  fi
+
+  if [ -n "$selected_meeting" ]; then
+    firefox $url
+  fi
+}
