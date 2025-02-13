@@ -1,0 +1,38 @@
+[calendars]
+
+[[perso_local]]
+path = ~/Calendar/perso
+type = discover
+color = light gray
+
+[[oslandia_jvo_local]]
+path = ~/Calendar/jvo
+type = discover
+color = light blue
+
+[[oslandia_events_local]]
+path = ~/Calendar/oslandia_events
+type = discover
+color = yellow
+readonly = true
+
+[view]
+blank_line_before_day = True
+event_view_always_visible = True
+min_calendar_display = 2
+
+[locale]
+timeformat = %H:%M
+dateformat = %d/%m/%Y
+longdateformat = %d/%m/%Y
+datetimeformat = %d/%m/%Y %H:%M
+longdatetimeformat = %d/%m/%Y %H:%M
+weeknumbers = left
+
+[default]
+default_calendar = jvo
+highlight_event_days = True
+
+# will be available in next stable version
+# enable_mouse = False
+# default_event_alarm = 15m
