@@ -23,6 +23,14 @@ local capabilities = require("lvim.lsp").common_capabilities()
 capabilities.offsetEncoding = { "utf-16" }
 require("lvim.lsp.manager").setup("clangd", { capabilities = capabilities })
 
+-- Activate language tool grammar checker for these file types and default language
+require("lvim.lsp.manager").setup(
+  "ltex", {
+    filetypes = { 'text', 'mail', 'markdown', 'restructuredtext' },
+    settings = { ltex = { language = "fr" } }
+  }
+)
+
 -- linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
@@ -218,6 +226,20 @@ local function toggle_diagnostics()
   end
 end
 lvim.builtin.which_key.mappings["lt"] = { toggle_diagnostics, "Toggle diagnostics" }
+
+-- Toggle language between fr and en-US
+local function toggle_language()
+  local ltex_settings = vim.lsp.get_clients({ name = "ltex" })[1].config.settings
+  if not ltex_settings then return end
+  local language = ltex_settings.ltex.language
+  if language == "fr" then
+    ltex_settings.ltex.language = "en-US"
+  else
+    ltex_settings.ltex.language = "fr"
+  end
+  vim.lsp.buf_notify(0, "workspace/didChangeConfiguration", { settings = ltex_settings })
+end
+lvim.builtin.which_key.mappings["lm"] = { toggle_language, "Toggle language" }
 
 -- Does the cursor file exists?
 vim.keymap.set("n", "gG", ":echo filereadable(expand('<cfile>')) ? 'file exists' : 'file does not exist'<CR>",
