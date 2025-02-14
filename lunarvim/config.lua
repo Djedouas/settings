@@ -7,10 +7,6 @@ lvim.colorscheme = "carbonfox"
 
 vim.g.python3_host_prog = "/home/jacky/.venvs/nvim/bin/python"
 
--- remove harper spelling check from default lsp servers
-lvim.lsp.automatic_servers_installation = false
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "harper_ls" })
-
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { name = "black" },
