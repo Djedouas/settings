@@ -13,6 +13,7 @@ rm $HOME/.config/khard/khard.conf
 ln -s `readlink -f khard/khal.conf` $HOME/.config/khard
 
 ln -s `readlink -f aerc` $HOME/.config
+ln -s `readlink -f kitty` $HOME/.config
 
 ln -s `readlink -f .bash_aliases` $HOME
 ln -s `readlink -f .mypy.ini` $HOME
