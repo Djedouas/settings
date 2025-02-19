@@ -27,7 +27,13 @@ require("lvim.lsp.manager").setup("clangd", { capabilities = capabilities })
 require("lvim.lsp.manager").setup(
   "ltex", {
     filetypes = { 'text', 'mail', 'markdown', 'restructuredtext' },
-    settings = { ltex = { language = "fr" } }
+    settings = { ltex = { language = "fr" } },
+    on_attach = function(client, bufnr)
+      require('ltex_extra').setup({
+        load_langs = { 'fr', 'en-US'},
+        path = vim.fn.expand("~") .. '/.local/share/ltex'
+      })
+    end
   }
 )
 
@@ -56,6 +62,7 @@ lvim.plugins =
   { "KabbAmine/zeavim.vim" },          -- Zeal
   { "puremourning/vimspector" },       -- Vimspector
   { "ggandor/leap.nvim" },             -- jump
+  { "barreiroleo/ltex-extra.nvim", },  -- extra ltex
 
   -- color-blind color corrections
   {
