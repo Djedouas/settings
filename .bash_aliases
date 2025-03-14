@@ -156,7 +156,7 @@ function vq() {
     echo "Ce terminal est déjà paramétré avec la version de QGIS $MY_QGIS_VERSION"
   else
     local selected_qgis
-    selected_qgis=$(ls ~/apps/ | grep -i qgis | fzf)
+    selected_qgis=$(ls -r ~/apps/ | grep -i qgis | fzf)
     if [ -n "$selected_qgis" ]; then
       export MY_QGIS_VERSION=$selected_qgis  # for powerline
       selected_qgis=~/apps/$selected_qgis
