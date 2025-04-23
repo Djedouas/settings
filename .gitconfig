@@ -15,3 +15,6 @@
   enabled = true
 [diff]
   word-diff = plain
+[diff-so-fancy]
+  markEmptyLines = false
+  stripLeadingSymbols = false
