@@ -142,11 +142,15 @@ function q() {
 
 # lancer QGIS du dossier build/
 function qm() {
-  local selected_profile
-  selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
+  if [ -n "${MY_QGIS_VERSION}" ] ; then
+    echo "Ce terminal est déjà paramétré avec la version de QGIS $MY_QGIS_VERSION"
+  else
+    local selected_profile
+    selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
 
-  if [ -n "$selected_profile" ]; then
-    /home/jacky/dev/QGIS/build/output/bin/qgis --profile "$selected_profile" &
+    if [ -n "$selected_profile" ]; then
+      /home/jacky/dev/QGIS/build/output/bin/qgis --profile "$selected_profile" &
+    fi
   fi
 }
 
