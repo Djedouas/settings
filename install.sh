@@ -21,4 +21,5 @@ ln -s `readlink -f .pylintrc` $HOME
 ln -s `readlink -f .gdbinit` $HOME
 ln -s `readlink -f .vimspector.json` $HOME
 ln -s `readlink -f .bash_completion` $HOME
+ln -s `readlink -f .gitconfig` $HOME
 ln -s `readlink -f qgisprinters` $HOME/.gdb/qgisprinters
