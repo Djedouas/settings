@@ -23,3 +23,5 @@ ln -s `readlink -f .vimspector.json` $HOME
 ln -s `readlink -f .bash_completion` $HOME
 ln -s `readlink -f .gitconfig` $HOME
 ln -s `readlink -f qgisprinters` $HOME/.gdb/qgisprinters
+
+ln -s `readlink -f fix_inrae_tzid` $HOME/.local/bin

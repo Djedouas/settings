@@ -1,0 +1,55 @@
+#!/usr/bin/python3
+
+"""
+Les invitations de l'INRAE arrivent avec un TZID corrompu !
+
+On passe par stdin, et comme en général il vient de Windows, on gère les retours à la ligne format Windows.
+
+Ce script print le texte fixé.
+Il est fait pour être utilisé dans l'opener et le filter de aerc pour le mime type text/calendar.
+"""
+
+import sys
+from pathlib import Path
+
+if len(sys.argv) == 0:
+    raise IOError("No ics file or pipe")
+elif len(sys.argv) == 1:
+    text = sys.stdin.read().replace("\r\n", "\n")
+elif len(sys.argv) == 2:
+    text = Path(sys.argv[1]).read_text(encoding="utf8")
+else:
+    raise IOError("Too many arguments")
+
+# Si l'évènement ne concerne pas l'INRAE alors on ne fait rien
+if "inrae" not in text:
+    print(text)
+    sys.exit(0)
+
+
+# On déplie le fichier ics pour que chaque ligne soit bien sur une seule ligne
+# car les lignes trop longues sont pliées en plusieurs lignes, avec les lignes
+# suivantes commençant par un espace.
+unfolded_text = ""
+for i, line in enumerate(text.split("\n")):
+    if i == 0:
+        unfolded_text = line
+    elif line.startswith(" "):
+        unfolded_text += line[1:]
+    else:
+        unfolded_text = unfolded_text + "\n" + line
+
+final_lines = []
+for line in unfolded_text.strip().split("\n"):
+    # Dans toutes les lignes avec TZID il faut échapper le caractère ":"
+    # mais comme le filtre "calendar" de aerc parse mal les TZID avec ce caractère
+    # je le remplace carrément par "-"
+    if "TZID" in line and "(UTC+01:00)" in line:
+        line = line.replace("(UTC+01:00)", r"(UTC+01-00)")
+    # Mais il n'y a que dans les lignes DTSTART et DTEND qu'il faut échapper le caractère ","
+    # car il est déjà échappé dans la définition du TZID
+    if line.startswith("DTSTART;TZID=") or line.startswith("DTEND;TZID="):
+        line = line.replace(",", r"\,")
+    final_lines.append(line)
+
+print("\n".join(final_lines))
