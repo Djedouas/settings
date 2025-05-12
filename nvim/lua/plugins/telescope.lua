@@ -9,5 +9,6 @@ return {
     { "<leader>sR", require("telescope.builtin").registers, desc = 'Show registers' },
     { "<leader>sk", require("telescope.builtin").keymaps, desc = 'Show keymaps' },
     { "<leader>sl", require("telescope.builtin").resume, desc = 'Resume last search' },
+    { "<leader>sc", require("telescope.builtin").colorscheme, desc = 'Choose colorscheme' },
   }
 }
