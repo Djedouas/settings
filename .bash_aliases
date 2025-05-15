@@ -46,6 +46,8 @@ export ORACLE_DIR=$DEPENDS_DIR/oracle-instantclient_21_1
 export CMAKE_PREFIX_PATH=$ORACLE_DIR:$ORACLE_DIR/sdk/include
 export LD_LIBRARY_PATH=$ORACLE_DIR:$LD_LIBRARY_PATH
 export PATH=$ORACLE_DIR:$PATH 
+export CXX=clang++
+export CC=clang
 
 # PATH
 export PATH="$PATH:/home/jacky/.local/bin:/usr/lib/ccache"
