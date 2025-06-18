@@ -25,3 +25,4 @@ ln -s `readlink -f .gitconfig` $HOME
 ln -s `readlink -f qgisprinters` $HOME/.gdb/qgisprinters
 
 ln -s `readlink -f fix_inrae_tzid` $HOME/.local/bin
+ln -s `readlink -f compile_install_qgis` $HOME/.local/bin

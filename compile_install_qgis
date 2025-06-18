@@ -1,0 +1,36 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <version>"
+    echo "Exemples valides : 3_36_11 ou 3.36.11"
+    exit 1
+fi
+
+# Quitte si une commande échoue
+set -e
+
+input_version="$1"
+
+# on met des _ si besoin
+version="${input_version//./_}"
+
+# Vérifie que la version correspond au format x_xx_xx
+if ! [[ "$version" =~ ^[0-9]_[0-9]{1,2}_[0-9]{1,2}$ ]]; then
+    echo "Erreur : le format de version est invalide."
+    echo "Le format attendu est : chiffre_suivi de 1-2 chiffres_suivi de 1-2 chiffres (ex: 3_36_11)"
+    exit 1
+fi
+
+src_dir="/home/jacky/dev/QGIS"
+install_dir="/home/jacky/apps/qgis_${version}"
+build_dir="${src_dir}/build_${version}"
+initial_dir="$(pwd)"
+
+cd "$src_dir"
+git checkout "final-${version}"
+mkdir -p "$build_dir"
+cmake -G Ninja -S . -B "$build_dir" -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTS=OFF -DCMAKE_INSTALL_PREFIX="$install_dir"
+ninja -C "$build_dir"
+ninja -C "$build_dir" install
+git checkout -
+cd "$initial_dir"
