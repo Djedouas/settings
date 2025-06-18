@@ -44,13 +44,13 @@ alias runOracle='docker run --rm --name oracle -d -v /tmp/oracle_share_folder:/t
 export DEPENDS_DIR=/home/jacky/depends
 export ORACLE_DIR=$DEPENDS_DIR/oracle-instantclient_21_1 
 export CMAKE_PREFIX_PATH=$ORACLE_DIR:$ORACLE_DIR/sdk/include
-export LD_LIBRARY_PATH=$ORACLE_DIR:$LD_LIBRARY_PATH
-export PATH=$ORACLE_DIR:$PATH 
+export LD_LIBRARY_PATH=$ORACLE_DIR:/usr/local/lib/${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export PATH=${ORACLE_DIR}${PATH:+:${PATH}}
 export CXX=clang++
 export CC=clang
 
 # PATH
-export PATH="$PATH:/home/jacky/.local/bin:/usr/lib/ccache"
+export PATH="${PATH:+${PATH}:}/home/jacky/.local/bin:/usr/lib/ccache"
 
 # FZF
 export FZF_DEFAULT_COMMAND='fd --type file'
@@ -61,7 +61,7 @@ export FZF_DEFAULT_OPTS='
 '
 
 # Neovim
-export PATH=/opt/nvim-linux64/bin:$PATH
+export PATH=/opt/nvim-linux64/bin${PATH:+:${PATH}}
 
 # Other
 export PSQL_EDITOR="nvim"
@@ -165,10 +165,10 @@ function vq() {
     selected_qgis=$(ls -r ~/apps/ | grep -i qgis | fzf)
     if [ -n "$selected_qgis" ]; then
       export MY_QGIS_VERSION=$selected_qgis  # for powerline
-      selected_qgis=~/apps/$selected_qgis
-      export PYTHONPATH=$selected_qgis/share/qgis/python:$selected_qgis/share/qgis/python/plugins/:$PYTHONPATH
-      export LD_LIBRARY_PATH=$selected_qgis/lib:$LD_LIBRARY_PATH
-      export PATH=$PATH:$selected_qgis/bin
+      selected_qgis=~/apps/${selected_qgis}
+      export PYTHONPATH=${selected_qgis}/share/qgis/python:$selected_qgis/share/qgis/python/plugins/${PYTHONPATH:+:${PYTHONPATH}}
+      export LD_LIBRARY_PATH=${selected_qgis}/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+      export PATH=${PATH:+${PATH}:}${selected_qgis}/bin
       export QGIS_PREFIX_PATH=$selected_qgis
     fi
   fi
