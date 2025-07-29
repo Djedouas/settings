@@ -60,9 +60,6 @@ export FZF_DEFAULT_OPTS='
   --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54
 '
 
-# Neovim
-export PATH=/opt/nvim-linux64/bin${PATH:+:${PATH}}
-
 # Other
 export PSQL_EDITOR="nvim"
 
