@@ -16,3 +16,7 @@ vim.keymap.set({ "n", "o", "x" }, "²", "<cmd>set wrap!<CR>", { desc = "Toggle w
 -- Buffer navigation
 vim.keymap.set("n", "<leader>bn", "<cmd>:bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bb", "<cmd>:bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>c", "<cmd>:bdelete<CR>", { desc = "Close buffer" })
+
+-- Others
+vim.keymap.set("n", "<leader>h", "<cmd>:nohlsearch<CR>", { desc = "No highlight" })
