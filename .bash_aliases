@@ -32,24 +32,18 @@ alias i='sudo apt install'
 alias u='sudo apt update'
 alias up='sudo apt upgrade'
 alias b='browse .'
-alias co="xclip -selection clipboard"
 alias vi='lvim'
 alias lg='lazygit'
-alias runOracle='docker run --rm --name oracle -d -v /tmp/oracle_share_folder:/tmp/oracle_share_folder -e ORACLE_SID="XE" -e ORACLE_PWD="adminpass" -e ORACLE_PDB="ORCLPDBTEST" -e ORACLE_CHARACTERSET="AL32UTF8" -p 0.0.0.0:1521:1521 "oslandia/oracle-slim-for-qgis:18.4.0-xe"' 
 
 # ---------------------------------------
-# PATHS
+# Compiler QGIS
 
-# QGIS Compilation
-export DEPENDS_DIR=/home/jacky/depends
-export ORACLE_DIR=$DEPENDS_DIR/oracle-instantclient_21_1 
-export CMAKE_PREFIX_PATH=$ORACLE_DIR:$ORACLE_DIR/sdk/include
-export LD_LIBRARY_PATH=$ORACLE_DIR:/usr/local/lib/${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-export PATH=${ORACLE_DIR}${PATH:+:${PATH}}
-export CXX=clang++
-export CC=clang
+alias cmake_qgis_qt6='cmake -GNinja -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DBUILD_WITH_QT6=ON -DWITH_QTWEBKIT=OFF ..'
+alias cmake_qgis_qt5='cmake -GNinja -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..'
 
+# ---------------------------------------
 # PATH
+
 export PATH="${PATH:+${PATH}:}/home/jacky/.local/bin:/usr/lib/ccache"
 
 # FZF
@@ -62,12 +56,6 @@ export FZF_DEFAULT_OPTS='
 
 # Other
 export PSQL_EDITOR="nvim"
-
-# ---------------------------------------
-# SSH
-
-# ProjectCentre UK vagrant ssh tunnelling
-alias toms_vagrant_tunnel='ssh -L 15432:localhost:5432 -p 2222 vagrant@localhost -i /home/jacky/Documents/proj/2206_ProjectCentre/deploy/ansible/.vagrant/machines/toms_test_vm/virtualbox/private_key -fNg'
 
 # ---------------------------------------
 # Powerline
