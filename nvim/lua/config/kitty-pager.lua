@@ -21,7 +21,7 @@ return function(INPUT_LINE_NUMBER)
     vim.api.nvim_buf_set_keymap(term_buf, 'v', 'q', 'y<Cmd>qa!<CR>', { })
     -- Regular quit mapping for normal mode
     vim.api.nvim_buf_set_keymap(term_buf, 'n', 'q', '<Cmd>qa!<CR>', { })
-    local group = vim.api.nvim_create_augroup('kitty+page', {clear = true})
+    local group = vim.api.nvim_create_augroup('kitty-pager', {clear = true})
 
     local setCursor = function()
         local max_line_nr = vim.api.nvim_buf_line_count(term_buf)
