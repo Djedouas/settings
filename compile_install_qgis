@@ -1,15 +1,56 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-    echo "Usage: $0 <version>"
+# Quitte si une commande échoue
+set -e
+
+# qt6 par défaut
+qt5_forced=false
+
+git_prepared=false
+
+# Fonction de clean exécutée à a la fin
+function cleanup {
+  if $git_prepared; then
+    git -C "$src_dir" reset --hard  # on enlève les patches
+    git -C "$src_dir" checkout -  # on revient sur la branche précédente
+    git -C "$src_dir" stash pop || true  # et on récupère le travail en cours
+    git_prepared=false  # car cleanup peut s'exécuter plusieurs fois
+  fi
+  if [ -d "$build_dir" ]; then
+      rm -rf "$build_dir"
+  fi
+}
+trap cleanup EXIT ERR INT TERM  # on exécute cleanup quand le script échoue ou se termine
+
+# Analyse des options
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -qt5)
+            qt5_forced=true
+            shift
+            ;;
+        -*)
+            echo "Option inconnue : $1"
+            exit 1
+            ;;
+        *)
+            input_version="$1"
+            shift
+            ;;
+    esac
+done
+
+if [ -z "${input_version:-}" ]; then
+    echo "Usage: $0 [-qt5] <version>"
     echo "Exemples valides : 3_36_11 ou 3.36.11"
     exit 1
 fi
 
-# Quitte si une commande échoue
-set -e
-
-input_version="$1"
+if $qt5_forced; then
+  qt_version='5'
+else
+  qt_version='6'
+fi
 
 # on met des _ si besoin
 version="${input_version//./_}"
@@ -21,16 +62,50 @@ if ! [[ "$version" =~ ^[0-9]_[0-9]{1,2}_[0-9]{1,2}$ ]]; then
     exit 1
 fi
 
+# construction des chemins
 src_dir="/home/jacky/dev/QGIS"
-install_dir="/home/jacky/apps/qgis_${version}"
-build_dir="${src_dir}/build_${version}"
-initial_dir="$(pwd)"
+install_dir="/home/jacky/apps/qgis_${version}_qt${qt_version}"
+build_dir="${src_dir}/build_${version}_qt${qt_version}"
 
-cd "$src_dir"
-git checkout "final-${version}"
-mkdir -p "$build_dir"
-cmake -G Ninja -S . -B "$build_dir" -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTS=OFF -DCMAKE_INSTALL_PREFIX="$install_dir"
-ninja -C "$build_dir"
-ninja -C "$build_dir" install
-git checkout -
-cd "$initial_dir"
+cmake_options=(
+  "-G Ninja"
+  "-S ${src_dir}"
+  "-DCMAKE_BUILD_TYPE=Debug"
+  "-DENABLE_TESTS=OFF"
+  "-DCMAKE_C_COMPILER=clang"
+  "-DCMAKE_CXX_COMPILER=clang++"
+  "-DCMAKE_INSTALL_PREFIX=${install_dir}"
+  "-B ${build_dir}"
+)
+
+# options en plus pour qt6
+if ! $qt5_forced; then
+  cmake_options+=(
+    "-DBUILD_WITH_QT6=ON"
+    "-DWITH_QTWEBKIT=OFF"
+    # "-DWITH_INTERNAL_QWT=ON"  TODO: utiliser DWITH_INTERNAL_QWT bientôt
+    "-DQWT_LIBRARY=/home/jacky/depends/qwt/install/lib/libqwt.so"
+    "-DQWT_INCLUDE_DIR=/home/jacky/depends/qwt/install/include/qwt"
+    "-DCMAKE_INSTALL_RPATH=/home/jacky/depends/qwt/install/lib"
+  )
+fi
+
+# sauvegarder l'état initial et aller à la version demandée
+git -C "$src_dir" stash
+git -C "$src_dir" checkout "final-${version}"
+git_prepared=true
+
+# On supprime le dossier de build s'il existe déjà
+if [ -d "$build_dir" ]; then
+    rm -rf "$build_dir"
+fi
+
+# On supprime le dossier d'installation s'il existe déjà
+if [ -d "$install_dir" ]; then
+    rm -rf "$install_dir"
+fi
+
+# build et install
+cmake "${cmake_options[@]}"
+cmake --build "$build_dir"
+cmake --install "$build_dir"
