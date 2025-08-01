@@ -30,6 +30,21 @@ return {
       astyle = {
         prepend_args = { "--options=/home/jacky/dev/QGIS/scripts/astyle.options" },
       },
+      stylua = {
+        args = {
+          "--indent-type",
+          "Spaces",
+          "--indent-width",
+          "2",
+          "--column-width",
+          "130",
+          "--collapse-simple-statement",
+          "Always",
+          "--stdin-filepath",
+          "$FILENAME",
+          "-",
+        },
+      },
     },
   },
   init = function()
