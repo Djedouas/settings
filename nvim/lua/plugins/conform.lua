@@ -28,7 +28,7 @@ return {
     -- Customize formatters
     formatters = {
       astyle = {
-        prepend_args = { "--options", "/home/jacky/dev/QGIS/scripts/astyle.options" },
+        prepend_args = { "--options=/home/jacky/dev/QGIS/scripts/astyle.options" },
       },
     },
   },
