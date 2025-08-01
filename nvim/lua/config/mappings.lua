@@ -16,6 +16,10 @@ vim.keymap.set("n", "<leader>bb", ":bprevious<CR>", { desc = "Previous buffer" }
 vim.keymap.set("n", "<leader>c", ":bdelete<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<leader><tab>", "<C-^>", { desc = "Go to last buffer" })
 
+-- Diagnostics navigation
+vim.keymap.set("n", "<leader>lj",vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+vim.keymap.set("n", "<leader>lk",vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
+
 -- Others
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "No highlight" })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save buffer" })
@@ -25,3 +29,5 @@ vim.keymap.set("x", "<M-j>", ":move '>+1<CR>gv-gv", { desc = "Move lines down" }
 vim.keymap.set("n", "<M-j>", ":move .+1<CR>==", { desc = "Move line down" })
 vim.keymap.set("x", "<M-k>", ":move '<-2<CR>gv-gv", { desc = "Move lines up" })
 vim.keymap.set("n", "<M-k>", ":move .-2<CR>==", { desc = "Move line up" })
+
+vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, { desc = "Goto definition" })
