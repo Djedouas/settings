@@ -6,19 +6,18 @@ return {
     {
       -- Customize or remove this keymap to your liking
       "<leader>lf",
-      function()
-        require("conform").format({ async = true })
-      end,
+      function() require("conform").format({ async = true }) end,
       mode = { "n" },
       desc = "Format buffer",
     },
   },
   opts = {
     -- Define your formatters
+    log_level = vim.log.levels.DEBUG,
     formatters_by_ft = {
       python = { "isort", "black" },
       cpp = { "clang-format", "astyle" },
-      lua = { "stylua" }
+      lua = { "stylua" },
     },
     -- Set default options
     default_format_opts = {

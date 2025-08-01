@@ -4,12 +4,12 @@ return {
     groups = {
       all = {
         MatchParen = { bg = "#666666" },
-        LspReferenceText = { style = "underline" }     -- for illuminate plugin
-      }
+        LspReferenceText = { style = "underline" }, -- for illuminate plugin
+      },
     },
     options = {
       styles = {
-        comments = 'italic'
+        comments = "italic",
       },
       colorblind = {
         enable = true,
@@ -19,6 +19,6 @@ return {
           tritan = 0.0,
         },
       },
-    }
-  }
+    },
+  },
 }

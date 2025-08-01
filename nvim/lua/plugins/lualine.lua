@@ -2,6 +2,6 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
-    extensions={'nvim-tree', 'symbols-outline'}
+    extensions = { "nvim-tree", "symbols-outline" },
   },
 }
