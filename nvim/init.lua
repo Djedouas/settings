@@ -8,4 +8,5 @@ require("config.lazy")
 require("config.mappings")
 require("config.misc")
 require("config.lsp")
+
 vim.cmd("colorscheme carbonfox")
