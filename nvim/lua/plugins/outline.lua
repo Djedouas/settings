@@ -18,6 +18,6 @@ return {
     outline_window = { focus_on_open = false },
   },
   keys = {
-    { "<leader>t", "<cmd>Outline<cr>", desc = "Outline" },
+    { "<leader>t", ":Outline<CR>", desc = "Outline" },
   },
 }

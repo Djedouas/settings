@@ -23,6 +23,6 @@ return {
     },
   },
   keys = {
-    { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" },
+    { "<leader>e", ":NvimTreeToggle<CR>", desc = "Explorer" },
   },
 }
