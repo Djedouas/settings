@@ -1,6 +1,6 @@
 return {
   "stevearc/conform.nvim",
-  event = { "BufWritePre" },
+  lazy = false,
   cmd = { "ConformInfo" },
   keys = {
     {
@@ -25,8 +25,6 @@ return {
       -- LSP formatting is used when no other formatters are available
       lsp_format = "fallback",
     },
-    -- Set up format-on-save
-    format_on_save = { timeout_ms = 500 },
     -- Customize formatters
     formatters = {
       astyle = {
