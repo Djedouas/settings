@@ -20,6 +20,11 @@ vim.keymap.set("n", "<leader><tab>", "<C-^>", { desc = "Go to last buffer" })
 vim.keymap.set("n", "<leader>lj", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
 vim.keymap.set("n", "<leader>lk", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
 
+-- Custom snippets
+vim.keymap.set("n", "<leader>P", "Oprint('########')<C-[>joprint('########')<C-[>k0w", { desc = "Python emphasize print" })
+vim.keymap.set("n", "<leader>S", 'F"vF"cQStringLiteral( " )', { desc = "QStringLiteral" })
+vim.keymap.set("n", "<leader>C", '0f"v$F;hcstd::cout << " << std::endl$', { desc = "std::cout" })
+
 -- Others
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "No highlight" })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save buffer" })
