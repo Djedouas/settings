@@ -6,3 +6,6 @@ vim.opt.number = true
 
 -- Show diagnostics on lines
 vim.diagnostic.config({ virtual_text = true, underline = true })
+
+-- Persistent undo
+vim.opt.undofile = true
