@@ -2,7 +2,7 @@
 vim.opt.scrolloff = 1
 
 -- Show line numbers
-vim.cmd("set number")
+vim.opt.number = true
 
 -- Show diagnostics on lines
 vim.diagnostic.config({ virtual_text = true })
