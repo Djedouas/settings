@@ -5,4 +5,4 @@ vim.opt.scrolloff = 1
 vim.opt.number = true
 
 -- Show diagnostics on lines
-vim.diagnostic.config({ virtual_text = true })
+vim.diagnostic.config({ virtual_text = true, underline = true })
