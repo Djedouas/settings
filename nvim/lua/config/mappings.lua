@@ -41,4 +41,4 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto definition" })
 -- Others
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "No highlight" })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save buffer" })
-vim.keymap.set({ "n", "o", "x" }, "²", "set wrap!<CR>", { desc = "Toggle word wrap" })
+vim.keymap.set({ "n", "o", "x" }, "²", ":set wrap!<CR>", { desc = "Toggle word wrap" })
