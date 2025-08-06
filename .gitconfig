@@ -1,8 +1,6 @@
 [user]
 	email = jacky.volpes@oslandia.com
 	name = Jacky Volpes
-[core]
-	editor = lvim
 [merge]
   conflictStyle = zdiff3
 [init]

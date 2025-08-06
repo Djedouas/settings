@@ -32,7 +32,6 @@ alias i='sudo apt install'
 alias u='sudo apt update'
 alias up='sudo apt upgrade'
 alias b='browse .'
-alias vi='lvim'
 alias lg='lazygit'
 
 # ---------------------------------------
