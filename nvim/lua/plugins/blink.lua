@@ -4,10 +4,11 @@ return {
   -- use a release tag to download pre-built binaries
   version = "1.*",
 
+  event = { "InsertEnter" },
+
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-    -- See :h blink-cmp-config-keymap for defining your own keymap
     keymap = {
       preset = "enter",
       ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
@@ -27,6 +28,4 @@ return {
       },
     },
   },
-
-  -- opts_extend = { "sources.default" },
 }

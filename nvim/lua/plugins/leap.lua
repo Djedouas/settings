@@ -1,7 +1,6 @@
 return {
   "ggandor/leap.nvim",
-  event = "BufEnter",
-  opts = {},
+  config = true,
   keys = {
     { "s", "<Plug>(leap-forward)", mode = { "n", "o", "x" }, desc = "Leap forward" },
     { "S", "<Plug>(leap-backward)", mode = { "n", "o", "x" }, desc = "Leap backward" },

@@ -1,6 +1,5 @@
 return {
   "stevearc/conform.nvim",
-  event = "BufEnter", -- lazy load on event
   cmd = { "ConformInfo" },
   keys = {
     {

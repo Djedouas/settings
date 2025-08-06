@@ -1,6 +1,6 @@
 return {
   "lewis6991/gitsigns.nvim",
-  event = "BufEnter", -- lazy load on event
+  event = "BufEnter",
   keys = {
     { "<leader>gj", ":Gitsigns next_hunk<CR>", desc = "Next git hunk" },
     { "<leader>gk", ":Gitsigns prev_hunk<CR>", desc = "Previous git hunk" },

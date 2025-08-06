@@ -2,6 +2,10 @@ vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.py" }, command = "Docse
 vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.cpp", "*.h" }, command = "Docset cpp,qgis,qt5" })
 
 return {
-  event = "BufEnter",
   "KabbAmine/zeavim.vim",
+  event = {
+    "BufAdd *.cpp",
+    "BufAdd *.py",
+    "BufAdd *.h",
+  },
 }

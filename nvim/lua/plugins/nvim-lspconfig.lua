@@ -1,3 +1,4 @@
+-- Native LSP neovim configuration
 vim.lsp.enable("ruff")
 vim.lsp.enable("pyright")
 vim.lsp.enable("clangd")
@@ -25,6 +26,7 @@ vim.lsp.config("lua_ls", {
   },
 })
 
+-- nvim-lspconfig plugin
 return {
   "neovim/nvim-lspconfig",
   lazy = false,
