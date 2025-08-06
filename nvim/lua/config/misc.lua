@@ -9,3 +9,8 @@ vim.diagnostic.config({ virtual_text = true, underline = true })
 
 -- Persistent undo
 vim.opt.undofile = true
+
+-- Folds
+vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.wo.foldmethod = "expr"
+vim.opt.foldlevel = 200
