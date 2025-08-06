@@ -17,12 +17,12 @@ vim.keymap.set("n", "<leader>c", ":bdelete<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<leader><tab>", "<C-^>", { desc = "Go to last buffer" })
 
 -- Diagnostics navigation
-vim.keymap.set("n", "<leader>lj", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
-vim.keymap.set("n", "<leader>lk", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
+vim.keymap.set("n", "<leader>lj", "]d", { desc = "Go to next diagnostic", remap = true })
+vim.keymap.set("n", "<leader>lk", "[d", { desc = "Go to previous diagnostic", remap = true })
 
 -- Comment/Uncomment
-vim.keymap.set("n", "<leader>/", "gcc", { remap = true })
-vim.keymap.set("x", "<leader>/", "gc", { remap = true })
+vim.keymap.set("n", "<leader>/", "gcc", { desc = "Toggle comment", remap = true })
+vim.keymap.set("x", "<leader>/", "gc", { desc = "Toggle comment", remap = true })
 
 -- Custom snippets
 vim.keymap.set("n", "<leader>P", "Oprint('########')<C-[>joprint('########')<C-[>k0w", { desc = "Python emphasize print" })
