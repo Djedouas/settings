@@ -10,5 +10,6 @@ vim.g.python3_host_prog = "/home/jacky/.venvs/nvim/bin/python"
 require("config.lazy")
 require("config.mappings")
 require("config.misc")
+require("config.filetypes")
 
 vim.cmd("colorscheme carbonfox")
