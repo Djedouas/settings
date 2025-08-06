@@ -20,19 +20,25 @@ vim.keymap.set("n", "<leader><tab>", "<C-^>", { desc = "Go to last buffer" })
 vim.keymap.set("n", "<leader>lj", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
 vim.keymap.set("n", "<leader>lk", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
 
+-- Comment/Uncomment
+vim.keymap.set("n", "<leader>/", "gcc", { remap = true })
+vim.keymap.set("x", "<leader>/", "gc", { remap = true })
+
 -- Custom snippets
 vim.keymap.set("n", "<leader>P", "Oprint('########')<C-[>joprint('########')<C-[>k0w", { desc = "Python emphasize print" })
 vim.keymap.set("n", "<leader>S", 'F"vF"cQStringLiteral( " )', { desc = "QStringLiteral" })
 vim.keymap.set("n", "<leader>C", '0f"v$F;hcstd::cout << " << std::endl$', { desc = "std::cout" })
 
--- Others
-vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "No highlight" })
-vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save buffer" })
-vim.keymap.set({ "n", "o", "x" }, "²", "set wrap!<CR>", { desc = "Toggle word wrap" })
-
+-- Move lines with Alt
 vim.keymap.set("x", "<M-j>", ":move '>+1<CR>gv-gv", { desc = "Move lines down" })
 vim.keymap.set("n", "<M-j>", ":move .+1<CR>==", { desc = "Move line down" })
 vim.keymap.set("x", "<M-k>", ":move '<-2<CR>gv-gv", { desc = "Move lines up" })
 vim.keymap.set("n", "<M-k>", ":move .-2<CR>==", { desc = "Move line up" })
 
+-- LSP
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto definition" })
+
+-- Others
+vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "No highlight" })
+vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save buffer" })
+vim.keymap.set({ "n", "o", "x" }, "²", "set wrap!<CR>", { desc = "Toggle word wrap" })
