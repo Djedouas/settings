@@ -7,7 +7,7 @@ return {
   branch = "0.1.x",
   dependencies = { "nvim-lua/plenary.nvim" },
   keys = {
-    { "<leader>ff", telescope().find_files, desc = "Find file" },
+    { "<leader>f", telescope().find_files, desc = "Find file" },
     { "<leader>bf", telescope().buffers, desc = "Find buffer" },
     { "<leader>sr", telescope().oldfiles, desc = "Find recent file" },
     { "<leader>sk", telescope().keymaps, desc = "Show keymaps" },
