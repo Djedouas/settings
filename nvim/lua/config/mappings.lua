@@ -38,6 +38,33 @@ vim.keymap.set("n", "<M-k>", ":move .-2<CR>==", { desc = "Move line up" })
 -- LSP
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto definition" })
 
+-- Qt lldb formatting
+vim.keymap.set(
+  { "n", "o", "x" },
+  "°",
+  "icommand script import /home/jacky/.settings/lldb-qt-formatters/lldbbridge.py<CR>",
+  { desc = "insert command for lldb Qt formatter" }
+)
+
+-- Togle diagnostics
+vim.keymap.set("n", "<leader>lt", function()
+  if vim.g.diagnostics_visible then
+    vim.g.diagnostics_visible = false
+    vim.diagnostic.enable(false)
+  else
+    vim.g.diagnostics_visible = true
+    vim.diagnostic.enable()
+  end
+end, { desc = "Toggle diagnostics" })
+
+-- Does the cursor file exists?
+vim.keymap.set(
+  "n",
+  "gG",
+  ":echo filereadable(expand('<cfile>')) ? 'file exists' : 'file does not exist'<CR>",
+  { desc = "Check file existance" }
+)
+
 -- Others
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "No highlight" })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save buffer" })
