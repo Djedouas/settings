@@ -16,7 +16,6 @@ return {
     },
 
     completion = {
-      ghost_text = { enabled = true },
       menu = {
         draw = {
           columns = {
