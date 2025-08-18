@@ -15,6 +15,9 @@ return {
       ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
     },
 
+    -- no completion in mail files
+    enabled = function() return not vim.tbl_contains({ "mail" }, vim.bo.filetype) end,
+
     completion = {
       menu = {
         draw = {
