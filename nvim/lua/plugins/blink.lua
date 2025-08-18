@@ -29,5 +29,16 @@ return {
         },
       },
     },
+
+    sources = {
+      providers = {
+        lsp = {
+          min_keyword_length = 2,
+        },
+        buffer = {
+          min_keyword_length = 4,
+        },
+      },
+    },
   },
 }
