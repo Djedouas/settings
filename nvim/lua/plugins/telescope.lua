@@ -13,5 +13,7 @@ return {
     { "<leader>sk", telescope().keymaps, desc = "Show keymaps" },
     { "<leader>sl", telescope().resume, desc = "Resume last search" },
     { "<leader>sc", telescope().colorscheme, desc = "Choose colorscheme" },
+    { "<leader>ls", telescope().lsp_document_symbols, desc = "Find document symbol" },
+    { "<leader>lS", telescope().lsp_dynamic_workspace_symbols, desc = "Find workspace symbol" },
   },
 }
