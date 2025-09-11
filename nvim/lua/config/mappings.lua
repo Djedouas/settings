@@ -19,6 +19,7 @@ vim.keymap.set("n", "<leader>c", ":bprevious<CR>:bdelete#<CR>", { desc = "Close 
 -- Diagnostics navigation
 vim.keymap.set("n", "<leader>lj", "]d", { desc = "Go to next diagnostic", remap = true })
 vim.keymap.set("n", "<leader>lk", "[d", { desc = "Go to previous diagnostic", remap = true })
+vim.keymap.set("n", "<leader>ll", vim.diagnostic.open_float, { desc = "Open diagnostic", remap = true })
 
 -- Comment/Uncomment
 vim.keymap.set("n", "<leader>/", "gcc", { desc = "Toggle comment", remap = true })
