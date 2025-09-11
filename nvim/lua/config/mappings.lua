@@ -13,8 +13,8 @@ vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", { desc = "Larger window height
 -- Buffer navigation
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bb", ":bprevious<CR>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>c", ":bdelete<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<leader><tab>", "<C-^>", { desc = "Go to last buffer" })
+vim.keymap.set("n", "<leader>c", ":bprevious<CR>:bdelete#<CR>", { desc = "Close buffer", silent = true })
 
 -- Diagnostics navigation
 vim.keymap.set("n", "<leader>lj", "]d", { desc = "Go to next diagnostic", remap = true })
