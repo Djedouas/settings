@@ -50,6 +50,9 @@ vim.keymap.set(
   { desc = "Toggle inlay hints" }
 )
 
+-- Switch .h/.cpp files
+vim.keymap.set("n", "<leader>a", ":LspClangdSwitchSourceHeader<CR>", { desc = "Switch source header file", silent = true })
+
 -- nvim-lspconfig plugin
 return {
   "neovim/nvim-lspconfig",
