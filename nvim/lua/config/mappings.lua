@@ -5,16 +5,16 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 
 -- Windows resize keymaps
-vim.keymap.set("n", "<leader><", "<C-w>30<", { desc = "Lower window width" })
-vim.keymap.set("n", "<leader>>", "<C-w>30>", { desc = "Larger window width" })
-vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", { desc = "Lower window height" })
-vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", { desc = "Larger window height" })
+vim.keymap.set("n", "<leader><", "<C-w>30<", { desc = "Lower window width", silent = true })
+vim.keymap.set("n", "<leader>>", "<C-w>30>", { desc = "Larger window width", silent = true })
+vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", { desc = "Lower window height", silent = true })
+vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", { desc = "Larger window height", silent = true })
 
 -- Buffer navigation
-vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bb", ":bprevious<CR>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader><tab>", "<C-^>", { desc = "Go to last buffer" })
+vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer", silent = true })
+vim.keymap.set("n", "<leader>bb", ":bprevious<CR>", { desc = "Previous buffer", silent = true })
 vim.keymap.set("n", "<leader>c", ":bprevious<CR>:bdelete#<CR>", { desc = "Close buffer", silent = true })
+vim.keymap.set("n", "<leader><tab>", "<C-^>", { desc = "Go to last buffer", silent = true })
 
 -- Diagnostics navigation
 vim.keymap.set("n", "<leader>lj", "]d", { desc = "Go to next diagnostic", remap = true })
@@ -31,10 +31,10 @@ vim.keymap.set("n", "<leader>S", 'F"vF"cQStringLiteral( " )', { desc = "QStrin
 vim.keymap.set("n", "<leader>C", '0f"v$F;hcstd::cout << " << std::endl$', { desc = "std::cout" })
 
 -- Move lines with Alt
-vim.keymap.set("x", "<M-j>", ":move '>+1<CR>gv-gv", { desc = "Move lines down" })
-vim.keymap.set("n", "<M-j>", ":move .+1<CR>==", { desc = "Move line down" })
-vim.keymap.set("x", "<M-k>", ":move '<-2<CR>gv-gv", { desc = "Move lines up" })
-vim.keymap.set("n", "<M-k>", ":move .-2<CR>==", { desc = "Move line up" })
+vim.keymap.set("x", "<M-j>", ":move '>+1<CR>gv-gv", { desc = "Move lines down", silent = true })
+vim.keymap.set("n", "<M-j>", ":move .+1<CR>==", { desc = "Move line down", silent = true })
+vim.keymap.set("x", "<M-k>", ":move '<-2<CR>gv-gv", { desc = "Move lines up", silent = true })
+vim.keymap.set("n", "<M-k>", ":move .-2<CR>==", { desc = "Move line up", silent = true })
 
 -- LSP
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto definition" })
@@ -67,6 +67,6 @@ vim.keymap.set(
 )
 
 -- Others
-vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "No highlight" })
-vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save buffer" })
-vim.keymap.set({ "n", "o", "x" }, "²", ":set wrap!<CR>", { desc = "Toggle word wrap" })
+vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "No highlight", silent = true })
+vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save buffer", silent = true })
+vim.keymap.set({ "n", "o", "x" }, "²", ":set wrap!<CR>", { desc = "Toggle word wrap", silent = true })
