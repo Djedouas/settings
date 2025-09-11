@@ -4,6 +4,9 @@ vim.opt.scrolloff = 1
 -- Show line numbers
 vim.opt.number = true
 
+-- Ignore case on pattern matching
+vim.opt.ignorecase = true
+
 -- Show diagnostics on current line
 vim.diagnostic.config({
   virtual_text = { current_line = true },
