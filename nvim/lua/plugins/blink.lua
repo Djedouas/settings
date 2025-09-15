@@ -4,21 +4,28 @@ return {
   -- use a release tag to download pre-built binaries
   version = "1.*",
 
-  event = { "InsertEnter" },
+  event = "InsertEnter",
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
     keymap = {
-      preset = "enter",
+      preset = "none",
       ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
       ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
+      ["<C-space>"] = { "show", "hide" },
+      ["<CR>"] = { "accept", "fallback" },
     },
 
     -- no completion in mail files
     enabled = function() return not vim.tbl_contains({ "mail" }, vim.bo.filetype) end,
 
     completion = {
+      list = {
+        selection = {
+          preselect = false,
+        },
+      },
       menu = {
         draw = {
           columns = {
