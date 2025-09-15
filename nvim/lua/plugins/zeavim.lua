@@ -3,9 +3,15 @@ vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.cpp", "*.h" }, command 
 
 return {
   "KabbAmine/zeavim.vim",
-  event = {
-    "BufAdd *.cpp",
-    "BufAdd *.py",
-    "BufAdd *.h",
-  },
+
+  -- event = {
+  --   "BufAdd *.cpp",
+  --   "BufAdd *.py",
+  --   "BufAdd *.h",
+  -- },
+
+  -- lazy false because events above does not work
+  -- when opening a file directly from the command line
+  -- which seems to be a bug
+  lazy = false,
 }
