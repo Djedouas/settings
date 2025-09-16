@@ -4,7 +4,7 @@ return {
   -- use a release tag to download pre-built binaries
   version = "1.*",
 
-  event = "InsertEnter",
+  event = { "CmdlineEnter", "InsertEnter" },
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
