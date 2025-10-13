@@ -40,7 +40,7 @@ return {
     sources = {
       providers = {
         lsp = {
-          min_keyword_length = 2,
+          min_keyword_length = function(ctx) return ctx.trigger.initial_kind == "manual" and 0 or 3 end,
         },
         buffer = {
           min_keyword_length = 4,
