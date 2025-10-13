@@ -25,7 +25,8 @@ return {
       icons = {
         glyphs = {
           git = {
-            unstaged = "u",
+            unstaged = "󰄱",
+            staged = "󰄵",
           },
         },
       },
