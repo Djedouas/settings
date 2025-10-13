@@ -20,6 +20,16 @@ return {
       enable = true,
       update_root = true,
     },
+    renderer = {
+      highlight_git = "all",
+      icons = {
+        glyphs = {
+          git = {
+            unstaged = "u",
+          },
+        },
+      },
+    },
   },
   keys = {
     { "<leader>e", ":NvimTreeToggle<CR>", desc = "Explorer", silent = true },
