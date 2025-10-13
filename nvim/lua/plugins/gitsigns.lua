@@ -7,5 +7,6 @@ return {
     { "<leader>gp", ":Gitsigns preview_hunk<CR>", desc = "Preview git hunk" },
     { "<leader>gr", ":Gitsigns reset_hunk<CR>", desc = "Reset git hunk" },
     { "<leader>gl", ":Gitsigns blame<CR>", desc = "Git blame" },
+    { "ih", "<Cmd>Gitsigns select_hunk<CR>", desc = "Git blame", mode = { "o", "x" } },
   },
 }
