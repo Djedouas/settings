@@ -7,7 +7,7 @@ rm $HOME/.config/khal/config
 ln -s `readlink -f khal/config` $HOME/.config/khal
 
 rm $HOME/.config/khard/khard.conf
-ln -s `readlink -f khard/khal.conf` $HOME/.config/khard
+ln -s `readlink -f khard/khard.conf` $HOME/.config/khard
 
 ln -s `readlink -f aerc` $HOME/.config
 ln -s `readlink -f kitty` $HOME/.config
