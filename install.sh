@@ -9,6 +9,9 @@ ln -s `readlink -f khal/config` $HOME/.config/khal
 rm $HOME/.config/khard/khard.conf
 ln -s `readlink -f khard/khard.conf` $HOME/.config/khard
 
+rm $HOME/.config/vdirsyncer/config
+ln -s `readlink -f vdirsyncer/config` $HOME/.config/vdirsyncer
+
 ln -s `readlink -f aerc` $HOME/.config
 ln -s `readlink -f kitty` $HOME/.config
 ln -s `readlink -f nvim` $HOME/.config

@@ -1,0 +1,51 @@
+[general]
+status_path = "~/.vdirsyncer/status/"
+
+[pair perso]
+a = "perso_local"
+b = "perso_remote"
+collections = null
+
+[pair oslandia_jvo]
+a = "oslandia_jvo_local"
+b = "oslandia_jvo_remote"
+collections = null
+
+[pair oslandia_events]
+a = "oslandia_events_local"
+b = "oslandia_events_remote"
+collections = null
+
+[storage perso_local]
+type = "filesystem"
+path = "~/Calendar/perso/"
+fileext = ".ics"
+
+[storage oslandia_jvo_local]
+type = "filesystem"
+path = "~/Calendar/jvo/"
+fileext = ".ics"
+
+[storage oslandia_events_local]
+type = "filesystem"
+path = "~/Calendar/oslandia_events/"
+fileext = ".ics"
+
+[storage perso_remote]
+type = "caldav"
+url = "https://nuage.volpes.fr/remote.php/dav/calendars/jacky/nous/"
+username = "Jacky"
+password.fetch = ["command", "pass", "passpersos/jvo/agenda_perso"]
+
+[storage oslandia_jvo_remote]
+type = "caldav"
+url = "https://agenda.oslandia.net/davical/caldav.php/jvo/calendar"
+username = "jvo"
+password.fetch = ["command", "pass", "passpersos/jvo/agenda"]
+
+[storage oslandia_events_remote]
+type = "caldav"
+url = "https://agenda.oslandia.net/davical/caldav.php/oslandia/calendar"
+username = "jvo"
+password.fetch = ["command", "pass", "passpersos/jvo/agenda"]
+
