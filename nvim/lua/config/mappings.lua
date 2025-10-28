@@ -48,6 +48,7 @@ vim.keymap.set(
 )
 
 -- Togle diagnostics
+vim.g.diagnostics_visible = true
 vim.keymap.set("n", "<leader>lt", function()
   if vim.g.diagnostics_visible then
     vim.g.diagnostics_visible = false
