@@ -6,7 +6,7 @@ return {
 
   config = function()
     require("nvim-treesitter.configs").setup({
-      ensure_installed = { "cpp", "python", "lua" },
+      ensure_installed = { "cpp", "python", "lua", "comment" },
       highlight = { enable = true },
     })
   end,
