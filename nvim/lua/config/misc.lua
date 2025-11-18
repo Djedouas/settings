@@ -9,6 +9,7 @@ vim.opt.ignorecase = true
 
 -- Show diagnostics on current line
 vim.diagnostic.config({
+  float = { source = true },
   virtual_text = { current_line = true },
   underline = true,
   signs = {
