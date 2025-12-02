@@ -3,9 +3,6 @@
 # Quitte si une commande échoue
 set -e
 
-# qt6 par défaut
-qt5_forced=false
-
 git_prepared=false
 
 # Fonction de clean exécutée à a la fin
@@ -25,10 +22,6 @@ trap cleanup EXIT ERR INT TERM  # on exécute cleanup quand le script échoue ou
 # Analyse des options
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        -qt5)
-            qt5_forced=true
-            shift
-            ;;
         -*)
             echo "Option inconnue : $1"
             exit 1
@@ -41,15 +34,9 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [ -z "${input_version:-}" ]; then
-    echo "Usage: $0 [-qt5] <version>"
+    echo "Usage: $0 <version>"
     echo "Exemples valides : 3_36_11 ou 3.36.11"
     exit 1
-fi
-
-if $qt5_forced; then
-  qt_version='5'
-else
-  qt_version='6'
 fi
 
 # on met des _ si besoin
@@ -64,31 +51,23 @@ fi
 
 # construction des chemins
 src_dir="/home/jacky/dev/QGIS"
-install_dir="/home/jacky/apps/qgis_${version}_qt${qt_version}"
-build_dir="${src_dir}/build_${version}_qt${qt_version}"
+install_dir="/home/jacky/apps/qgis_${version}"
+build_dir="${src_dir}/build_${version}"
 
 cmake_options=(
   "-G Ninja"
   "-S ${src_dir}"
   "-DCMAKE_BUILD_TYPE=Debug"
+  "-DWITH_QTWEBKIT=OFF"
   "-DENABLE_TESTS=OFF"
   "-DCMAKE_C_COMPILER=clang"
   "-DCMAKE_CXX_COMPILER=clang++"
   "-DCMAKE_INSTALL_PREFIX=${install_dir}"
+  "-DBUILD_WITH_QT6=ON"
+  "-DWITH_INTERNAL_QWT=ON"
+  "-DWITH_INTERNAL_SPATIALINDEX=ON"
   "-B ${build_dir}"
 )
-
-# options en plus pour qt6
-if ! $qt5_forced; then
-  cmake_options+=(
-    "-DBUILD_WITH_QT6=ON"
-    "-DWITH_QTWEBKIT=OFF"
-    # "-DWITH_INTERNAL_QWT=ON"  TODO: utiliser DWITH_INTERNAL_QWT bientôt
-    "-DQWT_LIBRARY=/home/jacky/depends/qwt/install/lib/libqwt.so"
-    "-DQWT_INCLUDE_DIR=/home/jacky/depends/qwt/install/include/qwt"
-    "-DCMAKE_INSTALL_RPATH=/home/jacky/depends/qwt/install/lib"
-  )
-fi
 
 # sauvegarder l'état initial et aller à la version demandée
 git -C "$src_dir" stash
