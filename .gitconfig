@@ -16,3 +16,6 @@
 [diff-so-fancy]
   markEmptyLines = false
   stripLeadingSymbols = false
+
+[core]
+  editor = vi
