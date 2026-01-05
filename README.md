@@ -10,3 +10,9 @@ Ajouter ces 2 lignes dans le fichier /home/jacky/.local/share/lunarvim/site/pack
 import lldb
 lldb.debugger.HandleCommand("command script import /home/jacky/.settings/lldb-qt-formatters/lldbbridge.py")
 ```
+
+# Service LanguageTool
+
+Installer un serveur LanguageTool local (https://dev.languagetool.org/http-server)
+
+Le fichier service est installé par install.sh

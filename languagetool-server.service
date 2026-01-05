@@ -1,0 +1,11 @@
+[Unit]
+Description=LanguageTool Server
+
+[Service]
+Type=simple
+UMask=007
+
+ExecStart=/usr/bin/java -cp ${HOME}/apps/LanguageTool-6.8-SNAPSHOT/languagetool-server.jar org.languagetool.server.HTTPServer --config ${HOME}/apps/LanguageTool-6.8-SNAPSHOT/server.properties --port 8081 --allow-origin
+
+[Install]
+WantedBy=default.target
