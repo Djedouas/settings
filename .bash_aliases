@@ -37,8 +37,7 @@ alias lg='lazygit'
 # ---------------------------------------
 # Compiler QGIS
 
-alias cmake_qgis_qt6='cmake -GNinja -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DBUILD_WITH_QT6=ON -DWITH_QTWEBKIT=OFF ..'
-alias cmake_qgis_qt5='cmake -GNinja -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..'
+alias cmake_qgis='cmake -GNinja -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DWITH_INTERNAL_SPATIALINDEX=ON -DWITH_QTWEBKIT=OFF ..'
 
 # ---------------------------------------
 # PATH
