@@ -33,8 +33,8 @@ fileext = ".ics"
 
 [storage perso_remote]
 type = "caldav"
-url = "https://nuage.volpes.fr/remote.php/dav/calendars/jacky/nous/"
-username = "Jacky"
+url = "https://p106-caldav.icloud.com/183877291/calendars/c94ff72d-bb90-45d5-b503-25fd94d92893"
+username = "jacky@volpes.fr"
 password.fetch = ["command", "pass", "passpersos/jvo/agenda_perso"]
 
 [storage oslandia_jvo_remote]
