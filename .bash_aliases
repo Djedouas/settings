@@ -118,6 +118,12 @@ function q() {
     selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
 
     if [ -n "$selected_profile" ]; then
+      env \
+        --unset=KDE_FULL_SESSION \
+        --unset=KDE_SESSION_VERSION \
+        --unset=DESKTOP_SESSION \
+        --unset=XDG_CURRENT_DESKTOP \
+      QT_STYLE_OVERRIDE=fusion \
       qgis --profile "$selected_profile" &
     fi
   else
@@ -134,6 +140,12 @@ function qm() {
     selected_profile=$(ls ~/.local/share/QGIS/QGIS3/profiles/ | grep -v .ini$ | fzf)
 
     if [ -n "$selected_profile" ]; then
+      env \
+        --unset=KDE_FULL_SESSION \
+        --unset=KDE_SESSION_VERSION \
+        --unset=DESKTOP_SESSION \
+        --unset=XDG_CURRENT_DESKTOP \
+      QT_STYLE_OVERRIDE=fusion \
       /home/jacky/dev/QGIS/build/output/bin/qgis --profile "$selected_profile" &
     fi
   fi
