@@ -15,13 +15,7 @@ return {
     log_level = vim.log.levels.DEBUG,
     formatters_by_ft = {
       python = { "isort", "black" },
-      cpp = function(bufnr)
-        if vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t"):sub(1, 3) == "qgs" then
-          return { "clang-format", "astyle" } -- formatters for QGIS files
-        else
-          return { "clang-format" }
-        end
-      end,
+      cpp = { "clang-format" },
       lua = { "stylua" },
     },
     -- Set default options
@@ -31,9 +25,6 @@ return {
     },
     -- Customize formatters
     formatters = {
-      astyle = {
-        prepend_args = { "--options=/home/jacky/dev/QGIS/scripts/astyle.options" },
-      },
       stylua = {
         args = {
           "--indent-type",
