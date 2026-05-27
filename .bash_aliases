@@ -1,4 +1,10 @@
 # ---------------------------------------
+# Starship
+
+export STARSHIP_CONFIG=~/.settings/starship.toml
+eval "$(starship init bash)"
+
+# ---------------------------------------
 # Aliases
 
 # git
@@ -54,14 +60,6 @@ export FZF_DEFAULT_OPTS='
 
 # Other
 export PSQL_EDITOR="nvim"
-
-# ---------------------------------------
-# Powerline
-
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-. /usr/share/powerline/bindings/bash/powerline.sh
 
 # ---------------------------------------
 # Goto functions

@@ -1,0 +1,32 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+palette = "perso"
+
+format = """
+$env_var\
+$python\
+$directory\
+$git_branch\
+[ ](fg:prev_bg)
+"""
+
+[git_branch]
+format = '[[](fg:prev_bg fg:git bg:git) $symbol$branch ](bg:git)'
+
+[directory]
+format = "[[](fg:prev_bg fg:dir bg:dir) $path](bg:dir)"
+
+[python]
+format = "[[](fg:prev_bg fg:py bg:py) \\($virtualenv\\)](bg:py)"
+detect_extensions = []
+detect_files = []
+
+[env_var.MY_QGIS_VERSION]
+format = "[[](fg:prev_bg fg:env_qgis bg:env_qgis) $env_value](bg:env_qgis)"
+
+[palettes.perso]
+py = "#069694"
+git = "#FCA17D"
+dir = "#DA627D"
+env_qgis = "#9A348E"
