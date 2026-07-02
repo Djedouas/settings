@@ -5,6 +5,7 @@ palette = "perso"
 
 format = """
 $env_var\
+$nix_shell\
 $python\
 $directory\
 $git_branch\
@@ -12,21 +13,23 @@ $git_branch\
 """
 
 [git_branch]
-format = '[[](fg:prev_bg fg:git bg:git) $symbol$branch ](bg:git)'
+format = '[[](fg:prev_bg fg:git bg:git) $symbol$branch ](bg:git fg:#444477)'
 
 [directory]
 format = "[[](fg:prev_bg fg:dir bg:dir) $path](bg:dir)"
 
 [python]
-format = "[[](fg:prev_bg fg:py bg:py) \\($virtualenv\\)](bg:py)"
-detect_extensions = []
-detect_files = []
+format = "[[](fg:prev_bg fg:py bg:py)( \\($virtualenv\\) )$symbol$version](bg:py)"
 
 [env_var.MY_QGIS_VERSION]
 format = "[[](fg:prev_bg fg:env_qgis bg:env_qgis) $env_value](bg:env_qgis)"
+
+[nix_shell]
+format = "[[](fg:prev_bg fg:nix bg:nix) $name](bg:nix)"
 
 [palettes.perso]
 py = "#069694"
 git = "#FCA17D"
 dir = "#DA627D"
 env_qgis = "#9A348E"
+nix = "#223355"
