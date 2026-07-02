@@ -186,3 +186,5 @@ function p() {
     ln -s "../../Client-projects/$selected_project" ./git
   fi
 }
+
+alias nix="nix --extra-experimental-features nix-command --extra-experimental-features flakes "
