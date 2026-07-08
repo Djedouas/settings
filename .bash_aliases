@@ -7,6 +7,10 @@ eval "$(starship init bash)"
 # ---------------------------------------
 # Aliases
 
+alias vq='~/.settings/qgis_versions/qgis-shell.sh'
+alias nix="nix --extra-experimental-features nix-command --extra-experimental-features flakes "
+alias lg='lazygit'
+
 # git
 alias gc='git checkout'
 alias ga='git add -A'
@@ -38,7 +42,6 @@ alias i='sudo apt install'
 alias u='sudo apt update'
 alias up='sudo apt upgrade'
 alias b='browse .'
-alias lg='lazygit'
 
 # ---------------------------------------
 # Compiler QGIS
@@ -150,24 +153,6 @@ function qm() {
   fi
 }
 
-# paramétrer l'environnement du terminal avec un QGIS installé dans ~/apps/
-function vq() {
-  if [ -n "${MY_QGIS_VERSION}" ] ; then
-    echo "Ce terminal est déjà paramétré avec la version de QGIS $MY_QGIS_VERSION"
-  else
-    local selected_qgis
-    selected_qgis=$(ls -r ~/apps/ | grep -i qgis | fzf)
-    if [ -n "$selected_qgis" ]; then
-      export MY_QGIS_VERSION=$selected_qgis  # for powerline
-      selected_qgis=~/apps/${selected_qgis}
-      export PYTHONPATH=${selected_qgis}/share/qgis/python:$selected_qgis/share/qgis/python/plugins/${PYTHONPATH:+:${PYTHONPATH}}
-      export LD_LIBRARY_PATH=${selected_qgis}/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-      export PATH=${PATH:+${PATH}:}${selected_qgis}/bin
-      export QGIS_PREFIX_PATH=$selected_qgis
-    fi
-  fi
-}
-
 # ---------------------------------------
 # Create project folders function
 
@@ -186,5 +171,3 @@ function p() {
     ln -s "../../Client-projects/$selected_project" ./git
   fi
 }
-
-alias nix="nix --extra-experimental-features nix-command --extra-experimental-features flakes "
