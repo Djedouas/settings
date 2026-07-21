@@ -50,8 +50,12 @@ return {
     },
     keymaps = { close = {} },
     outline_window = { focus_on_open = false },
+    providers = {
+      priority = { "lsp", "coc", "markdown", "norg", "treesitter" },
+    },
   },
   keys = {
     { "<leader>t", ":Outline<CR>", desc = "Outline", silent = true },
   },
+  dependencies = { "epheien/outline-treesitter-provider.nvim" },
 }
