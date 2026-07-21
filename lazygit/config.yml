@@ -77,9 +77,9 @@ gui:
     rate: 50
   statusPanelView: dashboard
 git:
-  paging:
-    colorArg: always
-    pager: diff-so-fancy
+  pagers:
+    - colorArg: always
+      pager: diff-so-fancy
   commit:
     signOff: false
     autoWrapCommitMessage: true
@@ -96,8 +96,7 @@ git:
   autoRefresh: true
   fetchAll: true
   branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
-  allBranchesLogCmd: git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
-  allBranchesLogCmds: []
+  allBranchesLogCmds: [git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium]
   overrideGpg: false
   disableForcePushing: false
   commitPrefix: []
@@ -261,6 +260,7 @@ keybinding:
     increaseRenameSimilarityThreshold: )
     decreaseRenameSimilarityThreshold: (
     openDiffTool: <c-t>
+    newWorktree: w
   status:
     checkForUpdate: u
     recentRepos: <enter>
@@ -280,7 +280,7 @@ keybinding:
     viewResetOptions: D
     fetch: f
     toggleTreeView: '`'
-    openMergeTool: M
+    openMergeOptions: M
     openStatusFilter: <c-b>
     copyFileInfoToClipboard: "y"
   branches:
@@ -299,8 +299,6 @@ keybinding:
     setUpstream: u
     fetchRemote: f
     sortOrder: s
-  worktrees:
-    viewWorktreeOptions: w
   commits:
     squashDown: s
     renameCommit: r
@@ -320,7 +318,7 @@ keybinding:
     markCommitAsBaseForRebase: B
     tagCommit: T
     checkoutCommit: <space>
-    resetCherryPick: <c-R>
+    resetCherryPick: <c-r>
     copyCommitAttributeToClipboard: "y"
     openLogMenu: <c-l>
     openInBrowser: o
