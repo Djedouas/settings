@@ -3,7 +3,6 @@
 set -euo pipefail
 
 FLAKE_DIR="${FLAKE_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)}"
-cd "$FLAKE_DIR"
 
 # Parse la section versions = { ... } dans flake.nix
 SHELLS=$(awk '
@@ -13,7 +12,7 @@ SHELLS=$(awk '
     match($0, /"([^"]+)"/, arr)
     print arr[1]
   }
-' flake.nix)
+' $FLAKE_DIR/flake.nix)
 
 if [[ -z "$SHELLS" ]]; then
   echo "Erreur: aucune version trouvée dans flake.nix" >&2
@@ -34,4 +33,4 @@ if nix --version &>/dev/null && ! nix show-config 2>/dev/null | grep -q 'experim
   NIX_EXTRA_ARGS=(--extra-experimental-features 'nix-command flakes')
 fi
 
-exec nix "${NIX_EXTRA_ARGS[@]}" develop ".#$SELECTED"
+exec nix "${NIX_EXTRA_ARGS[@]}" develop "$FLAKE_DIR#$SELECTED"
